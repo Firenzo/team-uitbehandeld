@@ -23,6 +23,6 @@ export default {
 }
 </script>
 
-<style lang="">
+<style lang="scss">
 @use "styles/main";
 </style>
