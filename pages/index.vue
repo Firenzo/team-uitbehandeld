@@ -1,7 +1,7 @@
 <template>
 <div class="content">
-  <PageHeader />
-  <Component2 />
+  <!-- <PageHeader /> -->
+  <PageFooter />
 </div>
 </template>
 
