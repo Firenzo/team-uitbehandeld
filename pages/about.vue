@@ -1,0 +1,28 @@
+<template>
+<div>
+  <PageHeader />
+  <h1>Hulpvraag</h1>
+  <p></p>
+</div>
+</template>
+
+<script>
+export default {
+  head () {
+    return {
+      title: 'Team Uitbehandeld',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'informatie voor uitbehandelde mensen en hun families'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style lang="">
+@use "styles/main";
+</style>

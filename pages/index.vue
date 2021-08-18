@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <Component1 />
+  <PageHeader />
   <Component2 />
 </div>
 </template>
@@ -10,5 +10,7 @@ export default {}
 </script>
 
 <style lang="scss">
-  @import '~/assets/styles/main.scss';
+
+@use "styles/main";
+
 </style>
