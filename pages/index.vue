@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <!-- <PageHeader /> -->
+  <PageHeader />
   <PageFooter />
 </div>
 </template>
