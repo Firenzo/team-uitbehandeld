@@ -1,3 +1,6 @@
+@import 'common/variables';
+@import 'common/breakpoints';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,6 +12,7 @@ body {
 }
 
 div.container {
+  width:90%;
   max-width: 1200px;
   margin: auto;
 }

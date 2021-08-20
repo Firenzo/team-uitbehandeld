@@ -1,6 +1,7 @@
 <template>
 <div>
-  <PageHeader />
+  <PageHeaderMobile />
+  <PageFooter />
   <h1>Hulpvraag</h1>
   <p></p>
 </div>
@@ -24,5 +25,5 @@ export default {
 </script>
 
 <style lang="scss">
-@use "styles/main";
+  @use "styles/main";
 </style>
