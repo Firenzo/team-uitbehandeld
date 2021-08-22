@@ -1,14 +1,28 @@
 <template>
-<div class="content">
-  <client-only><PageHeader v-if="window.innerWidth >= 1250" />
-  <PageHeaderMobile v-else />
-  </client-only>
-  <PageFooter />
-</div>
+  <div class="container">
+    <h1>Index Content</h1>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+
+  data: () => ({
+
+  }),
+
+  computed: {
+
+  },
+
+  mounted () {
+
+  },
+
+  methods: {
+
+  }
+}
 
 </script>
 

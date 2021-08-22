@@ -1,10 +1,7 @@
 <template>
-<div>
-  <PageHeaderMobile />
-  <PageFooter />
-  <h1>Hulpvraag</h1>
-  <p></p>
-</div>
+  <div class="container">
+    <h1>About Content</h1>
+  </div>
 </template>
 
 <script>
