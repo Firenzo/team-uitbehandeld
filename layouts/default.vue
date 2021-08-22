@@ -9,7 +9,6 @@
 
 <script>
 export default {
-  layout: 'default',
 
   data: () => ({
     viewportIsMobile: true
