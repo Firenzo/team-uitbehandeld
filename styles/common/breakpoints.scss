@@ -1,6 +1,7 @@
 @mixin min-375 {@media screen and (min-width: 375px){@content;}}
 @mixin min-450 {@media screen and (min-width: 450px){@content;}}
 @mixin min-600 {@media screen and (min-width: 600px){@content;}}
+@mixin min-700 {@media screen and (min-width: 700px){@content;}}
 @mixin min-768 {@media screen and (min-width: 768px){@content;}}
 @mixin min-834 {@media screen and (min-width: 834px){@content;}}
 @mixin min-900 {@media screen and (min-width: 900px){@content;}}

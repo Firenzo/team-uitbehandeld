@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>About Content</h1>
+    <h1>About Ken</h1>
   </div>
 </template>
 
@@ -21,6 +21,6 @@ export default {
 }
 </script>
 
-<style lang="">
+<style lang="scss">
 @use "styles/main";
 </style>

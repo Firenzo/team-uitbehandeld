@@ -1,42 +1,45 @@
 <template>
-
-<header>
-  <div class="container">
-    <NuxtLink class="logo" to="/">
-      <img src="~/assets/images/teamuitbehandeld_logo.svg" alt="Team Uitbehandeld logo">
-    </NuxtLink>
-    <nav>
-      <ul>
-        <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/about">Hulpvraag</NuxtLink></li>
-        <li><NuxtLink to="/about">Teamspecialisten</NuxtLink></li>
-        <li><NuxtLink to="/about">Buddy's &amp; vrijwilligers</NuxtLink></li>
-        <li><NuxtLink to="/about">Laatste wens</NuxtLink></li>
-        <li><NuxtLink to="/about">Actueel</NuxtLink></li>
-        <li><NuxtLink to="/about">Partners</NuxtLink></li>
-        <li><NuxtLink to="/about">Contact</NuxtLink></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <NuxtLink class="logo" to="/">
+        <img
+          src="~/assets/images/teamuitbehandeld_logo.svg"
+          alt="Team Uitbehandeld logo"
+        />
+      </NuxtLink>
+      <nav>
+        <ul>
+          <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li><NuxtLink to="/about">Hulpvraag</NuxtLink></li>
+          <li><NuxtLink to="/about">Teamspecialisten</NuxtLink></li>
+          <li><NuxtLink to="/about">Buddy's &amp; vrijwilligers</NuxtLink></li>
+          <li><NuxtLink to="/about">Laatste wens</NuxtLink></li>
+          <li><NuxtLink to="/about">Actueel</NuxtLink></li>
+          <li><NuxtLink to="/about">Partners</NuxtLink></li>
+          <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <style scoped lang="scss">
-
 header {
+  padding-top: 20px;
+  margin-bottom: 40px;
 
   div.container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     a.logo {
-      width: 300px;
-      flex-basis: 300px;
+      width: 270px;
+      flex-basis: 270px;
     }
 
     nav {
-      flex-basis: calc(100% - 300px - 50px);
+      flex-basis: calc(100% - 270px - 50px);
 
       ul {
         display: flex;
@@ -47,12 +50,14 @@ header {
 
           a {
             text-decoration: none;
-            color:black;
+            color: black;
+            &:hover {
+              border-bottom: 1px solid black;
+            }
           }
         }
       }
     }
   }
 }
-
 </style>

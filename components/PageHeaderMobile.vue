@@ -1,13 +1,15 @@
 <template>
-
-<header>
-  <div class="container">
-    <NuxtLink class="logo" to="/">
-      <img src="~/assets/images/teamuitbehandeld_logo.svg" alt="Team Uitbehandeld logo">
-    </NuxtLink>
-    <button class="mobileMenu"><Fa-icon :icon="['fas', 'bars']" /></button>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <NuxtLink class="logo" to="/">
+        <img
+          src="~/assets/images/teamuitbehandeld_logo.svg"
+          alt="Team Uitbehandeld logo"
+        />
+      </NuxtLink>
+      <button class="mobileMenu"><Fa-icon :icon="['fas', 'bars']" /></button>
+    </div>
+  </header>
 </template>
 
 <style scoped lang="scss">
@@ -15,12 +17,17 @@
 
 header {
   padding-top: 5vw;
+  margin-bottom: 40px;
 
   div.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
+    @include min-450 {
+      flex-wrap: nowrap;
+    }
 
     a.logo {
       flex-basis: 100%;
@@ -29,9 +36,19 @@ header {
       display: flex;
       justify-content: center;
 
-      img {
-        max-width: 300px;
+      @include min-450 {
+        order: 0;
+        transform: none;
         display: block;
+      }
+
+      img {
+        max-width: 220px;
+        display: block;
+
+        @include min-700 {
+          max-width: 300px;
+        }
       }
     }
 
@@ -48,6 +65,10 @@ header {
       flex-basis: 50px;
       margin-left: calc(100% - 50px);
 
+      @include min-450 {
+        margin-left: 0;
+      }
+
       svg {
         width: 22px;
         height: 22px;
@@ -56,5 +77,4 @@ header {
     }
   }
 }
-
 </style>
