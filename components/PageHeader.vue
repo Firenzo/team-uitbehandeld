@@ -30,7 +30,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    a {
+    a.logo {
       width: 300px;
       flex-basis: 300px;
     }
@@ -42,16 +42,17 @@ header {
         display: flex;
         justify-content: space-between;
 
-      li {
-        list-style: none;
+        li {
+          list-style: none;
 
-        a {
-          text-decoration: none;
+          a {
+            text-decoration: none;
+            color:black;
+          }
         }
       }
     }
   }
 }
 
-}
 </style>

@@ -1,16 +1,31 @@
 <template>
-<div class="content">
-  <PageHeader />
-  <Component2 />
-</div>
+  <div class="container">
+    <h1>Index Content</h1>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+
+  data: () => ({
+
+  }),
+
+  computed: {
+
+  },
+
+  mounted () {
+
+  },
+
+  methods: {
+
+  }
+}
+
 </script>
 
 <style lang="scss">
-
 @use "styles/main";
-
 </style>
