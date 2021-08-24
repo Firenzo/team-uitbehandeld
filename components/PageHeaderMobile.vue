@@ -53,10 +53,10 @@ export default {
 
 .slideIn-enter-active, .slideIn-leave-active {
   transition: transform 0.4s;
-  transform: translateX(0vw)
+  transform: translateX(0vw);
 }
 .slideIn-enter, .slideIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  transform: translateX(100vw)
+  transform: translateX(100vw);
 }
 
 header {
