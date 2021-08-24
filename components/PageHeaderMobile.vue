@@ -7,13 +7,57 @@
           alt="Team Uitbehandeld logo"
         />
       </NuxtLink>
-      <button class="mobileMenu"><Fa-icon :icon="['fas', 'bars']" /></button>
+      <button @click="openMenu()" class="mobileMenu">
+        <Fa-icon v-if="!mobileMenuOpen" :icon="['fas', 'bars']" />
+        <Fa-icon v-else :icon="['fas', 'times']" />
+      </button>
+      <transition name="slideIn">
+        <MobileMenu v-if="mobileMenuOpen" />
+      </transition>
     </div>
   </header>
 </template>
 
+<script>
+export default {
+
+  data: () => ({
+    mobileMenuOpen: false
+  }),
+
+  computed: {
+
+  },
+
+  mounted () {
+
+  },
+
+  methods: {
+    openMenu () {
+      this.mobileMenuOpen = !this.mobileMenuOpen
+      if (this.mobileMenuOpen === true) {
+        document.querySelector('body').classList.add('noscroll')
+        document.querySelector('header button.mobileMenu').classList.add('menuOpen')
+      } else {
+        document.querySelector('body').classList.remove('noscroll')
+        document.querySelector('header button.mobileMenu').classList.remove('menuOpen')
+      }
+    }
+  }
+}
+</script>
+
 <style scoped lang="scss">
 @use 'styles/main' as *;
+
+.slideIn-enter-active, .slideIn-leave-active {
+  transition: transform 0.4s;
+  transform: translateX(0vw)
+}
+.slideIn-enter, .slideIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateX(100vw)
+}
 
 header {
   padding-top: 5vw;
@@ -60,10 +104,18 @@ header {
       background-color: white;
       padding: 10px;
       border-radius: 5px;
-      background: #9cbe2f;
+      background: $light-green;
       box-shadow: 0 0 4px rgb(70, 84, 22);
       flex-basis: 50px;
       margin-left: calc(100% - 50px);
+      z-index: 1;
+
+      transition:background-color 0.2s ease;
+
+      &.menuOpen{
+        background-color:$mobile-menu-background;
+        box-shadow:none;
+      }
 
       @include min-450 {
         margin-left: 0;

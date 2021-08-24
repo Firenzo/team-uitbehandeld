@@ -51,8 +51,10 @@ header {
           a {
             text-decoration: none;
             color: black;
+
             &:hover {
-              border-bottom: 1px solid black;
+              padding-bottom:3px;
+              border-bottom: 2px solid black;
             }
           }
         }

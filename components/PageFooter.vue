@@ -47,10 +47,10 @@
 
 footer {
   padding: 20px 0;
-  margin-top: 100px;
   border-top: 1px solid $footer-border-color;
   color: $light-text-color;
   font-size: 14px;
+  margin-top:50px;
 
   @include min-900 {
     padding: 0;

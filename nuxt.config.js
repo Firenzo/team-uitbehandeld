@@ -38,7 +38,7 @@ export default {
   fontawesome: {
     component: 'FaIcon',
     icons: {
-      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars'],
+      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes'],
       brands: ['faFacebook']
     }
   },

@@ -11,8 +11,25 @@ body {
   font-family: sans-serif;
 }
 
+body.noscroll{
+  overflow:hidden;
+}
+
 div.container {
   width:90%;
   max-width: 1200px;
   margin: auto;
+}
+
+h1{
+  font-size:36px;
+}
+
+h2{
+  font-size: 24px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.4em;
 }
