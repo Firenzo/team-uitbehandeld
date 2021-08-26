@@ -51,18 +51,18 @@
       <section id="hulpvraag-onderwerpen">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
-          <li><NuxtLink class="button" to="medisch">Medisch</NuxtLink></li>
-          <li><NuxtLink class="button" to="palliatief">Palliatief</NuxtLink></li>
-          <li><NuxtLink class="button" to="beweging">Beweging</NuxtLink></li>
-          <li><NuxtLink class="button" to="voeding">Voeding</NuxtLink></li>
-          <li><NuxtLink class="button" to="mentaal">Mentaal</NuxtLink></li>
-          <li><NuxtLink class="button" to="maatschappelijk">Maatschappelijk</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpmiddelen">Hulpmiddelen</NuxtLink></li>
-          <li><NuxtLink class="button" to="rouwverwerking">Rouwverwerking</NuxtLink></li>
-          <li><NuxtLink class="button" to="levenseinde">Levenseinde</NuxtLink></li>
-          <li><NuxtLink class="button" to="emoties">Emoties</NuxtLink></li>
-          <li><NuxtLink class="button" to="oncologie">Oncologie</NuxtLink></li>
-          <li><NuxtLink class="button" to="button">Button</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/medisch">Medisch</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/palliatief">Palliatief</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/beweging">Beweging</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/voeding">Voeding</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/mentaal">Mentaal</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/maatschappelijk">Maatschappelijk</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/hulpmiddelen">Hulpmiddelen</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/rouwverwerking">Rouwverwerking</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/levenseinde">Levenseinde</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/emoties">Emoties</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/oncologie">Oncologie</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/button">Button</NuxtLink></li>
         </ul>
       </section>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul>
+    <ul @click="closeMenu()">
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li><NuxtLink to="/about">Hulpvraag</NuxtLink></li>
         <li><NuxtLink to="/about">Teamspecialisten</NuxtLink></li>
@@ -29,7 +29,11 @@ export default {
   },
 
   methods: {
-
+    closeMenu () {
+      this.$store.dispatch('checkMobileMenuState')
+      document.querySelector('body').classList.remove('noscroll')
+      document.querySelector('header button.mobileMenu').classList.remove('menuOpen')
+    }
   }
 }
 

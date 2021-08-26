@@ -1,23 +1,19 @@
 export const state = () => ({
-  isMobile: false
+  mobileMenuOpen: false
 })
 
 export const mutations = {
-  SET_MOBILE_STATUS (state, status) {
-    state.isMobile = status
+  SET_MOBILE_MENU_STATUS (state) {
+    state.mobileMenuOpen = !state.mobileMenuOpen
   }
 }
 
 export const actions = {
-  checkMobileState (context) {
-    if (window.innerHeight < 1200) {
-      context.commit('SET_MOBILE_STATUS', true)
-    } else {
-      context.commit('SET_MOBILE_STATUS', false)
-    }
+  checkMobileMenuState (context) {
+    context.commit('SET_MOBILE_MENU_STATUS')
   }
 }
 
 export const getters = {
-  getMobileState: state => state.isMobile
+
 }

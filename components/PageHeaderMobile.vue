@@ -8,11 +8,11 @@
         />
       </NuxtLink>
       <button @click="openMenu()" class="mobileMenu">
-        <Fa-icon v-if="!mobileMenuOpen" :icon="['fas', 'bars']" />
+        <Fa-icon v-if="!this.$store.state.mobileMenuOpen" :icon="['fas', 'bars']" />
         <Fa-icon v-else :icon="['fas', 'times']" />
       </button>
       <transition name="slideIn">
-        <MobileMenu v-if="mobileMenuOpen" />
+        <MobileMenu v-if="this.$store.state.mobileMenuOpen" />
       </transition>
     </div>
   </header>
@@ -22,7 +22,7 @@
 export default {
 
   data: () => ({
-    mobileMenuOpen: false
+
   }),
 
   computed: {
@@ -30,13 +30,13 @@ export default {
   },
 
   mounted () {
-
+    console.log(this.$store.state.mobileMenuOpen)
   },
 
   methods: {
     openMenu () {
-      this.mobileMenuOpen = !this.mobileMenuOpen
-      if (this.mobileMenuOpen === true) {
+      this.$store.dispatch('checkMobileMenuState')
+      if (this.$store.state.mobileMenuOpen === true) {
         document.querySelector('body').classList.add('noscroll')
         document.querySelector('header button.mobileMenu').classList.add('menuOpen')
       } else {
