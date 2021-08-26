@@ -74,7 +74,7 @@ header {
     }
 
     a.logo {
-      flex-basis: 100%;
+      // flex-basis: 100%;
       order: 1;
       transform: translateY(-14px);
       display: flex;
@@ -87,7 +87,7 @@ header {
       }
 
       img {
-        max-width: 220px;
+        width: 220px;
         display: block;
 
         @include min-700 {

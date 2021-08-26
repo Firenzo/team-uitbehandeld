@@ -51,18 +51,18 @@
       <section id="hulpvraag-onderwerpen">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
-          <li><a class="button" href="#">Medisch</a></li>
-          <li><a class="button" href="#">Palliatief</a></li>
-          <li><a class="button" href="#">Beweging</a></li>
-          <li><a class="button" href="#">Voeding</a></li>
-          <li><a class="button" href="#">Mentaal</a></li>
-          <li><a class="button" href="#">Maatschappelijk</a></li>
-          <li><a class="button" href="#">Hulpmiddelen</a></li>
-          <li><a class="button" href="#">Rouwverwerking</a></li>
-          <li><a class="button" href="#">Levenseinde</a></li>
-          <li><a class="button" href="#">Emoties</a></li>
-          <li><a class="button" href="#">Oncologie</a></li>
-          <li><a class="button" href="#">Button</a></li>
+          <li><NuxtLink class="button" to="medisch">Medisch</NuxtLink></li>
+          <li><NuxtLink class="button" to="palliatief">Palliatief</NuxtLink></li>
+          <li><NuxtLink class="button" to="beweging">Beweging</NuxtLink></li>
+          <li><NuxtLink class="button" to="voeding">Voeding</NuxtLink></li>
+          <li><NuxtLink class="button" to="mentaal">Mentaal</NuxtLink></li>
+          <li><NuxtLink class="button" to="maatschappelijk">Maatschappelijk</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpmiddelen">Hulpmiddelen</NuxtLink></li>
+          <li><NuxtLink class="button" to="rouwverwerking">Rouwverwerking</NuxtLink></li>
+          <li><NuxtLink class="button" to="levenseinde">Levenseinde</NuxtLink></li>
+          <li><NuxtLink class="button" to="emoties">Emoties</NuxtLink></li>
+          <li><NuxtLink class="button" to="oncologie">Oncologie</NuxtLink></li>
+          <li><NuxtLink class="button" to="button">Button</NuxtLink></li>
         </ul>
       </section>
     </div>
@@ -258,6 +258,11 @@ main {
             color:white;
             padding: 25px 0px;
             width:200px;
+            text-decoration: none;
+
+            &:hover{
+              text-decoration:underline;
+            }
 
             @include min-450{
               width:auto;
