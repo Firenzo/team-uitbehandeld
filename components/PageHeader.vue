@@ -10,10 +10,8 @@
       <nav>
         <ul>
           <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li><NuxtLink to="/about">Ons Team</NuxtLink></li>
           <li><NuxtLink to="/about">Hulpvraag</NuxtLink></li>
-          <li><NuxtLink to="/about">Teamspecialisten</NuxtLink></li>
-          <li><NuxtLink to="/about">Buddy's &amp; vrijwilligers</NuxtLink></li>
-          <li><NuxtLink to="/about">Laatste wens</NuxtLink></li>
           <li><NuxtLink to="/about">Actueel</NuxtLink></li>
           <li><NuxtLink to="/about">Partners</NuxtLink></li>
           <li><NuxtLink to="/contact">Contact</NuxtLink></li>
@@ -40,6 +38,8 @@ header {
 
     nav {
       flex-basis: calc(100% - 270px - 50px);
+      display: flex;
+      justify-content: flex-end;
 
       ul {
         display: flex;
@@ -47,6 +47,10 @@ header {
 
         li {
           list-style: none;
+
+          &:not(:first-of-type) {
+            margin-left: 25px;
+          }
 
           a {
             text-decoration: none;
