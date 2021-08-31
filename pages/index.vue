@@ -135,6 +135,7 @@ main {
 
              @include min-900{
             width: 100%;
+            margin: 0;
           }
 
          img{
@@ -147,6 +148,7 @@ main {
 
     div#vragen{
       width: 100%;
+      margin: 20px auto;
 
         //       @include min-450{
         // flex-direction: column;
@@ -157,9 +159,12 @@ main {
           }
 
       ul.practische-vragen {
-        width: 50%;
         background-color: #4ca734;
         padding: 25px;
+
+         @include min-900{
+          width: 50%;
+          }
 
         li {
           list-style: none;
@@ -167,9 +172,12 @@ main {
       }
 
           ul.andere-vragen {
-        width: 50%;
         background-color: #9cbe2f;
         padding: 25px;
+
+         @include min-900{
+          width: 50%;
+          }
 
         li {
           list-style: none;
