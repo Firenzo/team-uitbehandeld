@@ -21,12 +21,59 @@ div.container {
   margin: auto;
 }
 
+button, a.button{
+  display:block;
+  background:$light-green;
+  padding: 20px 0;
+  width:200px;
+  border-radius:5px;
+  color:white;
+  text-decoration: none;
+  text-align:center;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
 h1{
   font-size:36px;
+  margin-bottom:20px;
+
+  &.lines{
+    font-size:28px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    &:before, &:after{
+      content:'';
+      display:block;
+      height:2px;
+      background:$light-green;
+      flex-basis:calc(50% - 161px - 20px);
+    }
+  }
 }
 
 h2{
   font-size: 24px;
+
+  &.lines{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    &:before, &:after{
+      content:'';
+      display:block;
+      height:2px;
+      background:$light-green;
+      flex-basis:calc(50% - 161px - 20px);
+    }
+  }
 }
 
 p{

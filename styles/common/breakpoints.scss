@@ -4,3 +4,4 @@
 @mixin min-900 {@media screen and (min-width: 900px){@content;}}
 @mixin min-1000 {@media screen and (min-width: 1000px){@content;}}
 @mixin min-1200 {@media screen and (min-width: 1200px){@content;}}
+@mixin min-1334 {@media screen and (min-width: 1334px){@content;}} //container max-width 1200 is reached
