@@ -169,7 +169,6 @@ main {
 
         @include min-1200{
           display:block;
-          flex-basis:calc(60% - 10px);
         }
 
         img{

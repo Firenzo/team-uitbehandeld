@@ -2,7 +2,46 @@
   <main>
     <div class="container">
       <div class="image hero"></div>
-      <section id="main-content"><h1>Have to do a lot of work here, but not today</h1></section>
+      <section id="main-content">
+        <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
+        <div id="samen-doen">
+          <div class="samen-doen-content">
+            <h1>We willen het samen doen</h1>
+<p>“Er zijn geen behandelingen meer om je ziekte te bestrijden.” Jaarlijks krijgen <a target="blank" href="https://www.rijksoverheid.nl/actueel/nieuws/2019/06/20/betere-informatie-over-palliatieve-zorg">
+120.000 mensen</a> te horen, dat zij ‘uitbehandeld’ zijn en daarvan weten
+circa 30.000 vervolgens niet wat dit concreet voor hun betekent en wat ze moeten en kunnen doen. <br><br>
+TeamUitbehandeld.nl wil helpen vragen te beantwoorden die op zo’n moment ontstaan. <br><br>
+In veel gevallen zal de behandelend specialist in het ziekenhuis terugverwijzen naar de huisarts.
+De huisarts speelt een heel belangrijke rol in de begeleiding van patiënten,
+voor wie geen “ziekte onderdrukkende” behandeling meer bestaat. Als er geen passende geneesmiddelen meer zijn om de ziekte zelf te bestrijden,
+kom je in een fase die artsen “palliatieve zorg” noemen. Palliatieve zorg is erop gericht een zo hoog mogelijke kwaliteit van leven te realiseren
+voor een patiënt die niet meer beter wordt. <br><br>
+Het is een harde boodschap als je te horen krijgt dat jij of een dierbare (naaste) is uitbehandeld.
+Iets wat je hoopt nooit te zullen mee maken. Dit slechte nieuws brengt naast veel verdriet, doorgaans veel vragen met zich mee.
+Vragen waarvan het soms moeilijk is om een goed antwoord op te vinden.</p>
+          </div>
+          <div class="image samen-doen-image">
+          <img src="~/assets/images/laatste-wens.png" alt="mensen op een brug">
+          </div>
+        </div>
+        <div id="vragen">
+          <!-- <h1>Je kunt denken aan heel concrete, praktische vragen zoals: </h1> -->
+          <ul class="practische-vragen">
+            <!-- /// can't stay like this, display: flex: 50%, flex-wrap, to change the order-->
+            <li>- wie is mijn aanspreekpunt bij problemen?</li>
+            <li>- welke zorg is er nog wel?</li>
+            <li>- waar kan ik welke hulp vragen en krijgen?</li>
+            <li>- waar kan ik welke hulpmiddelen kopen en of lenen?</li>
+          </ul>
+          <ul class="andere-vragen">
+            Andere vragen zijn persoonlijker en behoeven een gericht, vakkundig antwoord zoals:
+            <li>- hoe lang heb ik nog te leven?</li>
+            <li>- hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
+            <li>- wat mag ik doen en wat is goed voor mij en wat kan
+ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe vervul ik mijn laatste wens?</li>
+          </ul>
+        </div>
+      </section>
       <section id="hulpvraag-onderwerpen">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
@@ -53,6 +92,88 @@ main {
 
       @include min-700{
         height: 300px;
+      }
+    }
+    div#samen-doen{
+      width: 100%;
+
+      align-items: center;
+      justify-content: space-between;
+
+        //   @include min-450{
+        // flex-direction: column;
+        //   }
+
+          @include min-900{
+          display: flex;
+          }
+
+      div.samen-doen-content {
+        margin-bottom: 20px;
+
+             @include min-450{
+            width: 100%;
+            margin-left: 0px;
+          }
+
+             @include min-900{
+            width: 100%;
+            margin-right: 20px;
+          }
+      }
+
+      div.samen-doen-image {
+         overflow:hidden;
+         display: flex;
+         justify-content: flex-end;
+         width: 100%;
+
+             @include min-450{
+            justify-content: center;
+            width: 100%;
+          }
+
+             @include min-900{
+            width: 100%;
+          }
+
+         img{
+          border-radius:3px;
+          object-fit: contain;
+          height: 500px;
+        }
+      }
+    }
+
+    div#vragen{
+      width: 100%;
+
+        //       @include min-450{
+        // flex-direction: column;
+        //   }
+
+          @include min-900{
+      display: flex;
+          }
+
+      ul.practische-vragen {
+        width: 50%;
+        background-color: #4ca734;
+        padding: 25px;
+
+        li {
+          list-style: none;
+        }
+      }
+
+          ul.andere-vragen {
+        width: 50%;
+        background-color: #9cbe2f;
+        padding: 25px;
+
+        li {
+          list-style: none;
+        }
       }
     }
 
