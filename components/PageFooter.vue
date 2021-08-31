@@ -33,8 +33,7 @@
       <div class="about">
         <h2>Over team uitbehandeld</h2>
         <ul>
-          <li><a href="#">Ons team</a></li>
-          <li><a href="#">Pers</a></li>
+          <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
         </ul>
       </div>
     </div>
