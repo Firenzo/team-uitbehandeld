@@ -2,9 +2,7 @@
   <div id="app">
     <PageHeaderMobile v-if="viewportIsMobile" />
     <PageHeader v-else />
-    <transition name="fade" mode="out-in">
-      <Nuxt />
-    </transition>
+    <Nuxt />
     <PageFooter />
   </div>
 </template>
@@ -36,14 +34,27 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
-.fade-enter-active, .fade-leave-active {
+<style lang="scss">
+
+.page-enter-active{
+  transition: transform 0.4s, opacity 0.4s;
+  transform: translateX(3vw);
+  opacity: 0;
+}
+
+.page-enter-to{
+  transform: translateX(0vw);
+  opacity: 1;
+}
+
+.page-leave-active{
   transition: transform 0.4s, opacity 0.4s;
   transform: translateX(0vw);
-  opacity:1;
+  opacity: 1;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  transform: translateX(3vw);
-  opacity:0;
+
+.page-leave-to{
+  transform: translateX(-3vw);
+  opacity: 0;
 }
 </style>

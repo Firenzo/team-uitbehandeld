@@ -65,12 +65,13 @@ header {
 
   div.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 
     @include min-450 {
       flex-wrap: nowrap;
+      justify-content: space-between;
     }
 
     a.logo {

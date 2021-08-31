@@ -23,6 +23,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    {src: '~plugins/both-sides.js'},
+    {src: '~plugins/client-only.js', mode: 'client'},
+    {src: '~plugins/server-only.js', mode: 'server'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +41,7 @@ export default {
   fontawesome: {
     component: 'FaIcon',
     icons: {
-      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes'],
+      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes', 'faArrowRight', 'faChevronRight'],
       brands: ['faFacebook']
     }
   },

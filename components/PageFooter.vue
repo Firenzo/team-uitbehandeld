@@ -9,9 +9,8 @@
           />
         </div>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-          incidunt quibusdam temporibus. Ab totam perferendis impedit dolores
-          minus beatae incidunt ipsam! Necessitatibus, sapiente voluptatibus.
+          KvK: 76638251<br />
+          BSIN / fiscaal: 860717318
         </p>
       </div>
 
@@ -34,8 +33,7 @@
       <div class="about">
         <h2>Over team uitbehandeld</h2>
         <ul>
-          <li><a href="#">Ons team</a></li>
-          <li><a href="#">Pers</a></li>
+          <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
         </ul>
       </div>
     </div>
@@ -96,6 +94,11 @@ footer {
         color: $light-text-color;
         line-height: 1.4em;
         margin-top: 10px;
+        text-align: center;
+
+        @include min-450{
+          text-align:left;
+        }
       }
 
       div.image {
@@ -106,12 +109,21 @@ footer {
 
         @include min-900 {
           width: 220px;
+          margin:0;
+          margin-bottom:25px;
         }
       }
     }
 
     div.contact {
       margin-bottom: 20px;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+
+      @include min-450{
+        display:block;
+      }
 
       @include min-900 {
         padding-right: 25px;
@@ -145,9 +157,19 @@ footer {
       @include min-900 {
         margin-left: 25px;
       }
+
+      h2{
+        text-align: center;
+      }
+
       ul {
         li {
           list-style: none;
+          text-align: center;
+
+          @include min-450{
+            text-align: left;
+          }
 
           &:not(:last-of-type) {
             margin-bottom: 10px;
