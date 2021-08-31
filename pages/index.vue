@@ -1,10 +1,10 @@
 <template>
   <main>
-    <div class="container">
+    <section id="hero-container">
       <div class="image hero"></div>
-      <section id="main-content">
-        <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
-        <div id="samen-doen">
+       <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
+  </section>
+        <section id="samen-doen" class="container">
           <div class="samen-doen-content">
             <h1>We willen het samen doen</h1>
 <p>“Er zijn geen behandelingen meer om je ziekte te bestrijden.” Jaarlijks krijgen <a target="blank" href="https://www.rijksoverheid.nl/actueel/nieuws/2019/06/20/betere-informatie-over-palliatieve-zorg">
@@ -23,25 +23,47 @@ Vragen waarvan het soms moeilijk is om een goed antwoord op te vinden.</p>
           <div class="image samen-doen-image">
           <img src="~/assets/images/laatste-wens.png" alt="mensen op een brug">
           </div>
-        </div>
-        <div id="vragen">
-          <!-- <h1>Je kunt denken aan heel concrete, praktische vragen zoals: </h1> -->
+        </section>
+        <section id="vragen">
           <ul class="practische-vragen">
             <!-- /// can't stay like this, display: flex: 50%, flex-wrap, to change the order-->
+            <li><h2>Je kunt denken aan heel concrete, praktische vragen zoals:</h2></li>
             <li>- wie is mijn aanspreekpunt bij problemen?</li>
             <li>- welke zorg is er nog wel?</li>
             <li>- waar kan ik welke hulp vragen en krijgen?</li>
             <li>- waar kan ik welke hulpmiddelen kopen en of lenen?</li>
           </ul>
           <ul class="andere-vragen">
-            Andere vragen zijn persoonlijker en behoeven een gericht, vakkundig antwoord zoals:
+            <li><h2>Andere vragen zijn persoonlijker en behoeven een gericht, vakkundig antwoord zoals:</h2></li>
             <li>- hoe lang heb ik nog te leven?</li>
             <li>- hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
             <li>- wat mag ik doen en wat is goed voor mij en wat kan
 ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe vervul ik mijn laatste wens?</li>
           </ul>
+        </section>
+        <section id="terecht-met-vragen" class="container">
+           <div class="image terecht-met-vragen-image">
+          <img src="~/assets/images/terecht-met-vragen.PNG" alt="mensen op een brug">
         </div>
-      </section>
+          <div class="terecht-met-vragen-content">
+          <h1>Waar kun je dan terecht met je vragen?</h1>
+          <p>Er is veel informatie en hulp beschikbaar voor mensen in deze laatste, palliatieve levensfase, maar deze is niet altijd makkelijk te vinden.
+De zoekopdracht ‘uitbehandeld’ op internet levert niet per definitie de antwoorden op die je hoopt te vinden.
+Zoeken op internet is een kunst; als je de juiste woorden niet kent kom je niet bij het juiste antwoord en als je niet weet dat iets bestaat ga je er niet naar
+zoeken. De huisarts kan helpen en weet meestal wegen waar je hulp kan vinden die buiten de “medische” begeleiding valt. Maar misschien durf je niet alles te vragen
+en of weet de huisarts ook niet op alle vragen antwoorden.<br><br>
+Onze ervaring is, dat zich veel zorgprofessionals, instanties er (privé)organisaties bezighouden met palliatieve zorg en dat er veel informatie bestaat,
+maar dat een overzichtelijk platform ontbreekt waarop deze zorg gebundeld en makkelijk vindbaar is.<br><br>
+TeamUitbehandeld.nl heeft zich tot doel gesteld om bestaande informatie voor iedereen makkelijker vindbaar te maken.
+Wij willen een vertrekpunt zijn op de zoektocht naar passende antwoorden - een koppelstation voor vraag en aanbod en zo zorgen,
+dat iedereen vindt wat zij/ hij zoekt zo dat de palliatieve fase zo veel mogelijk gericht kan zijn op kwaliteit van de resterende tijd van leven.<br><br>
+Stichting TeamUitbehandeld.nl wil een platform creëren waarop patiënten, partners, ouders en gezinsleden van patiënten die behoefte hebben aan hulp terecht kunnen.
+We willen het samen doen!</p>
+</div>
+     <div class="image terecht-met-vragen-image-mobile">
+          <img src="~/assets/images/terecht-met-vragen.PNG" alt="mensen op een brug">
+        </div>
+        </section>
       <section id="hulpvraag-onderwerpen">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
@@ -59,7 +81,6 @@ ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe v
           <li><NuxtLink class="button" to="hulpvraag/button">Button</NuxtLink></li>
         </ul>
       </section>
-    </div>
   </main>
 </template>
 
@@ -67,24 +88,13 @@ ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe v
 @use 'styles/main' as *;
 
 main {
-  div.container {
-
-    >*:not(:last-child){
-      margin-bottom:40px;
-    }
-
-    @include min-750 {
-      display:flex;
-      justify-content: space-between;
-      flex-wrap:wrap;
-    }
-
-    div.image.hero {
+  section#hero-container {
+   div.image.hero {
       background: url("~/assets/images/Strand_uitgesneden.png") no-repeat center;
       background-size: cover;
       height: 150px;
       width: 100%;
-      border-radius:3px;
+      margin-bottom: 40px;
 
       @include min-450{
         height: 230px;
@@ -93,16 +103,19 @@ main {
       @include min-700{
         height: 300px;
       }
-    }
-    div#samen-doen{
-      width: 100%;
+   }
 
+    @include min-750 {
+      display:flex;
+      justify-content: space-between;
+      flex-wrap:wrap;
+    }
+
+    }
+    section#samen-doen{
       align-items: center;
       justify-content: space-between;
-
-        //   @include min-450{
-        // flex-direction: column;
-        //   }
+      margin: auto;
 
           @include min-900{
           display: flex;
@@ -111,12 +124,12 @@ main {
       div.samen-doen-content {
         margin-bottom: 20px;
 
-             @include min-450{
+            @include min-450{
             width: 100%;
             margin-left: 0px;
           }
 
-             @include min-900{
+            @include min-900{
             width: 100%;
             margin-right: 20px;
           }
@@ -128,12 +141,12 @@ main {
          justify-content: flex-end;
          width: 100%;
 
-             @include min-450{
+            @include min-450{
             justify-content: center;
             width: 100%;
           }
 
-             @include min-900{
+            @include min-900{
             width: 100%;
             margin: 0;
           }
@@ -146,41 +159,109 @@ main {
       }
     }
 
-    div#vragen{
+    section#vragen{
       width: 100%;
       margin: 20px auto;
 
-        //       @include min-450{
-        // flex-direction: column;
-        //   }
-
-          @include min-900{
-      display: flex;
-          }
+        @include min-900{
+        display: flex;
+        }
 
       ul.practische-vragen {
-        background-color: #4ca734;
-        padding: 25px;
+      background-color: #4ca734;
+      padding: 25px;
 
-         @include min-900{
-          width: 50%;
-          }
+        @include min-900{
+        width: 50%;
+        }
 
         li {
           list-style: none;
         }
       }
 
-          ul.andere-vragen {
-        background-color: #9cbe2f;
-        padding: 25px;
+      ul.andere-vragen {
+      background-color: #9cbe2f;
+      padding: 25px;
 
-         @include min-900{
-          width: 50%;
-          }
+        @include min-900{
+        width: 50%;
+        }
 
         li {
           list-style: none;
+        }
+      }
+    }
+
+    section#terecht-met-vragen{
+      align-items: center;
+      justify-content: space-between;
+      margin: auto;
+
+          @include min-900{
+          display: flex;
+          }
+
+      div.terecht-met-vragen-content {
+        margin-bottom: 20px;
+
+          @include min-450{
+          width: 100%;
+          margin-left: 0px;
+          }
+
+          @include min-900{
+          width: 100%;
+          margin-left: 20px;
+          }
+      }
+
+      div.terecht-met-vragen-image {
+      overflow:hidden;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      display: none;
+
+        @include min-450{
+        justify-content: center;
+        width: 100%;
+        }
+
+        @include min-900{
+        width: 100%;
+        margin: 0;
+        display: block;
+        }
+
+        img{
+          border-radius:3px;
+          object-fit: contain;
+          height: 500px;
+        }
+      }
+        div.terecht-met-vragen-image-mobile {
+        overflow:hidden;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+            @include min-450{
+            justify-content: center;
+            width: 100%;
+          }
+
+            @include min-900{
+            width: 100%;
+            margin: 0;
+            display: none;
+          }
+
+        img{
+          border-radius:3px;
+          object-fit: contain;
+          height: 500px;
         }
       }
     }
@@ -257,7 +338,7 @@ main {
       }
     }
   }
-}
+
 </style>
 
 <script>

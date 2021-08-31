@@ -21,6 +21,12 @@ div.container {
   margin: auto;
 }
 
+section.container {
+  width:90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
 button, a.button{
   display:block;
   background:$light-green;
