@@ -10,6 +10,19 @@
 <script>
 export default {
 
+  head () {
+    return {
+      title: 'Team Uitbehandeld',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'informatie voor uitbehandelde mensen en hun families'
+        }
+      ]
+    }
+  },
+
   data: () => ({
     viewportIsMobile: true
   }),

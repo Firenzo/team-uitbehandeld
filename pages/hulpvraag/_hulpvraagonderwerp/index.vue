@@ -39,7 +39,7 @@
             <span><Fa-icon :icon="['fas', 'map-marker-alt']" />Locatie</span>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, minus voluptatem, cumque error facilis repellendus ad tempora quod iusto, laborum necessitatibus pariatur laudantium accusamus! Cum esse cumque sapiente corrupti quas voluptatem repudiandae provident voluptate quo, vero, excepturi perferendis, illum iure dolor alias impedit facilis sequi. Eligendi aliquid commodi tempora quo.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, minus voluptatem, cumque error facilis repellendus ad tempora quod iusto, laborum necessitatibus pariatur laudantium accusamus! Cum esse cumque sapiente corrupti quas voluptatem repudiandae provident voluptate quo, vero, excepturi perferendis, illum iure dolor alias impedit facilis sequi. Eligendi aliquid commodi tempora quo.</p>
-            <a href="#" class="button">Stuur bericht</a>
+            <NuxtLink to="/hulpvraag/currentpage/vraag-stellen" class="button">Stuur bericht</NuxtLink>
           </div>
         </div>
       </div>
@@ -124,6 +124,7 @@ main#hulpvraag-onderwerp{
           justify-content: space-between;
           margin-bottom:0;
         }
+
         li{
           list-style: none;
           background:rgb(228, 228, 228);
@@ -216,7 +217,6 @@ main#hulpvraag-onderwerp{
             display:block;
             width:100%;
             max-width:200px;
-            // max-width:200px;
 
             @include min-900{
               max-width: 570px;
@@ -277,10 +277,6 @@ main#hulpvraag-onderwerp{
           list-style: none;
           border-radius:5px;
 
-          &:nth-of-type(2) div.image{
-            border: 4px solid $light-green;
-          }
-
           div.image{
             background:white;
             margin-top:20px;
@@ -288,15 +284,26 @@ main#hulpvraag-onderwerp{
             border-radius:5px;
             box-shadow: 0 0 4px rgba(0,0,0,0.5);
 
+            &:hover img{
+              border: 4px solid $light-green;
+              cursor: pointer;
+            }
+
             img{
               width:35vw;
               max-width:140px;
               border-radius:5px;
+              display:block;
+              border: 5px solid transparent;
 
               @include min-1334{
                 max-width:160px;
               }
             }
+          }
+
+          &:nth-of-type(2) div.image img{
+            border: 5px solid $light-green;
           }
 
           &:first-of-type{
