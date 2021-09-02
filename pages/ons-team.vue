@@ -138,7 +138,7 @@ main {
     max-width: 400px;
 
     @include min-700 {
-      max-width: 800px;
+      max-width: 1200px;
     }
 
     h2 {
@@ -152,11 +152,18 @@ main {
     ul {
       li.member {
         list-style-type: none;
+
         &:not(:first-of-type) {
           margin-top: 40px;
         }
         @include min-700 {
           display: grid;
+          max-width:800px;
+
+          &:nth-of-type(even){
+            margin-left:auto;
+          }
+
           &:not(:first-of-type) {
             margin-top: 65px;
           }
