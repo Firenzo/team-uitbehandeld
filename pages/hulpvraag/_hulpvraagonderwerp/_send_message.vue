@@ -51,8 +51,13 @@ export default {
 main{
   div.container{
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: fit-content(100px) 1fr;
+
+    @include min-1000{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: fit-content(100px) 1fr;
+      column-gap:40px;
+    }
 
     h1{
 
@@ -60,11 +65,18 @@ main{
 
     >p{
       max-width:400px;
-      grid-row-start:2;
+
+      @include min-1000{
+        grid-row-start:2;
+        max-width:530px;
+      }
     }
 
     div.ask-question-form{
-      grid-row-start:3;
+
+      @include min-1000{
+        grid-row-start:3;
+      }
 
       form{
         display:flex;
@@ -96,8 +108,8 @@ main{
     div.image{
       margin-top:20px;
 
-      @include min-700{
-
+      @include min-1000{
+        height:1px;
       }
 
       img{
@@ -105,6 +117,8 @@ main{
         display:block;
         max-width:400px;
         margin:auto;
+        border-radius:5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
 
         @include min-1000{
           margin:0;

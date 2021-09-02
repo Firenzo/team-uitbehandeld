@@ -217,6 +217,8 @@ main#hulpvraag-onderwerp{
             display:block;
             width:100%;
             max-width:200px;
+            border-radius:5px;
+            box-shadow: 0 0 7px rgba(0,0,0,0.3);
 
             @include min-900{
               max-width: 570px;
