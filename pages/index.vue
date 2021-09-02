@@ -1,9 +1,11 @@
 <template>
   <main>
     <section id="hero-container">
-      <div class="image hero"></div>
       <div class="container">
-        <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
+        <div class="image hero"></div>
+        <div class="container">
+          <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
+        </div>
        </div>
     </section>
     <section id="samen-doen">
@@ -88,39 +90,45 @@
     </section>
     <section id="ons-doel">
       <div class="container">
-      <div class="ons-doel-header">
-        <div class="image ons-doel-header-image-left">
-        <img src="~/assets/images/Onsdoel_circkel1.png" alt="ons doel image">
+        <div class="ons-doel-content">
+
+          <div class="image ons-doel-content-image-left">
+            <img src="~/assets/images/Onsdoel_circkel1.png" alt="ons doel image">
+          </div>
+
+          <div class="ons-doel-header-text">
+            <h2>Ons Doel</h2>
+            <h2>Het ontwikkelen en faciliteren van een online platform waarop:</h2>
+          </div>
+
+          <div class="image ons-doel-content-image-right">
+            <img src="~/assets/images/Onsdoel_circkel2.png" alt="ons doel image">
+          </div>
+
+          <div class="ons-doel-vragen-left">
+            <p>Vragen van uitbehandelde patiënten, hun partners, (klein) kinderen,
+              ouders en andere naasten kunnen worden beantwoord door hen in contact te brengen met (medische)
+              specialisten en andere deskundigen op het gebied van medische en palliatieve zorgverlening, fysiotherapie,
+              diëtiek en mentale (psychische) ondersteuning en rouwverwerking en ervaringsdeskundigen,
+              zowel tijdens het leven als na het overlijden van de patiënt.</p>
+          </div>
+
+          <div class="ons-doel-vragen-right">
+            <p>De vraag van uitbehandelde patiënten, hun partners, (klein) kinderen en andere naasten wordt samengebracht met het aanbod
+              van vrijwilligers die hulp willen bieden aan uitbehandelde kankerpatiënten, hun partners,
+              (klein)kinderen en andere naasten in de laatste levensfase door het bieden
+              van hulp om het voor uitbehandelde kankerpatiënten mogelijk te maken afscheid te nemen van hun naasten en van het leven.</p>
+          </div>
+
+        <div class="ons-doel-footer">
+          <h3>En het verrichten van al wat hiermee verband houdt of daartoe bevorderlijk kan zijn.</h3>
         </div>
-        <div class="ons-doel-header-content">
-          <h2>Ons Doel</h2>
-          <h2>Het ontwikkelen en faciliteren van een online platform waarop:</h2>
+
         </div>
-        <div class="image ons-doel-header-image-right">
-        <img src="~/assets/images/Onsdoel_circkel2.png" alt="ons doel image">
-        </div>
-      </div>
-      <div class="ons-doel-body">
-        <div class="ons-doel-vragen-left">
-          <p>Vragen van uitbehandelde patiënten, hun partners, (klein) kinderen,
-            ouders en andere naasten kunnen worden beantwoord door hen in contact te brengen met (medische)
-            specialisten en andere deskundigen op het gebied van medische en palliatieve zorgverlening, fysiotherapie,
-            diëtiek en mentale (psychische) ondersteuning en rouwverwerking en ervaringsdeskundigen,
-            zowel tijdens het leven als na het overlijden van de patiënt.</p>
-        </div>
-        <div class="ons-doel-vragen-right">
-          <p>De vraag van uitbehandelde patiënten, hun partners, (klein) kinderen en andere naasten wordt samengebracht met het aanbod
-            van vrijwilligers die hulp willen bieden aan uitbehandelde kankerpatiënten, hun partners,
-            (klein)kinderen en andere naasten in de laatste levensfase door het bieden
-            van hulp om het voor uitbehandelde kankerpatiënten mogelijk te maken afscheid te nemen van hun naasten en van het leven.</p>
-        </div>
-      </div>
-      <div class="ons-doel-footer">
-        <h3>En het verrichten van al wat hiermee verband houdt of daartoe bevorderlijk kan zijn.</h3>
-      </div>
       </div>
     </section>
     <section id="hulpvraag-onderwerpen">
+      <div class="container">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
           <li><NuxtLink class="button" to="hulpvraag/medisch">Medisch</NuxtLink></li>
@@ -136,6 +144,7 @@
           <li><NuxtLink class="button" to="hulpvraag/oncologie">Oncologie</NuxtLink></li>
           <li><NuxtLink class="button" to="hulpvraag/button">Button</NuxtLink></li>
         </ul>
+        </div>
         </section>
   </main>
 </template>
@@ -434,49 +443,94 @@ main {
     }
 
     section#ons-doel{
+
+      div.container {
       background-color: #9cbe2f;
       padding: 25px 0;
+      }
 
-      div.ons-doel-header {
-      width: 90%;
-      margin: auto;
+        div.ons-doel-content {
+        width: 90%;
+        margin: auto;
+        background-color: salmon;
+        display: grid;
+        grid-auto-columns: 1fr 1fr 1fr;
 
-           @include min-900{
-            display: flex;
+          .ons-doel-content-image-left {
+            background-color: skyblue;
+            grid-column: 1 /4;
+            grid-row: 2 /3;
+
+             @include min-900 {
+             grid-column: 1 /2;
+             grid-row: 1 /2;
+             }
           }
 
-        .ons-doel-header-content {
-          text-align: center;
-          margin: 25px 0;
-        }
-
-        .image {
-          margin: auto;
-          text-align: center;
-
-          img {
-            width: 150px;
+          .ons-doel-header-text {
             text-align: center;
+            background-color: slateblue;
+            margin: 25px 0;
+            grid-column: 1 /4;
+            grid-row: 1 /2;
+
+              @include min-900 {
+              grid-column: 2 /3;
+              grid-row: 1 /2;
+              }
           }
-        }
-      }
 
-      div.ons-doel-body {
-        width: 90%;
-        margin: auto;
-        margin-top: 20px;
-      }
+          .ons-doel-content-image-right {
+          background-color: violet;
+          grid-column: 1 /4;
+          grid-row: 4 /5;
 
-      div.ons-doel-footer {
-        width: 90%;
-        margin: auto;
+            @include min-900 {
+             grid-column: 3 /4;
+             grid-row: 1 /2;
+            }
+          }
 
-        h3 {
-          margin-top: 20px;
+          .image {
+            margin: auto;
+            text-align: center;
+
+            img {
+              width: 150px;
+              text-align: center;
+            }
+          }
+
+           .ons-doel-vragen-left {
+             background-color: pink;
+             grid-column: 1/4;
+             grid-row: 3/4;
+
+            @include min-900 {
+             grid-column: 1 /3;
+             grid-row: 2 /3;
+            }
+           }
+
+             .ons-doel-vragen-right {
+             background-color: lightblue;
+             grid-column: 1/4;
+             grid-row: 5/6;
+           }
+
+        div.ons-doel-footer {
+          width: 90%;
+          margin: auto;
+          background-color: palegreen;
+          grid-column: 1 /4;
+          grid-row: 6 /7;
+
+          h3 {
+            margin-top: 20px;
+          }
         }
       }
     }
-
   }
 
 </style>
