@@ -1,7 +1,7 @@
 !<template>
   <main>
     <div class="container">
-      <h2>Ons Team</h2>
+      <h1>Ons Team</h1>
       <ul>
         <li class="member">
           <div class="name-and-role">
@@ -11,9 +11,9 @@
           </div>
           <div class="title-and-role">
             <h2>Saskia Klein</h2>
-            <p>Bestuurslid</p>
-            <p>Internist Hematoloog UMC Groningen</p>
-            <p>
+            <p class="role">Bestuurslid</p>
+            <p class="second-role">Internist Hematoloog UMC Groningen</p>
+            <p class="role-description">
               “Je arts vertelt je dat er geen behandeling meer is om je beter te
               maken. Wat dan? Waar kan je terecht met al je vragen? Vragen die
               ik als hematoloog regelmatig in de spreekkamer krijg. Persoonlijk
@@ -34,13 +34,13 @@
           </div>
           <div class="title-and-role">
             <h2>Wout Middelman</h2>
-            <p>Bestuurslid</p>
-            <p>
+            <p class="role">Bestuurslid</p>
+            <p class="second-role">
               Eigenaar Middelman wonen, partner van zijn uitbehandelde vrouw en
               vader van 4 kinderen en oprichter van de stichting
               teamuitbehandeld.nl
             </p>
-            <p>
+            <p class="role-description">
               “Mij helpt het verwerken door me in te zetten, dan krijgt het
               verdriet een plek.” Echtgenote Mirjam (54) van de Soester
               ondernemer Wout Middelman en lid van Rotary Soest-Baarn, heeft in
@@ -61,9 +61,9 @@
           </div>
           <div class="title-and-role">
             <h2>Metty Spelt</h2>
-            <p>Voorzitter</p>
-            <p>Programmanager Gezondheid Wonen Inc.</p>
-            <p>
+            <p class="role">Voorzitter</p>
+            <p class="second-role">Programmanager Gezondheid Wonen Inc.</p>
+            <p class="role-description">
               “Als je gezond bent kun je je moeilijk voorstellen hoe het is om
               ernstig ziek te zijn en helemaal moeilijk voor te stellen als je
               dan de mededeling te krijgen dat je uitbehandeld bent. En dan is
@@ -84,12 +84,12 @@
           </div>
           <div class="title-and-role">
             <h2>Pieter Mul</h2>
-            <p>Penningmeester</p>
-            <p>
+            <p class="role">Penningmeester</p>
+            <p class="second-role">
               Accountant en algemeen directeur en partner van Jan© Accountants
               en adviseurs B.V.
             </p>
-            <p>
+            <p class="role-description">
               “Om hulp vragen betekent niet dat je opgeeft, zei het paard. Het
               betekent dat je weigert op te geven.” Een prachtige quote uit “De
               Jongen, de Mol, de Vos en het Paard” van Charlie Mackesy. Met ons
@@ -107,9 +107,11 @@
           </div>
           <div class="title-and-role">
             <h2>Jacqueline Drop-Pullens</h2>
-            <p>Secretaris</p>
-            <p>Rouw- en verlies- begeleider, eigenaar van stoerkracht</p>
-            <p>
+            <p class="role">Secretaris</p>
+            <p class="second-role">
+              Rouw- en verlies- begeleider, eigenaar van stoerkracht
+            </p>
+            <p class="role-description">
               “Alles waar je ogen van gaan sprankelen moet je doen!” Wanneer je
               het bericht krijgt dat je uitbehandeld bent eindigt er iets voor
               de boodschapper en begint er een periode voor de persoon (en
@@ -140,7 +142,7 @@ main {
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 0;
 
       @include min-700 {
         grid-column-start: 1;
@@ -151,12 +153,12 @@ main {
       li.member {
         list-style-type: none;
         &:not(:first-of-type) {
-          margin-top: 15px;
+          margin-top: 40px;
         }
         @include min-700 {
           display: grid;
           &:not(:first-of-type) {
-            margin-top: 20px;
+            margin-top: 65px;
           }
         }
 
@@ -171,8 +173,15 @@ main {
 
         div.title-and-role {
           grid-area: 1/2;
-          font-style: italic;
           margin-left: 15px;
+          p.role {
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+          p.second-role {
+            margin-bottom: 10px;
+            color: #999;
+          }
         }
       }
     }
