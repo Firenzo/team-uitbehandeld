@@ -12,7 +12,7 @@
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="/ons-team">Ons Team</NuxtLink></li>
           <li><NuxtLink to="/about">Hulpvraag</NuxtLink></li>
-          <li><NuxtLink to="/about">Actueel</NuxtLink></li>
+          <li><NuxtLink to="/actueel">Actueel</NuxtLink></li>
           <li><NuxtLink to="/partners">Partners</NuxtLink></li>
           <li><NuxtLink to="/contact">Contact</NuxtLink></li>
         </ul>
