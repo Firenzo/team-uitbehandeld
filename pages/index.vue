@@ -1,12 +1,10 @@
 <template>
   <main>
     <section id="hero-container">
-      <div class="container">
         <div class="image hero"></div>
         <div class="container">
           <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
         </div>
-       </div>
     </section>
     <section id="samen-doen">
       <div class="container">
@@ -443,9 +441,9 @@ main {
     }
 
     section#ons-doel{
+     background-color: #9cbe2f;
 
       div.container {
-      background-color: #9cbe2f;
       padding: 25px 0;
       }
 
@@ -454,12 +452,17 @@ main {
         margin: auto;
         background-color: salmon;
         display: grid;
-        grid-auto-columns: 1fr 1fr 1fr;
+        grid-auto-columns: 1fr 1fr 1fr 1fr;
 
           .ons-doel-content-image-left {
             background-color: skyblue;
-            grid-column: 1 /4;
+            grid-column: 1 /5;
             grid-row: 2 /3;
+
+           @include min-600 {
+             grid-column: 1 /2;
+             grid-row: 1 /2;
+             }
 
              @include min-900 {
              grid-column: 1 /2;
@@ -470,23 +473,27 @@ main {
           .ons-doel-header-text {
             text-align: center;
             background-color: slateblue;
-            margin: 25px 0;
-            grid-column: 1 /4;
+            grid-column: 1 /5;
             grid-row: 1 /2;
 
               @include min-900 {
-              grid-column: 2 /3;
+              grid-column: 2 /4;
               grid-row: 1 /2;
               }
           }
 
           .ons-doel-content-image-right {
           background-color: violet;
-          grid-column: 1 /4;
+          grid-column: 1 /5;
           grid-row: 4 /5;
 
+             @include min-600 {
+             grid-column: 1 /2;
+             grid-row: 2 /3;
+            }
+
             @include min-900 {
-             grid-column: 3 /4;
+             grid-column: 4 /5;
              grid-row: 1 /2;
             }
           }
@@ -503,26 +510,37 @@ main {
 
            .ons-doel-vragen-left {
              background-color: pink;
-             grid-column: 1/4;
+             grid-column: 1/5;
              grid-row: 3/4;
 
-            @include min-900 {
-             grid-column: 1 /3;
+              @include min-600 {
+             grid-column: 2 /5;
              grid-row: 2 /3;
             }
+
+              @include min-900 {
+              grid-column: 1 /3;
+              grid-row: 2 /4;
+              }
            }
 
              .ons-doel-vragen-right {
              background-color: lightblue;
-             grid-column: 1/4;
+             grid-column: 1/5;
              grid-row: 5/6;
+
+              @include min-900 {
+              grid-column: 3/5;
+              grid-row: 3/4;
+              }
+
            }
 
         div.ons-doel-footer {
           width: 90%;
           margin: auto;
           background-color: palegreen;
-          grid-column: 1 /4;
+          grid-column: 1 /5;
           grid-row: 6 /7;
 
           h3 {
