@@ -10,8 +10,8 @@
 export default {}
 </script>
 
-<style lang="scss">
-@use "styles/main";
+<style scoped lang="scss">
+@use "styles/main" as *;
 
 li {
   div.grid-element {
