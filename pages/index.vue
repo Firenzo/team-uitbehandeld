@@ -31,23 +31,23 @@
     <section id="vragen">
       <div class="container">
         <ul class="practische-vragen">
-          <!-- /// can't stay like this, display: flex: 50%, flex-wrap, to change the order-->
+          <!-- ul met h2 in een div moet laten staan -->
           <li><h2>Je kunt denken aan heel concrete, praktische vragen zoals:</h2></li>
-          <li>- wie is mijn aanspreekpunt bij problemen?</li>
-          <li>- welke zorg is er nog wel?</li>
-          <li>- waar kan ik welke hulp vragen en krijgen?</li>
-          <li>- waar kan ik welke hulpmiddelen kopen en of lenen?</li>
+          <li>Wie is mijn aanspreekpunt bij problemen?</li>
+          <li>Welke zorg is er nog wel?</li>
+          <li>Waar kan ik welke hulp vragen en krijgen?</li>
+          <li>Waar kan ik welke hulpmiddelen kopen en of lenen?</li>
         </ul>
         <ul class="andere-vragen">
           <li><h2>Andere vragen zijn persoonlijker en behoeven een gericht, vakkundig antwoord zoals:</h2></li>
-          <li>- hoe lang heb ik nog te leven?</li>
-          <li>- hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
-          <li>- wat mag ik doen en wat is goed voor mij en wat kan
+          <li>Hoe lang heb ik nog te leven?</li>
+          <li>Hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
+          <li>Wat mag ik doen en wat is goed voor mij en wat kan
   ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe vervul ik mijn laatste wens?</li>
         </ul>
       </div>
     </section>
-    <section id="terecht-met-vragen" class="container">
+    <section id="terecht-met-vragen">
       <div class="container">
         <div class="image terecht-met-vragen-image">
           <img src="~/assets/images/terecht-met-vragen.PNG" alt="zeeland">
@@ -140,7 +140,7 @@
           <li><NuxtLink class="button" to="hulpvraag/levenseinde">Levenseinde</NuxtLink></li>
           <li><NuxtLink class="button" to="hulpvraag/emoties">Emoties</NuxtLink></li>
           <li><NuxtLink class="button" to="hulpvraag/oncologie">Oncologie</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/button">Button</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/button">Overig</NuxtLink></li>
         </ul>
         </div>
         </section>
@@ -236,12 +236,12 @@ main {
 
         div.container {
           @include min-900{
-                display: flex;
-                }
+          display: flex;
+          }
         }
 
       ul.practische-vragen {
-      background-color: #4ca734;
+      background-color: $dark-green;
       padding: 30px;
       margin-bottom: 25px;
 
@@ -254,6 +254,9 @@ main {
         li {
           list-style: none;
           line-height: 1.5;
+            &:not(:first-of-type) {
+            margin-bottom: 15px;
+            }
 
           h2 {
             margin-bottom: 20px;
@@ -263,7 +266,7 @@ main {
       }
 
       ul.andere-vragen {
-      background-color: #9cbe2f;
+      background-color: $light-green;
       padding: 30px;
 
         @include min-900{
@@ -273,6 +276,9 @@ main {
         li {
           list-style: none;
           line-height: 1.5;
+            &:not(:first-of-type) {
+            margin-bottom: 15px;
+            }
 
           h2 {
             margin-bottom: 20px;
@@ -290,6 +296,7 @@ main {
       margin: 40px auto;
       display:flex;
       flex-direction: column-reverse;
+      align-items: flex-start;
 
         @include min-450{
         display: flex;
