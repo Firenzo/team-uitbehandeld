@@ -31,23 +31,23 @@
     <section id="vragen">
       <div class="container">
         <ul class="practische-vragen">
-          <!-- /// can't stay like this, display: flex: 50%, flex-wrap, to change the order-->
+          <!-- ul met h2 in een div moet laten staan -->
           <li><h2>Je kunt denken aan heel concrete, praktische vragen zoals:</h2></li>
-          <li>- wie is mijn aanspreekpunt bij problemen?</li>
-          <li>- welke zorg is er nog wel?</li>
-          <li>- waar kan ik welke hulp vragen en krijgen?</li>
-          <li>- waar kan ik welke hulpmiddelen kopen en of lenen?</li>
+          <li>Wie is mijn aanspreekpunt bij problemen?</li>
+          <li>Welke zorg is er nog wel?</li>
+          <li>Waar kan ik welke hulp vragen en krijgen?</li>
+          <li>Waar kan ik welke hulpmiddelen kopen en of lenen?</li>
         </ul>
         <ul class="andere-vragen">
           <li><h2>Andere vragen zijn persoonlijker en behoeven een gericht, vakkundig antwoord zoals:</h2></li>
-          <li>- hoe lang heb ik nog te leven?</li>
-          <li>- hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
-          <li>- wat mag ik doen en wat is goed voor mij en wat kan
+          <li>Hoe lang heb ik nog te leven?</li>
+          <li>Hoe zal ik komen te overlijden? Welke hulp is er en wat zou ik willen als het lijden voor mij ondragelijk wordt?</li>
+          <li>Wat mag ik doen en wat is goed voor mij en wat kan
   ik beter niet doen? (Bijvoorbeeld op het gebied van bewegen en voeding). - hoe vervul ik mijn laatste wens?</li>
         </ul>
       </div>
     </section>
-    <section id="terecht-met-vragen" class="container">
+    <section id="terecht-met-vragen">
       <div class="container">
         <div class="image terecht-met-vragen-image">
           <img src="~/assets/images/terecht-met-vragen.PNG" alt="zeeland">
@@ -95,7 +95,7 @@
           </div>
 
           <div class="ons-doel-header-text">
-            <h2>Ons Doel</h2>
+            <h1>Ons Doel</h1>
             <h2>Het ontwikkelen en faciliteren van een online platform waarop:</h2>
           </div>
 
@@ -140,7 +140,7 @@
           <li><NuxtLink class="button" to="hulpvraag/levenseinde">Levenseinde</NuxtLink></li>
           <li><NuxtLink class="button" to="hulpvraag/emoties">Emoties</NuxtLink></li>
           <li><NuxtLink class="button" to="hulpvraag/oncologie">Oncologie</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/button">Button</NuxtLink></li>
+          <li><NuxtLink class="button" to="hulpvraag/button">Overig</NuxtLink></li>
         </ul>
         </div>
         </section>
@@ -168,6 +168,11 @@ main {
       }
    }
 
+      h2 {
+      margin-bottom: 30px;
+      text-align: center;
+      }
+
     @include min-750 {
       display:flex;
       justify-content: space-between;
@@ -178,10 +183,10 @@ main {
     section#samen-doen{
       align-items: center;
       justify-content: space-between;
-      margin: auto;
+      margin: 50px auto;
 
           div.container {
-             @include min-900{
+          @include min-900{
           display: flex;
           }
           }
@@ -227,29 +232,42 @@ main {
     section#vragen{
       width: 100%;
       margin: 20px auto;
+      color: #fff;
 
         div.container {
           @include min-900{
-                display: flex;
-                }
+          display: flex;
+          }
         }
 
       ul.practische-vragen {
-      background-color: #4ca734;
-      padding: 25px;
+      background-color: $dark-green;
+      padding: 30px;
+      margin-bottom: 25px;
 
         @include min-900{
         width: 50%;
+        margin-right: 20px;
+        margin-bottom: 0px;
         }
 
         li {
           list-style: none;
+          line-height: 1.5;
+            &:not(:first-of-type) {
+            margin-bottom: 15px;
+            }
+
+          h2 {
+            margin-bottom: 20px;
+            font-weight: 300;
+          }
         }
       }
 
       ul.andere-vragen {
-      background-color: #9cbe2f;
-      padding: 25px;
+      background-color: $light-green;
+      padding: 30px;
 
         @include min-900{
         width: 50%;
@@ -257,16 +275,29 @@ main {
 
         li {
           list-style: none;
+          line-height: 1.5;
+            &:not(:first-of-type) {
+            margin-bottom: 15px;
+            }
+
+          h2 {
+            margin-bottom: 20px;
+            font-weight: 300;
+          }
         }
       }
     }
 
     section#terecht-met-vragen{
-      align-items: center;
-      justify-content: space-between;
-      margin: auto;
 
       div.container {
+      align-items: center;
+      justify-content: space-between;
+      margin: 40px auto;
+      display:flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+
         @include min-450{
         display: flex;
         flex-direction: column-reverse;
@@ -319,6 +350,7 @@ main {
       justify-content: space-between;
       margin: auto;
       width: 90%;
+      margin-bottom: 40px;
 
       div.container {
          @include min-450{
@@ -345,11 +377,13 @@ main {
           }
       }
 
-      div.landelijke-dekking-image {
+      div.landelijke-dekking-content-image {
       overflow:hidden;
       display: flex;
       justify-content: flex-end;
-      width: 100%;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
 
         @include min-450{
         width: 100%;
@@ -362,7 +396,7 @@ main {
 
         img{
           object-fit: contain;
-          height: 500px;
+          min-width: 350px;
         }
       }
     }
@@ -442,6 +476,7 @@ main {
 
     section#ons-doel{
      background-color: #9cbe2f;
+     margin-bottom: 40px;
 
       div.container {
       padding: 25px 0;
@@ -450,21 +485,20 @@ main {
         div.ons-doel-content {
         width: 90%;
         margin: auto;
-        background-color: salmon;
         display: grid;
         grid-auto-columns: 1fr 1fr 1fr 1fr;
+        padding: 20px 0;
 
-          .ons-doel-content-image-left {
-            background-color: skyblue;
+           .ons-doel-content-image-left {
             grid-column: 1 /5;
             grid-row: 2 /3;
 
-           @include min-600 {
-             grid-column: 1 /2;
-             grid-row: 1 /2;
+            @include min-600 {
+             grid-column: 4 /5;
+             grid-row: 3 /4;
              }
 
-             @include min-900 {
+             @include min-1000 {
              grid-column: 1 /2;
              grid-row: 1 /2;
              }
@@ -472,18 +506,34 @@ main {
 
           .ons-doel-header-text {
             text-align: center;
-            background-color: slateblue;
             grid-column: 1 /5;
             grid-row: 1 /2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-              @include min-900 {
+              @include min-1000 {
               grid-column: 2 /4;
               grid-row: 1 /2;
+              }
+
+              h1 {
+                margin-bottom: 20px;
+                font-weight: 300;
+              }
+
+                h2 {
+                width: 80%;
+                margin: 0 auto;
+                color: #fff;
+                line-height: 1.5;
+                font-weight: 400;
+                margin-bottom: 20px;
               }
           }
 
           .ons-doel-content-image-right {
-          background-color: violet;
           grid-column: 1 /5;
           grid-row: 4 /5;
 
@@ -492,7 +542,7 @@ main {
              grid-row: 2 /3;
             }
 
-            @include min-900 {
+            @include min-1000 {
              grid-column: 4 /5;
              grid-row: 1 /2;
             }
@@ -505,31 +555,44 @@ main {
             img {
               width: 150px;
               text-align: center;
+
+            @include min-600 {
+            width: 200px;
+            }
+
+            @include min-1000 {
+             width: 250px;
+            }
             }
           }
 
            .ons-doel-vragen-left {
-             background-color: pink;
              grid-column: 1/5;
              grid-row: 3/4;
+             padding: 25px;
 
               @include min-600 {
              grid-column: 2 /5;
              grid-row: 2 /3;
             }
 
-              @include min-900 {
+              @include min-1000 {
               grid-column: 1 /3;
               grid-row: 2 /4;
               }
            }
 
              .ons-doel-vragen-right {
-             background-color: lightblue;
              grid-column: 1/5;
              grid-row: 5/6;
+             padding: 25px;
 
-              @include min-900 {
+             @include min-600 {
+             grid-column: 1 /4;
+             grid-row: 3 /4;
+             }
+
+              @include min-1000 {
               grid-column: 3/5;
               grid-row: 3/4;
               }
@@ -539,12 +602,15 @@ main {
         div.ons-doel-footer {
           width: 90%;
           margin: auto;
-          background-color: palegreen;
           grid-column: 1 /5;
           grid-row: 6 /7;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           h3 {
-            margin-top: 20px;
+            padding: 25px;
+            color: #fff;
           }
         }
       }
