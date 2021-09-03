@@ -98,6 +98,17 @@
   </main>
 </template>
 
+<script>
+
+export default {
+  async asyncData ({ params, $axios }) {
+    const posts = await $axios.$get('http://localhost:1338/posts')
+    console.log(posts)
+    return { posts }
+  }
+}
+</script>
+
 <style scoped lang="scss">
 @use 'styles/main' as *;
 

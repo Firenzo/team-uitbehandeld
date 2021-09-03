@@ -4,6 +4,8 @@
       <div class="image hero"></div>
 
       <section id="gesprekshulp">
+        <h1>{{ posts[0].title }}</h1>
+        <h1>{{ posts[0].title }}</h1>
         <h1>Gesprekshulp</h1>
         <ol>
           <li>
@@ -277,6 +279,12 @@ main {
 
 <script>
 export default {
+  async asyncData ({ params, $axios }) {
+    const posts = await $axios.$get('http://localhost:1338/posts')
+    console.log(posts[0].title)
+    return { posts }
+  },
+
   data: () => ({}),
 
   computed: {},

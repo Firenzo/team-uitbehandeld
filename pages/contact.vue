@@ -1,14 +1,15 @@
 <template>
   <main>
     <div class="container">
+      <h1>Contact</h1>
       <div class="map-location">
 
       </div>
 
       <form action="">
-        <input type="text" id="email" name="email" placeholder="Email" />
+        <input type="email" id="email" name="email" placeholder="Email" />
         <textarea id="subject" name="subject" placeholder="Type je bericht..."></textarea>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Verstuur" />
       </form>
 
       <div class="contact-info">
@@ -33,15 +34,22 @@ export default {
 
 main{
   div.container{
+    max-width:550px;
+
     div.map-location{
       background:gray;
       height:200px;
       width:100%;
+      margin-bottom:20px;
     }
 
     form{
       display:flex;
       flex-wrap:wrap;
+
+      input[type="email"],textarea{
+        margin-bottom:15px;
+      }
 
       >*{
         flex-basis:100%;
