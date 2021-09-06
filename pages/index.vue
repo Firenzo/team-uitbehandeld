@@ -184,6 +184,7 @@ main {
       align-items: center;
       justify-content: space-between;
       margin: 50px auto;
+      margin-bottom: 100px;
 
           div.container {
           @include min-900{
@@ -233,6 +234,7 @@ main {
       width: 100%;
       margin: 20px auto;
       color: #fff;
+      margin-bottom: 100px;
 
         div.container {
           @include min-900{
@@ -289,6 +291,7 @@ main {
     }
 
     section#terecht-met-vragen{
+      margin-bottom: 100px;
 
       div.container {
       align-items: center;
@@ -381,7 +384,7 @@ main {
       overflow:hidden;
       display: flex;
       justify-content: flex-end;
-      min-width: 300px;
+      // min-width: 300px;
       display: flex;
       justify-content: center;
 
@@ -396,7 +399,8 @@ main {
 
         img{
           object-fit: contain;
-          min-width: 350px;
+          // min-width: 350px;
+          width: 100%;
         }
       }
     }
@@ -594,7 +598,7 @@ main {
 
               @include min-1000 {
               grid-column: 3/5;
-              grid-row: 3/4;
+              grid-row: 2/4;
               }
 
            }
@@ -607,6 +611,7 @@ main {
           display: flex;
           justify-content: center;
           align-items: center;
+          text-align: center;
 
           h3 {
             padding: 25px;

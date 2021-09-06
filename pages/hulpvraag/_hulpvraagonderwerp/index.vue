@@ -103,7 +103,7 @@
 export default {
   async asyncData ({ params, $axios }) {
     const posts = await $axios.$get('http://localhost:1338/posts')
-    console.log(posts)
+    console.log(posts[0].title)
     return { posts }
   }
 }
