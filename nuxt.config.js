@@ -46,6 +46,11 @@ export default {
     }
   },
 
+  loading: {
+    color: '#9cbe2f',
+    height: '7px'
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
