@@ -10,6 +10,7 @@
         <NewsArticle />
         <NewsArticle /> -->
       </ul>
+      <button>Laad meer...</button>
     </div>
   </main>
 </template>
@@ -23,11 +24,32 @@ export default {}
 
 main {
   div.container {
-    // display: grid;
-    background: lightyellow;
-  }
-  h1 {
-    // grid-area: 1/1;
+    ul {
+      width: 200px;
+      margin: auto;
+      display: grid;
+      gap: 20px;
+      margin-bottom: 20px;
+      @include min-450 {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        width: auto;
+        margin: 0;
+        margin-bottom: 20px;
+      }
+
+      @include min-750 {
+        gap: 15px;
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+      }
+
+      li {
+        div.grid-element {
+        }
+      }
+    }
+    button {
+      margin: auto;
+    }
   }
 }
 </style>
