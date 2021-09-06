@@ -59,10 +59,6 @@ main{
       column-gap:40px;
     }
 
-    h1{
-
-    }
-
     >p{
       max-width:400px;
 
