@@ -128,7 +128,7 @@ main {
     }
     div.contact-info {
       display: flex;
-      grid-column: 1 / span 3;
+      // grid-column: 1 / span 3;
       justify-content: space-between;
       flex-direction: column;
       align-items: center;
@@ -137,6 +137,7 @@ main {
         flex-direction: row;
         display: flex;
         text-align: center;
+        grid-column: 1 / span 3;
       }
 
       div.contact-info-item {
@@ -152,8 +153,8 @@ main {
           display: flex;
         }
         div.contact-info-icon {
-          width: 50px;
-          height: 50px;
+          width: 75px;
+          height: 75px;
           background: lightgrey;
           border-radius: 50%;
           display: flex;
@@ -161,13 +162,18 @@ main {
           align-items: center;
           margin-bottom: 10px;
         }
+        p {
+          font-size: 15px;
+        }
         a {
           text-decoration: none;
           color: $light-text-color;
+          font-size: 10px;
           margin-top: 10px;
         }
         span {
           margin-top: 10px;
+          font-size: 10px;
           color: $light-text-color;
         }
       }
