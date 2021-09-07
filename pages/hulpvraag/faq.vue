@@ -57,6 +57,7 @@ main section.subjects{
     @include min-700{
       width:90%;
       margin:auto;
+      max-width:1200px;
       flex-wrap:wrap;
     }
 
@@ -65,7 +66,23 @@ main section.subjects{
       margin-left:20px;
 
       @include min-700{
+        flex-basis: calc(100% / 3 - 10px);
         margin-left: 0;
+        margin-bottom:15px;
+        margin-right:15px;
+      }
+
+      @include min-700-max-100{
+        &:nth-of-type(3n + 3){
+          margin-right:0;
+        }
+      }
+
+      @include min-1000{
+        flex-basis: calc(100% / 4 - 15px);
+        &:nth-of-type(4n + 4){
+          margin-right:0;
+        }
       }
 
       &:first-of-type{
@@ -96,6 +113,10 @@ main section.subjects{
         padding: 20px 0;
         text-decoration: none;
         transition: background 0.2s ease;
+
+        @include min-700{
+          width:100%;
+        }
       }
     }
   }
