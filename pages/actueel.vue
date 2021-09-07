@@ -4,11 +4,11 @@
       <h1>Actueel</h1>
       <ul>
         <NewsArticle />
-        <!-- <NewsArticle />
         <NewsArticle />
         <NewsArticle />
         <NewsArticle />
-        <NewsArticle /> -->
+        <NewsArticle />
+        <NewsArticle />
       </ul>
       <button>Laad meer...</button>
     </div>
@@ -40,11 +40,6 @@ main {
       @include min-750 {
         gap: 15px;
         grid-template-columns: repeat(3, minmax(200px, 1fr));
-      }
-
-      li {
-        div.grid-element {
-        }
       }
     }
     button {
