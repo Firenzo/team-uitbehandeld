@@ -129,23 +129,40 @@
       <div class="container">
         <h1>Hulpvraag onderwerpen</h1>
         <ul>
-          <li><NuxtLink class="button" to="hulpvraag/medisch">Medisch</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/palliatief">Palliatief</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/beweging">Beweging</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/voeding">Voeding</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/mentaal">Mentaal</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/maatschappelijk">Maatschappelijk</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/hulpmiddelen">Hulpmiddelen</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/rouwverwerking">Rouwverwerking</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/levenseinde">Levenseinde</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/emoties">Emoties</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/oncologie">Oncologie</NuxtLink></li>
-          <li><NuxtLink class="button" to="hulpvraag/button">Overig</NuxtLink></li>
+          <li v-for="subject in subjects" :key="subject.id">
+            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{subject.title}}</NuxtLink>
+          </li>
         </ul>
         </div>
         </section>
   </main>
 </template>
+
+<script>
+export default {
+  async asyncData ({ params, $axios }) {
+    const subjects = await $axios.$get('http://localhost:1338/subjects')
+    console.log(subjects)
+    return { subjects }
+  },
+
+  data: () => ({
+
+  }),
+
+  computed: {
+
+  },
+
+  mounted () {
+
+  },
+
+  methods: {
+
+  }
+}
+</script>
 
 <style scoped lang="scss">
 @use 'styles/main' as *;
@@ -622,20 +639,4 @@ main {
     }
   }
 
-</style>
-
-<script>
-export default {
-  data: () => ({}),
-
-  computed: {},
-
-  mounted () {},
-
-  methods: {}
-}
-</script>
-
-<style lang="scss">
-@use "styles/main";
 </style>

@@ -20,7 +20,7 @@
           <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
           <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
         </ul>
-        <a href="#" class="standalone-link">Meer FAQs<Fa-icon :icon="['fas', 'arrow-right']" /></a>
+        <NuxtLink to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
       </div>
     </section>
 
