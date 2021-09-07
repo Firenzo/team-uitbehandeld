@@ -12,6 +12,14 @@
           KvK: 76638251<br />
           BSIN / fiscaal: 860717318
         </p>
+        <div class="image">
+          <a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/belastingregels_algemeen_nut_beogende_instellingen">
+          <img
+            src="~/assets/images/anbi-algemeen-nut-beogende-instelling.svg"
+            alt="ANBI logo"
+          />
+          </a>
+        </div>
       </div>
 
       <div class="contact">
@@ -34,7 +42,9 @@
         <h2>Over team uitbehandeld</h2>
         <ul>
           <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
+          <li><NuxtLink to="/actueel">Laatste nieuws</NuxtLink></li>
         </ul>
+        <button id='doneer-btn'>Doneer</button>
       </div>
     </div>
   </footer>
@@ -106,6 +116,12 @@ footer {
         display: block;
         margin: auto;
         margin-bottom: 25px;
+        cursor: pointer;
+
+        img {
+          margin-top: 10px;
+          width: 80px;
+        }
 
         @include min-900 {
           width: 220px;
@@ -162,6 +178,13 @@ footer {
         text-align: center;
       }
 
+      button {
+        background-color: #000;
+        width: 80px;
+        margin-top: 10px;
+        font-weight: 800;
+      }
+
       ul {
         li {
           list-style: none;
@@ -180,8 +203,9 @@ footer {
             text-decoration: none;
           }
         }
+       }
       }
     }
   }
-}
+
 </style>
