@@ -147,6 +147,10 @@ main {
           justify-content: center;
           align-items: center;
         }
+        a{
+          text-decoration: none;
+          color: black;
+        }
       }
       svg {
         color: $light-text-color;
