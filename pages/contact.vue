@@ -163,17 +163,17 @@ main {
           margin-bottom: 10px;
         }
         p {
-          font-size: 15px;
+          font-size: 16px;
         }
         a {
           text-decoration: none;
           color: $light-text-color;
-          font-size: 10px;
-          margin-top: 10px;
+          font-size: 14px;
+          margin-top: 5px;
         }
         span {
-          margin-top: 10px;
-          font-size: 10px;
+          margin-top: 5px;
+          font-size: 14px;
           color: $light-text-color;
         }
       }
@@ -181,11 +181,8 @@ main {
         color: $light-text-color;
         @include min-900 {
           padding: 5px;
-        }
-
-        @include min-900 {
-          width: 25px;
-          height: 25px;
+          width: 30px;
+          height: 30px;
         }
       }
     }
