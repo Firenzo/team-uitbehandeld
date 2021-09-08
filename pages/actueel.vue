@@ -3,12 +3,7 @@
     <div class="container">
       <h1>Actueel</h1>
       <ul>
-        <NewsArticle />
-        <NewsArticle />
-        <NewsArticle />
-        <NewsArticle />
-        <NewsArticle />
-        <NewsArticle />
+        <NewsArticle :post="post" v-for="post in posts" :key="post.id" />
       </ul>
       <button>Laad meer...</button>
     </div>
@@ -16,7 +11,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+
+  async asyncData ({ params, $axios }) {
+    const posts = await $axios.$get('http://localhost:1338/posts')
+    console.log(posts)
+    return { posts }
+  }
+}
 </script>
 
 <style scoped lang="scss">

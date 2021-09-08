@@ -1,19 +1,25 @@
 <template>
   <li>
     <div class="grid-element">
-      <p class="date-and-author">Date | Name author</p>
-      <h1>Titel</h1>
+      <p class="date-and-author">{{ formatDate }} | {{ post.author ? post.author.username : '' }}</p>
+      <h1>{{ post.title }}</h1>
       <p class="content">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem a in,
-        delectus quae voluptate accusamus enim optio cupiditate excepturi autem
-        similique incidunt ad architecto.
+        {{ post.content }}
       </p>
     </div>
   </li>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['post'],
+  computed: {
+    formatDate () {
+      const postDate = new Date(this.post.published_at)
+      return `${postDate.getDate()}-${postDate.getMonth()}-${postDate.getFullYear()}`
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
