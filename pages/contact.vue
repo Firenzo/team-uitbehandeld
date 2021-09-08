@@ -99,7 +99,6 @@ main {
     }
 
     div.map-location {
-      background: gray;
       height: 300px;
       width: 100%;
       margin-bottom: 20px;
@@ -196,7 +195,7 @@ main {
         width: 100%;
         iframe {
           height: 500px;
-          width: 600px;
+          width: 100%;
         }
       }
     }
