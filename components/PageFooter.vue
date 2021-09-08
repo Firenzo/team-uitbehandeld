@@ -2,7 +2,7 @@
   <footer>
     <div class="container">
       <div class="team-uitbehandeld">
-        <div class="image">
+        <div class="image footer-logo">
           <img
             src="~/assets/images/teamuitbehandeld_logo.svg"
             alt="Team Uitbehandeld logo"
@@ -12,7 +12,7 @@
           KvK: 76638251<br />
           BSIN / fiscaal: 860717318
         </p>
-        <div class="image">
+        <div class="image anbi-status">
           <a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/belastingregels_algemeen_nut_beogende_instellingen">
           <img
             src="~/assets/images/anbi-algemeen-nut-beogende-instelling.svg"
@@ -44,7 +44,7 @@
           <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
           <li><NuxtLink to="/actueel">Laatste nieuws</NuxtLink></li>
         </ul>
-        <button id='doneer-btn'>Doneer</button>
+        <button>Doneer</button>
       </div>
     </div>
   </footer>
@@ -117,16 +117,25 @@ footer {
         margin: auto;
         margin-bottom: 25px;
         cursor: pointer;
+        text-align: center;
 
-        img {
-          margin-top: 10px;
+        &.anbi-status img{
           width: 80px;
+          margin-top: 10px;
+        }
+
+        &.footer-logo img{
+          margin-top: 10px;
         }
 
         @include min-900 {
           width: 220px;
           margin:0;
           margin-bottom:25px;
+        }
+
+        @include min-450 {
+          text-align: left;
         }
       }
     }
@@ -179,10 +188,16 @@ footer {
       }
 
       button {
-        background-color: #000;
-        width: 80px;
-        margin-top: 10px;
-        font-weight: 800;
+        width: 130px;
+        padding: 20px 0;
+        font-weight: 600;
+        font-size: 16px;
+        background-color: $cta-color;
+        margin: 10px auto;
+
+        @include min-450 {
+          margin: 10px 0px;
+        }
       }
 
       ul {
