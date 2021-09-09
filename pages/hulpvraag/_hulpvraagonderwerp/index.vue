@@ -42,49 +42,9 @@
 
       <div class="people-list">
         <ul>
-          <li>
+          <li v-for="expert in experts" :key="expert.id">
             <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
-            </div>
-          </li>
-          <li>
-            <div class="image">
-              <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
+              <img :src="expert.photo ? `http://localhost:1338${expert.photo.url}` : ''" />
             </div>
           </li>
         </ul>
@@ -102,8 +62,9 @@ export default {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
     const contentObject = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
     const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
+    const experts = await $axios.$get('http://localhost:1338/experts')
     const data = contentObject[0]
-    return { data, firstFourSubjectQuestions }
+    return { data, firstFourSubjectQuestions, experts }
   }
 }
 </script>
