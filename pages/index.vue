@@ -80,6 +80,7 @@
             Ons streven is om eind 2021 het platform aan te kunnen bieden.<br><br>
             Heb jij als patiënt(e) en of naaste goede tips laat het ons weten, zo dat we hiermee straks anderen verder kunnen helpen.
             Wil ook jij een steentje bijdragen of vindbaar worden, laat het ons weten.</p>
+            <button>Doneer</button>
         </div>
         <div class="landelijke-dekking-content-image">
           <img src="~/assets/images/Landelijke_dekking.png" alt="mensen op een brug">
@@ -395,6 +396,18 @@ main {
           width: 100%;
           margin-left: 20px;
           }
+        button {
+        width: 130px;
+        padding: 15px 0;
+        font-weight: 600;
+        font-size: 16px;
+        background-color: $cta-color;
+        margin: 10px auto;
+
+        @include min-450 {
+          margin: 10px 0px;
+        }
+      }
       }
 
       div.landelijke-dekking-content-image {
