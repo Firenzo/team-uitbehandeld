@@ -3,26 +3,18 @@
     <div class="container">
       <h1>Ons Team</h1>
       <ul>
-        <li class="member">
+        <li v-for="teamMember in teamMembers" :key="teamMember.id" class="member">
           <div class="name-and-role">
             <div class="image">
-              <img src="~/assets/images/Team_SaskiaKlein.png" />
+              <img :src="`http://localhost:1338${teamMember.photo.url}`" />
             </div>
           </div>
           <div class="title-and-role">
-            <h2>Saskia Klein</h2>
-            <p class="role">Bestuurslid</p>
-            <p class="second-role">Internist Hematoloog UMC Groningen</p>
+            <h2>{{ teamMember.name }}</h2>
+            <p class="role">{{ teamMember.role }}</p>
+            <p class="second-role">{{ teamMember.short_description }}</p>
             <p class="role-description">
-              “Je arts vertelt je dat er geen behandeling meer is om je beter te
-              maken. Wat dan? Waar kan je terecht met al je vragen? Vragen die
-              ik als hematoloog regelmatig in de spreekkamer krijg. Persoonlijk
-              hou ik de deur altijd open en probeer te helpen, maar ook ik weet
-              niet op alle vragen een gepast antwoord. Daarom hebben wij
-              TeamUitbehandeld.nl opgericht, een platform om informatie voor
-              uitbehandelde patiënten makkelijker toegankelijk te maken.
-              Hopelijk een steuntje in de rug in een verschrikkelijk moeilijke
-              tijd”.
+              {{ teamMember.long_description }}
             </p>
           </div>
         </li>
@@ -129,6 +121,17 @@
     </div>
   </main>
 </template>
+
+<script>
+export default {
+
+  async asyncData ({ params, $axios }) {
+    const teamMembers = await $axios.$get('http://localhost:1338/team-members')
+    console.log(teamMembers)
+    return { teamMembers }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 @use 'styles/main' as *;
