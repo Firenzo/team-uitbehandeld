@@ -39,7 +39,6 @@
           </div>
         </div>
       </div>
-
       <div class="people-list">
         <ul>
           <li v-for="expert in experts" :key="expert.id">
@@ -67,6 +66,7 @@ export default {
     return { data, firstFourSubjectQuestions, experts }
   }
 }
+
 </script>
 
 <style scoped lang="scss">
