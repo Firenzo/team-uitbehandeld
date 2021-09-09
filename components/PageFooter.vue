@@ -42,7 +42,7 @@
         <h2>Over team uitbehandeld</h2>
         <ul>
           <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
-          <li><NuxtLink to="/actueel">Laatste nieuws</NuxtLink></li>
+          <li><NuxtLink to="#">Disclaimer</NuxtLink></li>
         </ul>
         <button>Doneer</button>
       </div>
