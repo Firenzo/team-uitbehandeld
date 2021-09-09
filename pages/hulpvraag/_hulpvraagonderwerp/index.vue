@@ -13,7 +13,7 @@
     <section class="faq">
       <div class="container">
         <ul>
-            <li v-for="subjectVraag in subjectVragen" :key="subjectVraag.id" class="vragen">{{ subjectVraag.question }}</li>
+            <li v-for="subjectQuestion in firstFourSubjectQuestions" :key="subjectQuestion.id" class="vragen">{{ subjectQuestion.question }}</li>
         </ul>
         <NuxtLink to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
       </div>
@@ -97,12 +97,13 @@
 <script>
 
 export default {
+  // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
     const contentObject = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
-    const subjectVragen = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}`)
+    const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     const data = contentObject[0]
-    return { data, subjectVragen }
+    return { data, firstFourSubjectQuestions }
   }
 }
 </script>
