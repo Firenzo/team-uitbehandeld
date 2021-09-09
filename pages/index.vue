@@ -453,6 +453,10 @@ main {
           flex-wrap:wrap;
         }
 
+        @include min-700{
+          justify-content:flex-start;
+        }
+
         li{
           list-style: none;
           background:$light-green;
@@ -466,12 +470,24 @@ main {
             margin-right:0;
           }
 
-          @include min-700{
-            flex-basis:calc( (100% / 3) - 10px);
+          @include min-700-max-999{
+            flex-basis: calc( (100% / 3) - 10px);
+            margin-right:15px;
+
+            //3n = elke derde , + 3 = verander de positie vanaf waar hij (bijv elke derde) moet tellen
+            &:nth-of-type(3n + 3) {
+              margin-right:0;
+            }
           }
 
           @include min-1000{
-            flex-basis:calc( (100% / 4) - 10px);
+            flex-basis:calc( (100% / 4) - 15px);
+            margin-right:20px;
+
+            //3n = elke derde , + 3 = verander de positie vanaf waar hij (bijv elke derde) moet tellen
+            &:nth-of-type(4n + 4) {
+              margin-right:0;
+            }
           }
 
           a.button{

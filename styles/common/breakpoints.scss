@@ -9,4 +9,4 @@
 @mixin min-1334 {@media screen and (min-width: 1334px){@content;}} //container max-width 1200 is reached
 
 //
-@mixin min-700-max-100{@media only screen and (min-width: 700px) and (max-width: 999px){@content;}}
+@mixin min-700-max-999{@media only screen and (min-width: 700px) and (max-width: 999px){@content;}}

@@ -72,7 +72,7 @@ main section.subjects{
         margin-right:15px;
       }
 
-      @include min-700-max-100{
+      @include min-700-max-999{
         &:nth-of-type(3n + 3){
           margin-right:0;
         }
@@ -80,6 +80,8 @@ main section.subjects{
 
       @include min-1000{
         flex-basis: calc(100% / 4 - 15px);
+        margin-right:20px;
+
         &:nth-of-type(4n + 4){
           margin-right:0;
         }
