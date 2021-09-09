@@ -6,9 +6,6 @@
         <div class="hulpvraag-info-text">
           {{ data.content }}  {{ data.content }}
           <pre>{{ data.experts }}</pre>
-          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, praesentium. Debitis dolor iste assumenda et dolore impedit molestias vitae iusto, tenetur sequi dignissimos commodi doloribus qui vero eos sed praesentium tempora repudiandae inventore libero blanditiis natus animi perferendis. Incidunt velit totam iure! Excepturi corporis eum vitae facere quidem magnam porro, laboriosam rerum natus iusto optio accusamus libero, aspernatur rem temporibus adipisci eveniet fuga illum dignissimos? Quis eius quidem vero eum nisi quae tenetur non officia nemo ea ut omnis placeat aut dolores modi, cupiditate ad sed minima veniam soluta id atque ducimus repellendus illum. Tempora assumenda omnis accusamus ea modi.</p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur ullam sunt blanditiis nostrum error ad? Deserunt consequatur tempora dolorem officiis eos impedit animi iusto quos optio neque soluta a, eligendi cum tempore aliquam deleniti dolore, hic reprehenderit praesentium illo expedita adipisci ut. Corporis at similique adipisci fugiat maxime et id.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque placeat totam debitis? Dolorum molestias quas pariatur iusto, facilis nulla fuga?</p> -->
         </div>
       </div>
     </section>
@@ -16,10 +13,7 @@
     <section class="faq">
       <div class="container">
         <ul>
-          <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
-          <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
-          <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
-          <li><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<Fa-icon :icon="['fas', 'chevron-right']" /></a></li>
+            <li v-for="subjectQuestion in firstFourSubjectQuestions" :key="subjectQuestion.id" class="vragen">{{ subjectQuestion.question }}</li>
         </ul>
         <NuxtLink to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
       </div>
@@ -103,13 +97,13 @@
 <script>
 
 export default {
+  // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
-    console.log(params)
     const contentObject = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
+    const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     const data = contentObject[0]
-    console.log(data)
-    return { data }
+    return { data, firstFourSubjectQuestions }
   }
 }
 </script>
