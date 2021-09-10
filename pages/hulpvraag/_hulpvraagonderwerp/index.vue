@@ -5,7 +5,7 @@
         <h1>{{ data.title }}</h1>
         <div class="hulpvraag-info-text">
           {{ data.content }}  {{ data.content }}
-          <pre>{{ data.experts }}</pre>
+          <!-- <pre>{{ data.experts }}</pre> -->
         </div>
       </div>
     </section>
@@ -42,7 +42,7 @@
 
       <div class="people-list">
         <ul>
-          <li v-for="expert in experts" :key="expert.id">
+          <li v-for="expert in data.experts" :key="expert.id">
             <div class="image">
               <img :src="expert.photo ? `http://localhost:1338${expert.photo.url}` : ''" />
             </div>
@@ -62,9 +62,9 @@ export default {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
     const contentObject = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
     const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
-    const experts = await $axios.$get('http://localhost:1338/experts')
+    // const experts = await $axios.$get('http://localhost:1338/experts')
     const data = contentObject[0]
-    return { data, firstFourSubjectQuestions, experts }
+    return { data, firstFourSubjectQuestions }
   }
 }
 </script>
@@ -244,7 +244,7 @@ main#hulpvraag-onderwerp{
       ul{
         display:flex;
         overflow:auto;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         li{
           list-style: none;
