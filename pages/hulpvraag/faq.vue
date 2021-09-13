@@ -46,9 +46,6 @@ export default {
 @use "styles/main" as *;
 
 main section.subjects{
-  div.container{
-
-  }
 
   ul{
     display:flex;

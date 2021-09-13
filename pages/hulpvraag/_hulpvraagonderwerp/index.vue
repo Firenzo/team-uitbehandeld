@@ -49,7 +49,6 @@
         </ul>
       </div>
     </section>
-
   </main>
 </template>
 
