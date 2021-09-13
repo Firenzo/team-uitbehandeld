@@ -39,6 +39,10 @@ export default {
 
 main {
   div.container {
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
     max-width: 400px;
 
     @include min-700 {
@@ -69,7 +73,8 @@ main {
           }
 
           &:not(:first-of-type) {
-            margin-top: 65px;
+            // margin-top: 65px;
+            margin-top: 85px;
           }
         }
 

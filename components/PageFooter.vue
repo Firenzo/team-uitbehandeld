@@ -41,7 +41,8 @@
       <div class="about">
         <h2>Over team uitbehandeld</h2>
         <ul>
-          <li><NuxtLink to='/team'>Ons team</NuxtLink></li>
+          <!-- <li><NuxtLink to='/team'>Ons team</NuxtLink></li> -->
+          <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij</NuxtLink></li>
           <li><NuxtLink to="#">Disclaimer</NuxtLink></li>
         </ul>
         <button>Doneer</button>

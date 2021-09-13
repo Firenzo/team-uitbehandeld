@@ -1,7 +1,10 @@
 <template>
   <main>
     <section id="hero-container">
-        <div class="image hero"></div>
+        <div class="image hero">
+          <img src="~/assets/images/teamuitbehandeld_handen.svg" alt="">
+          <h1>Het platform voor uitbehandelde patiënten</h1>
+          </div>
         <div class="container">
           <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
         </div>
@@ -80,7 +83,6 @@
             Ons streven is om eind 2021 het platform aan te kunnen bieden.<br><br>
             Heb jij als patiënt(e) en of naaste goede tips laat het ons weten, zo dat we hiermee straks anderen verder kunnen helpen.
             Wil ook jij een steentje bijdragen of vindbaar worden, laat het ons weten.</p>
-            <button>Doneer</button>
         </div>
         <div class="landelijke-dekking-content-image">
           <img src="~/assets/images/Landelijke_dekking.png" alt="mensen op een brug">
@@ -176,6 +178,24 @@ main {
       height: 150px;
       width: 100%;
       margin-bottom: 40px;
+      position: relative;
+
+        img {
+        background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
+        background-size: cover;
+        height: 150px;
+        width: auto;
+        position: relative;
+        // z-index: 1;
+
+        @include min-450{
+          height: 230px;
+        }
+
+        @include min-700{
+          height: 300px;
+        }
+    }
 
       @include min-450{
         height: 230px;
@@ -183,6 +203,29 @@ main {
 
       @include min-700{
         height: 300px;
+      }
+
+      h1 {
+        width: 100%;
+        position: absolute;
+        top: 10%;
+        margin: auto;
+        text-align: center;
+        font-weight: 300;
+        font-size: 32px;
+        color: $dark-green;
+        text-shadow: 1.5px 1.5px 2.5px #FFF;
+          @include min-356 {
+          top: 30%;
+          }
+          @include min-600 {
+            top: 65%;
+          }
+          @include min-900 {
+            font-size: 42px;
+            width: 100%;
+            margin: auto;
+          }
       }
    }
 

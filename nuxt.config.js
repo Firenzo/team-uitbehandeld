@@ -42,7 +42,7 @@ export default {
     component: 'FaIcon',
     icons: {
       solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes', 'faArrowRight', 'faChevronRight'],
-      brands: ['faTwitter', 'faFacebook', 'faFacebookF']
+      brands: ['faTwitter', 'faFacebook', 'faFacebookF', 'faInstagram', 'faLinkedinIn']
     }
   },
 

@@ -1,27 +1,6 @@
 <template>
   <main>
     <div class="container">
-      <h1>Contact</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorum
-        itaque cumque commodi asperiores exercitationem magni quis nisi
-        voluptas? Necessitatibus!
-      </p>
-      <div class="map-location">
-        <div class="mapouter">
-          <div class="gmap_canvas">
-            <iframe
-              id="gmap_canvas"
-              src="https://maps.google.com/maps?q=den%20blieklaan%2033&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-
       <form action="">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Email" />
@@ -58,16 +37,16 @@
         </div>
         <div class="contact-info-item twitter">
           <div class="contact-info-icon">
-            <Fa-icon :icon="['fab', 'twitter']" />
+            <Fa-icon :icon="['fab', 'instagram']" />
           </div>
-          <p>Twitter</p>
+          <p>Instagram</p>
           <a href="#">@user_name</a>
         </div>
         <div class="contact-info-item facebook">
           <div class="contact-info-icon">
-            <Fa-icon :icon="['fab', 'facebook-f']" />
+            <Fa-icon :icon="['fab', 'linkedin-in']" />
           </div>
-          <p>Facebook</p>
+          <p>LinkedIn</p>
           <a href="#">@user_name</a>
         </div>
       </div>
@@ -84,12 +63,14 @@ export default {}
 
 main {
   div.container {
-    max-width: 550px;
+    // max-width: 550px;
+    width: 90%;
+    margin: auto;
 
     @include min-900 {
+      margin-top: 50px;
       max-width: 1200px;
       display: grid;
-      column-gap: 40px;
       row-gap: 40px;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 35px fit-content(2px) 1fr;
@@ -98,23 +79,19 @@ main {
       grid-row-start: 2;
     }
 
-    div.map-location {
-      height: 300px;
-      width: 100%;
-      margin-bottom: 20px;
-      grid-row-start: 3;
-
-      @include min-900 {
-        grid-row-start: 3;
-      }
-    }
-
     form {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
-      grid-column-start: 2;
-      grid-row-start: 3;
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      width: 90%;
+      margin: 50px auto;
+
+      @include min-900 {
+      max-width: 800px;
+      width: 60%;
+      }
 
       label {
         margin-bottom: 10px;
@@ -127,10 +104,10 @@ main {
     }
     div.contact-info {
       display: flex;
-      // grid-column: 1 / span 3;
       justify-content: space-between;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 40px;
 
       @include min-900 {
         flex-direction: row;
