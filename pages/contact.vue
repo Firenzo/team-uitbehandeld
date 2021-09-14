@@ -69,9 +69,21 @@ export default {}
 
 main {
   div.container {
-    // max-width: 550px;
     width: 90%;
     margin: auto;
+
+    h1, p {
+      width: 90%;
+      margin: 0 auto;
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+      margin-bottom: 20px;
+
+        @include min-900 {
+          max-width: 800px;
+          width: 60%;
+        }
+    }
 
     @include min-900 {
       margin-top: 50px;
@@ -90,9 +102,10 @@ main {
       flex-wrap: wrap;
       flex-direction: column;
       grid-column: 1 / 3;
-      grid-row: 1 / 3;
+      grid-row: 3 / 4;
       width: 90%;
-      margin: 50px auto;
+      margin: 0 auto;
+      margin-bottom: 30px;
 
       @include min-900 {
       max-width: 800px;

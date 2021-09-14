@@ -2,10 +2,10 @@
   <main id="hulpvraag-onderwerp">
     <section class='hulpvraag-info'>
       <div class="container">
-        <h1>{{ data.title }}</h1>
+        <!-- <pre>{{ subject }}</pre> -->
+        <h1>{{ subject.title }}</h1>
         <div class="hulpvraag-info-text">
-          {{ data.content }}  {{ data.content }}
-          <!-- <pre>{{ data.experts }}</pre> -->
+          {{ subject.content }}{{ subject.content }}
         </div>
       </div>
     </section>
@@ -26,22 +26,20 @@
       <div class="container">
         <div class="person-info">
           <div class="image">
-            <img src="~assets/images/person-picture-square.jpg" alt="Foto van Persoon">
+            <img :src="subject.experts[indexNumber].photo.url ? `http://localhost:1338${subject.experts[indexNumber].photo.url}` : ''" />
           </div>
-
           <div class="person-description">
-            <h1>Naam van Deskundige</h1>
-            <h2>Titel deskundige</h2>
-            <span><Fa-icon :icon="['fas', 'map-marker-alt']" />Locatie</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, minus voluptatem, cumque error facilis repellendus ad tempora quod iusto, laborum necessitatibus pariatur laudantium accusamus! Cum esse cumque sapiente corrupti quas voluptatem repudiandae provident voluptate quo, vero, excepturi perferendis, illum iure dolor alias impedit facilis sequi. Eligendi aliquid commodi tempora quo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, minus voluptatem, cumque error facilis repellendus ad tempora quod iusto, laborum necessitatibus pariatur laudantium accusamus! Cum esse cumque sapiente corrupti quas voluptatem repudiandae provident voluptate quo, vero, excepturi perferendis, illum iure dolor alias impedit facilis sequi. Eligendi aliquid commodi tempora quo.</p>
+            <h1>{{ this.subject.experts[indexNumber].name }}</h1>
+            <h2>{{ this.subject.experts[indexNumber].title }}</h2>
+            <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ this.subject.experts[indexNumber].location }}</span>
+            <p>{{ this.subject.experts[indexNumber].content }}</p>
             <NuxtLink to="/hulpvraag/currentpage/vraag-stellen" class="button">Stuur bericht</NuxtLink>
           </div>
         </div>
       </div>
       <div class="people-list">
         <ul>
-          <li v-for="expert in data.experts" :key="expert.id">
+          <li v-for="(expert, index) in subject.experts" :key="expert.id" @click="getIndex(index)">
             <div class="image">
               <img :src="expert.photo ? `http://localhost:1338${expert.photo.url}` : ''" />
             </div>
@@ -58,11 +56,23 @@ export default {
   // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
-    const contentObject = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
+    const contentObjects = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
+    console.log(contentObjects)
     const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     // const experts = await $axios.$get('http://localhost:1338/experts')
-    const data = contentObject[0]
-    return { data, firstFourSubjectQuestions }
+    const subject = contentObjects[0]
+    return { subject, firstFourSubjectQuestions }
+  },
+
+  data: () => ({
+    indexNumber: 0
+  }),
+
+  methods: {
+    getIndex (i) {
+      this.indexNumber = i
+      console.log(this.subject.experts[i].name)
+    }
   }
 }
 

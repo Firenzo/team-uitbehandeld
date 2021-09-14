@@ -2,8 +2,10 @@
   <main>
     <section id="hero-container">
         <div class="image hero">
-          <img src="~/assets/images/teamuitbehandeld_handen.svg" alt="">
-          <h1>Het platform voor uitbehandelde patiënten</h1>
+          <div class="hero-overlay-container">
+            <img src="~/assets/images/teamuitbehandeld_handen.svg" alt="">
+            <h1>Het platform voor uitbehandelde patiënten</h1>
+          </div>
           </div>
         <div class="container">
           <h2>Ons platform heet niet voor niets Teamuitbehandeld.nl</h2>
@@ -187,10 +189,13 @@ main {
       @include min-700{
         height: 450px;
       }
+        .hero-overlay-container {
+          display: flex;
+        }
 
       img {
         background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
-        background-size: cover;
+        // background-size: cover;
         height: 150px;
         width: auto;
         position: relative;
@@ -206,23 +211,26 @@ main {
 
       h1 {
         width: 100%;
-        position: absolute;
-        top: 10%;
+        // position: absolute;
         margin: auto;
         text-align: center;
         font-weight: 300;
         font-size: 32px;
         color: $dark-green;
-          @include min-356 {
-          top: 30%;
-          }
-          @include min-600 {
-            top: 65%;
-          }
+        display: flex;
+        align-items: flex-start;
+
+          // @include min-356 {
+          // top: 10%;
+          // }
           @include min-900 {
+            margin-top: 15%;
+          }
+          @include min-1200 {
             font-size: 42px;
             width: 100%;
             margin: auto;
+            margin-bottom: 17%;
           }
       }
    }

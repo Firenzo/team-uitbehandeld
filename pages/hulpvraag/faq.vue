@@ -5,7 +5,11 @@
         <h1>Veelgestelde vragen</h1>
       </div>
       <ul>
-        <li v-for="(subject, index) in subjects" :key="subject.id" @click="getIndex(index)" :class="{selected: index===indexNumber}"><button>{{subject.title}}</button></li>
+        <li
+        v-for="(subject, index) in subjects"
+        :key="subject.id"
+        @click="getIndex(index)"
+        :class="{selected: index===indexNumber}"><button>{{subject.title}}</button></li>
       </ul>
     </section>
     <FaqList :subjectQuestions="subjectQuestions" :subject="subjects[indexNumber].title" />
