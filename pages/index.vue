@@ -180,30 +180,29 @@ main {
       margin-bottom: 40px;
       position: relative;
 
-        img {
+      @include min-450{
+        height: 230px;
+      }
+
+      @include min-700{
+        height: 450px;
+      }
+
+      img {
         background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
         background-size: cover;
         height: 150px;
         width: auto;
         position: relative;
-        // z-index: 1;
 
         @include min-450{
           height: 230px;
         }
 
         @include min-700{
-          height: 300px;
+          height: 450px;
         }
     }
-
-      @include min-450{
-        height: 230px;
-      }
-
-      @include min-700{
-        height: 300px;
-      }
 
       h1 {
         width: 100%;
@@ -214,7 +213,6 @@ main {
         font-weight: 300;
         font-size: 32px;
         color: $dark-green;
-        text-shadow: 1.5px 1.5px 2.5px #FFF;
           @include min-356 {
           top: 30%;
           }

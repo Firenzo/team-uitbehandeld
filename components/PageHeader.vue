@@ -10,7 +10,7 @@
       <nav>
         <ul>
           <li><NuxtLink to="/">Home</NuxtLink></li>
-          <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij</NuxtLink></li>
+          <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
           <li><NuxtLink :to="{  path: '/',hash:'#hulpvraag-onderwerpen'}">Hulpvraag</NuxtLink></li>
           <li><NuxtLink to="/actueel">Actueel</NuxtLink></li>
           <li><NuxtLink to="/partners">Partners</NuxtLink></li>

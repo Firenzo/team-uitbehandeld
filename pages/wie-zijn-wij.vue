@@ -1,7 +1,7 @@
 !<template>
   <main>
     <div class="container">
-      <h1>Ons Team</h1>
+      <h1>Wie zijn wij?</h1>
       <ul>
         <li v-for="teamMember in teamMembers" :key="teamMember.id" class="member">
           <div class="name-and-role">
@@ -40,7 +40,7 @@ export default {
 main {
   div.container {
     h1 {
-      text-align: center;
+      text-align: left;
       margin-bottom: 50px;
     }
     max-width: 400px;

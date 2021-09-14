@@ -1,6 +1,12 @@
 <template>
   <main>
     <div class="container">
+      <h1>Contact</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend odio eu pretium mattis.
+        Aenean id risus nec mauris efficitur maximus sit amet eget mi. Sed posuere sit amet arcu at tincidunt.
+        Mauris nec libero a nunc hendrerit cursus. Morbi aliquam libero nec tristique egestas. Cras ornare odio dolor,
+        eu interdum dolor sodales a. Sed id blandit tellus.
+        Aenean congue nunc eget accumsan ornare. Sed ut massa dolor.</p>
       <form action="">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Email" />
@@ -28,12 +34,12 @@
           <p>Telefoonnr.</p>
           <a href="#">+012-3456789</a>
         </div>
-        <div class="contact-info-item address">
+        <div class="contact-info-item facebook">
           <div class="contact-info-icon">
-            <Fa-icon :icon="['fas', 'map-marker-alt']" />
+            <Fa-icon :icon="['fab', 'facebook-f']" />
           </div>
-          <p>Straatnaam</p>
-          <span>den Blieklaan 33</span>
+          <p>Facebook</p>
+          <a href="#">@user_name</a>
         </div>
         <div class="contact-info-item twitter">
           <div class="contact-info-icon">
@@ -146,11 +152,6 @@ main {
           color: $light-text-color;
           font-size: 14px;
           margin-top: 5px;
-        }
-        span {
-          margin-top: 5px;
-          font-size: 14px;
-          color: $light-text-color;
         }
       }
       svg {
