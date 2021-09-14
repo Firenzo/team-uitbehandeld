@@ -3,9 +3,9 @@
     <div class="container">
       <h1>Actueel</h1>
       <ul>
-        <NewsArticle :post="post" v-for="post in posts" :key="post.id" />
+        <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
       </ul>
-      <button>Laad meer...</button>
+      <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
     </div>
   </main>
 </template>
@@ -17,6 +17,36 @@ export default {
     const posts = await $axios.$get('http://localhost:1338/posts')
     console.log(posts)
     return { posts }
+  },
+
+  data: () => ({
+    range: 0,
+    visiblePosts: []
+  }),
+
+  computed: {
+    maxPosts () {
+      return this.range > this.posts.length ? this.posts.length - 1 : this.range
+    }
+  },
+
+  methods: {
+    addComponent () {
+      this.visiblePosts = []
+      if (this.range === 0) {
+        this.range = 5
+      } else {
+        this.range += 6
+      }
+      for (let i = 0; i <= this.maxPosts; i++) {
+        this.visiblePosts.push(this.posts[i])
+      }
+    }
+  },
+
+  created () {
+    this.range = 2
+    this.addComponent()
   }
 }
 </script>
