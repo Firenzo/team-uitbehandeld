@@ -1,5 +1,6 @@
 export const state = () => ({
-  mobileMenuOpen: false
+  mobileMenuOpen: false,
+  baseUrl: 'http://dev.teamuitbehandeld.nl'
 })
 
 export const mutations = {

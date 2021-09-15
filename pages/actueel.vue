@@ -14,7 +14,7 @@
 export default {
 
   async asyncData ({ params, $axios }) {
-    const posts = await $axios.$get('http://localhost:1338/posts')
+    const posts = await $axios.$get(`${process.env.strapiAPI}/posts`)
     console.log(posts)
     return { posts }
   },
@@ -45,7 +45,6 @@ export default {
   },
 
   created () {
-    this.range = 2
     this.addComponent()
   }
 }

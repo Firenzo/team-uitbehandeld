@@ -38,6 +38,11 @@ export default {
     '@nuxtjs/fontawesome'
   ],
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    strapiAPI: 'http://dev.teamuitbehandeld.nl'
+  },
+
   fontawesome: {
     component: 'FaIcon',
     icons: {

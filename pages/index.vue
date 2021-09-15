@@ -146,7 +146,7 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    const subjects = await $axios.$get('http://localhost:1338/subjects')
+    const subjects = await $axios.$get(`${process.env.strapiAPI}/subjects`)
     console.log(subjects)
     return { subjects }
   },

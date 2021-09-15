@@ -26,8 +26,7 @@
       <div class="container">
         <div class="person-info">
           <div class="image">
-            <img :src="subject.experts[indexNumber].photo.url ? `http://localhost:1338${subject.experts[indexNumber].photo.url}` : ''" />
-          </div>
+            <img :src="subject.experts[indexNumber].photo.url ? `${$store.state.baseUrl}${subject.experts[indexNumber].photo.url}` : ''" />          </div>
           <div class="person-description">
             <h1>{{ this.subject.experts[indexNumber].name }}</h1>
             <h2>{{ this.subject.experts[indexNumber].title }}</h2>
@@ -41,7 +40,7 @@
         <ul>
           <li v-for="(expert, index) in subject.experts" :key="expert.id" @click="getIndex(index)">
             <div class="image">
-              <img :src="expert.photo ? `http://localhost:1338${expert.photo.url}` : ''" />
+              <img :src="expert.photo ? `${$store.state.baseUrl}${expert.photo.url}` : ''" />
             </div>
           </li>
         </ul>
@@ -56,10 +55,9 @@ export default {
   // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
-    const contentObjects = await $axios.$get(`http://localhost:1338/subjects?title=${slug}`)
+    const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?title=${slug}`)
     console.log(contentObjects)
-    const firstFourSubjectQuestions = await $axios.$get(`http://localhost:1338/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
-    // const experts = await $axios.$get('http://localhost:1338/experts')
+    const firstFourSubjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     const subject = contentObjects[0]
     return { subject, firstFourSubjectQuestions }
   },
