@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <h1>Contact</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend odio eu pretium mattis.
+      <p class='headerText'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend odio eu pretium mattis.
         Aenean id risus nec mauris efficitur maximus sit amet eget mi. Sed posuere sit amet arcu at tincidunt.
         Mauris nec libero a nunc hendrerit cursus. Morbi aliquam libero nec tristique egestas. Cras ornare odio dolor,
         eu interdum dolor sodales a. Sed id blandit tellus.
@@ -72,18 +72,31 @@ main {
     width: 90%;
     margin: auto;
 
-    h1, p {
+    h1{
       width: 90%;
       margin: 0 auto;
       grid-row: 1 / 2;
       grid-column: 1 / 3;
       margin-bottom: 20px;
 
-        @include min-900 {
-          max-width: 800px;
-          width: 60%;
-        }
+      @include min-900 {
+        max-width: 800px;
+        width: 60%;
+      }
     }
+
+    p.headerText {
+      width: 90%;
+      margin: 0 auto;
+      grid-row: 2 / 3;
+      grid-column: 1 / 3;
+      margin-bottom: 20px;
+
+      @include min-900 {
+        max-width: 800px;
+        width: 60%;
+     }
+   }
 
     @include min-900 {
       margin-top: 50px;

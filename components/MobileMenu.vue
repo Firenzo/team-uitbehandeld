@@ -48,6 +48,7 @@ nav{
   height:100vh;
   background:$mobile-menu-background;
   overflow:scroll;
+  z-index: 1;
 
   ul {
     margin-top:50px;
