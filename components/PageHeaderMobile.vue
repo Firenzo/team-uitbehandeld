@@ -109,7 +109,7 @@ header {
       box-shadow: 0 0 4px rgb(70, 84, 22);
       flex-basis: 50px;
       margin-left: calc(100% - 50px);
-      z-index: 1;
+      z-index: 2;
 
       transition:background-color 0.2s ease;
 

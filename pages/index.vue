@@ -224,13 +224,13 @@ main {
           // top: 10%;
           // }
           @include min-900 {
-            margin-top: 15%;
+            margin-top: 200px;
           }
           @include min-1200 {
             font-size: 42px;
             width: 100%;
             margin: auto;
-            margin-bottom: 17%;
+            margin-bottom: 250px;
           }
       }
    }
