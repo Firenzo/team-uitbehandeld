@@ -6,7 +6,7 @@
         <li v-for="teamMember in teamMembers" :key="teamMember.id" class="member">
           <div class="name-and-role">
             <div class="image">
-              <img :src="teamMember.photo ? `http://localhost:1338${teamMember.photo.url}` : ''" />
+              <img :src="teamMember.photo ? `${$store.state.baseUrl}${teamMember.photo.url}` : ''" />
             </div>
           </div>
           <div class="title-and-role">
