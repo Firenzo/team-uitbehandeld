@@ -25,35 +25,35 @@
             <Fa-icon :icon="['fas', 'envelope']" />
           </div>
           <p>Email</p>
-          <a href="mailto:info@teamuitbehandeld.nl">info@teamuitbehandeld.nl</a>
+          <a href="mailto:info@teamuitbehandeld.nl">{{ contactInfo.email }}</a>
         </div>
         <div class="contact-info-item phone-number">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fas', 'phone']" />
           </div>
           <p>Telefoonnr.</p>
-          <a href="#">+012-3456789</a>
+          <a href="#">{{ contactInfo.phoneNumber }}</a>
         </div>
         <div class="contact-info-item facebook">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'facebook-f']" />
           </div>
           <p>Facebook</p>
-          <a href="#">@user_name</a>
+          <a href="#">{{ contactInfo.facebook }}</a>
         </div>
         <div class="contact-info-item twitter">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'instagram']" />
           </div>
           <p>Instagram</p>
-          <a href="#">@user_name</a>
+          <a href="#">{{ contactInfo.instagram }}</a>
         </div>
         <div class="contact-info-item facebook">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'linkedin-in']" />
           </div>
           <p>LinkedIn</p>
-          <a href="#">@user_name</a>
+          <a href="#">{{ contactInfo.linkedin }}</a>
         </div>
       </div>
     </div>
@@ -61,7 +61,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData ({ params, $axios }) {
+    const contactInfo = await $axios.$get(`${process.env.strapiAPI}/contact-info`)
+    console.log(contactInfo)
+    return { contactInfo }
+  }
+}
 </script>
 
 <style scoped lang="scss">
