@@ -84,8 +84,13 @@ export default {
     generate: {
       done (builder) {
         console.log(process.env)
-        // exec("copy-nuxt-project.sh")
-        // exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+        if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
+          exec("copy-nuxt-project.sh")
+        }
+
+        if(process.env.OS === undefined && process.env.USER === "tubadmin"){
+          exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+        }
       }
     }
   }
