@@ -84,7 +84,7 @@ export default {
     generate: {
       done (builder) {
         console.log(builder)
-        exec('copy-nuxt-project.sh')
+        exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
       }
     }
   }
