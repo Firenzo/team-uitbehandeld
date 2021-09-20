@@ -1,7 +1,6 @@
-cd dist
 #Development
-# cp -R * "../../../strapi-test/public/"
+#cp -R dist/. "../../strapi-test/public/"
 
 #Production:
-cp -R * "../../team-uitbehandeld-strapi/public/"
+cp -R dist/* "../team-uitbehandeld-strapi/public/"
 exit
