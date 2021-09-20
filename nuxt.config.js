@@ -83,7 +83,7 @@ export default {
   hooks: {
     generate: {
       done (builder) {
-        console.log(process.env.OS)
+        console.log(process.env)
         // exec("copy-nuxt-project.sh")
         // exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
       }
