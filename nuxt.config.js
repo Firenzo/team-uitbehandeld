@@ -84,8 +84,10 @@ export default {
     generate: {
       done (builder) {
         console.log(process.env)
-        if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
-          exec("copy-nuxt-project.sh")
+        if(process.env.OS && process.env.USERNAME){
+          if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
+            exec("copy-nuxt-project.sh")
+          }
         }
 
         if(process.env.OS === undefined && process.env.USER === "tubadmin"){
