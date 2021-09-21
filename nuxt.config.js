@@ -1,3 +1,5 @@
+import { exec } from 'child_process'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -76,5 +78,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  hooks: {
+    generate: {
+      done (builder) {
+        console.log(builder)
+        exec('copy-nuxt-project.sh')
+      }
+    }
   }
 }
