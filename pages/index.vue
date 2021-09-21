@@ -3,8 +3,12 @@
     <section id="hero-container">
         <div class="image hero">
           <div class="hero-overlay-container">
-            <img src="~/assets/images/teamuitbehandeld_handen.svg" alt="">
-            <h1>Het platform voor uitbehandelde patiënten</h1>
+            <div class="hero-overlay-container-img">
+              <img src="~/assets/images/teamuitbehandeld_handen.svg" alt="">
+            </div>
+            <div class="hero-overlay-container-text">
+              <div><h1>Het platform voor uitbehandelde patiënten</h1></div>
+            </div>
           </div>
           </div>
         <div class="container">
@@ -191,48 +195,53 @@ main {
       }
         .hero-overlay-container {
           display: flex;
-        }
 
-      img {
-        background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
-        // background-size: cover;
-        height: 150px;
-        width: auto;
-        position: relative;
+            @include min-700{
+              display: flex;
+            }
+         div.hero-overlay-container-img {
+            img {
+              background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
+              height: 150px;
+              width: auto;
+              position: relative;
 
-        @include min-450{
-          height: 230px;
-        }
+            @include min-450{
+              height: 230px;
+            }
 
-        @include min-700{
-          height: 450px;
-        }
-    }
-
-      h1 {
-        width: 100%;
-        // position: absolute;
-        margin: auto;
-        text-align: center;
-        font-weight: 300;
-        font-size: 32px;
-        color: $dark-green;
-        display: flex;
-        align-items: flex-start;
-
-          // @include min-356 {
-          // top: 10%;
-          // }
-          @include min-900 {
-            margin-top: 200px;
+            @include min-700{
+              height: 450px;
+            }
           }
-          @include min-1200 {
-            font-size: 42px;
-            width: 100%;
-            margin: auto;
-            margin-bottom: 250px;
-          }
-      }
+         }
+
+       div.hero-overlay-container-text {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+         background-color: red;
+         width: 100%;
+           div {
+          // width: 100%;
+          margin: auto;
+          // font-weight: 300;
+          // font-size: 32px;
+          height: 50px;
+          color: $dark-green;
+          text-align: center;
+          background-color: lightskyblue;
+          width: 100%;
+            // @include min-356 {
+            // top: 10%;
+            // }
+            // @include min-900 {
+            // }
+            // @include min-1200 {
+            // }
+        }
+       }
+     }
    }
 
       h2 {

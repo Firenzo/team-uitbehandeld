@@ -76,11 +76,20 @@ body {
   margin: 10px;
   width: 50px;
   height: 50px;
-  background-color: rgb(155, 155, 155);
+  background-color: $light-green;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
   border-radius: 50%;
   display: none;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: rgb(116, 151, 1);
+  }
+
+   @include min-700{
+    margin: 20px;
+   }
 
   &.visible {
    display: flex;

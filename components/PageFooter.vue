@@ -43,7 +43,7 @@
         <ul>
           <!-- <li><NuxtLink to='/team'>Ons team</NuxtLink></li> -->
           <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
-          <li><NuxtLink to="#">Disclaimer</NuxtLink></li>
+          <li><NuxtLink to="/disclaimer">Disclaimer</NuxtLink></li>
         </ul>
         <button>Doneer</button>
       </div>

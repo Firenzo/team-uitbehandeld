@@ -25,7 +25,6 @@
 
 <script>
 export default {
-
   async asyncData ({ params, $axios }) {
     const teamMembers = await $axios.$get(`${process.env.strapiAPI}/team-members`)
     console.log(teamMembers)
