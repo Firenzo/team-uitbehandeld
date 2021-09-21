@@ -13,12 +13,12 @@
           BSIN / fiscaal: 860717318
         </p>
         <div class="image anbi-status">
-          <a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/belastingregels_algemeen_nut_beogende_instellingen">
+       <NuxtLink to="/anbi-status">
           <img
             src="~/assets/images/anbi-algemeen-nut-beogende-instelling.svg"
             alt="ANBI logo"
           />
-          </a>
+      </NuxtLink>
         </div>
       </div>
 
