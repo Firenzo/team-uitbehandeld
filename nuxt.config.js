@@ -83,8 +83,17 @@ export default {
   hooks: {
     generate: {
       done (builder) {
-        console.log(builder)
-        exec('copy-nuxt-project.sh')
+        console.log(process.env)
+        if(process.env.OS && process.env.USERNAME){
+          if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
+            exec("copy-nuxt-project.sh")
+          }
+        }
+
+        if(process.env.OS === undefined && process.env.USER === "tubadmin"){
+          exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+          console.log("copied files to Strapi")
+        }
       }
     }
   }

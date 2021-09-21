@@ -6,6 +6,18 @@
         <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
       </ul>
       <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
+      <div class="flex">
+        <h1>Laatse nieuws</h1>
+        <p>in de media</p>
+        <div class="newsImage">
+        <img src="~/assets/images/Nieuws1_.jpg" alt="npo1">
+        <p>Luister het interview terug op <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase">nporadio</a></p>
+        </div>
+        <div class="newsImage">
+        <img src="~/assets/images/Nieuws2.jpg" alt="baarnschecourant">
+        <p>Lees het interview op <a href="https://www.baarnschecourant.nl/lokaal/mensen/353325/wout-middelman-maakt-platform-voor-uitbehandelde-patinten">baarnschecourant.nl</a></p>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -75,6 +87,30 @@ main {
     }
     button {
       margin: auto;
+    }
+
+    div.flex{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      h1 {
+        color: $light-green;
+        margin-bottom: 0;
+      }
+      div.newsImage{
+        @include min-550 {
+          // width: 50%;
+          flex-direction: row;
+          flex-basis: 50%;
+      img {
+        width: 100%;
+        display: block;
+          }
+        }
+      }
     }
   }
 }

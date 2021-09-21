@@ -26,12 +26,13 @@
       <div class="container">
         <div class="person-info">
           <div class="image">
-            <img :src="subject.experts[indexNumber].photo.url ? `${$store.state.baseUrl}${subject.experts[indexNumber].photo.url}` : ''" />          </div>
+            <img :src="subject.experts[indexNumber] ? `${$store.state.baseUrl}${subject.experts[indexNumber].photo.url}` : ''" />
+          </div>
           <div class="person-description">
-            <h1>{{ this.subject.experts[indexNumber].name }}</h1>
-            <h2>{{ this.subject.experts[indexNumber].title }}</h2>
-            <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ this.subject.experts[indexNumber].location }}</span>
-            <p>{{ this.subject.experts[indexNumber].content }}</p>
+            <h1>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].name : '' }}</h1>
+            <h2>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].title : '' }}</h2>
+            <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ subject.experts[indexNumber] ? subject.experts[indexNumber].location : ''}}</span>
+            <p>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].content : '' }}</p>
             <NuxtLink to="/hulpvraag/currentpage/vraag-stellen" class="button">Stuur bericht</NuxtLink>
           </div>
         </div>
