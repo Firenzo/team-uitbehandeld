@@ -6,11 +6,11 @@
         <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
       </ul>
       <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
-      <div class="flex">
+      <div class="latestNews">
         <h1>Laatse nieuws</h1>
         <p>in de media</p>
         <div class="newsImage">
-        <img src="~/assets/images/Nieuws1_.jpg" alt="npo1">
+        <img src="~/assets/images/Nieuws1_cropped.jpg" alt="npo1">
         <p>Luister het interview terug op <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase">nporadio</a></p>
         </div>
         <div class="newsImage">
@@ -89,27 +89,52 @@ main {
       margin: auto;
     }
 
-    div.flex{
+    div.latestNews{
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       margin-top: 20px;
+
+      @include min-1000 {
+        justify-content: space-between;
+        align-items: stretch;
+        position: relative;
+      }
+
       h1 {
         color: $light-green;
         margin-bottom: 0;
+        flex-basis: 100%;
       }
+
+      >p {
+        flex-basis: 100%;
+        font-size: 28px;
+
+      }
+
       div.newsImage{
-        @include min-550 {
-          // width: 50%;
-          flex-direction: row;
-          flex-basis: 50%;
-      img {
-        width: 100%;
-        display: block;
+        img {
+          width: 100%;
+          display: block;
+          margin-bottom: 20px;
+          margin-top: 20px;
+
+          @include min-1000 {
+            display: block;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 50%;
           }
         }
+
+          p {
+            @include min-1000 {
+              position: absolute;
+              bottom: 0;
+            }
+          }
       }
     }
   }
