@@ -181,13 +181,14 @@ main {
    div.image.hero {
       background: url("~/assets/images/Strand_uitgesneden.png") no-repeat center;
       background-size: cover;
-      height: 150px;
+      height: 280px;
       width: 100%;
       margin-bottom: 40px;
       position: relative;
+      text-align: center;
 
       @include min-450{
-        height: 230px;
+        height: 400px;
       }
 
       @include min-700{
@@ -195,16 +196,24 @@ main {
       }
         .hero-overlay-container {
           display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: inherit;
+          // background-color: rgba(0,0,0, 0.2);
+          background-image: linear-gradient(rgba(0,0,0, 0.1), rgba(0,0,0, 0.4));
 
             @include min-700{
               display: flex;
+              flex-direction: row;
             }
          div.hero-overlay-container-img {
             img {
               background: url("~/assets/images/teamuitbehandeld_handen.svg") no-repeat center;
-              height: 150px;
+              height: 100px;
               width: auto;
               position: relative;
+              margin-top: 15px;
 
             @include min-450{
               height: 230px;
@@ -219,26 +228,30 @@ main {
        div.hero-overlay-container-text {
          display: flex;
          flex-direction: column;
-         align-items: flex-start;
-         background-color: red;
+         justify-content: flex-end;
+         align-items: center;
          width: 100%;
+         height: 100%;
            div {
-          // width: 100%;
-          margin: auto;
-          // font-weight: 300;
-          // font-size: 32px;
-          height: 50px;
-          color: $dark-green;
-          text-align: center;
-          background-color: lightskyblue;
-          width: 100%;
-            // @include min-356 {
-            // top: 10%;
-            // }
-            // @include min-900 {
-            // }
-            // @include min-1200 {
-            // }
+            color: $dark-green;
+            width: 100%;
+            height: auto;
+           h1 {
+              font-size: 30px;
+              line-height: 1.2;
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: 500;
+              text-shadow: 0 1px 1.5px rgba(0,0,0,0.5);
+              margin-bottom: 50px;
+              @include min-356 {
+              }
+              @include min-700 {
+                font-size: 50px;
+              }
+              @include min-900 {
+                margin-bottom: 70px;
+              }
+           }
         }
        }
      }
