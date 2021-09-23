@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body.noscroll{
@@ -52,8 +52,16 @@ textarea{
 }
 
 h1{
-  font-size:36px;
+  font-size:40px;
   margin-bottom:20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+  color: #505D68;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
 
   &.lines{
     font-size:28px;
@@ -74,6 +82,13 @@ h1{
 
 h2{
   font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
 
   &.lines{
     display:flex;
@@ -91,7 +106,56 @@ h2{
   }
 }
 
+h3{
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+  color: #505D68;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
+}
+
+h4{
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+  color: #505D68;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
+}
+
+h5{
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+  color: #505D68;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
+}
+
+h6{
+  font-family: "Montserrat", sans-serif;
+  font-weight:400;
+  color: #505D68;
+
+  &.bold{
+    font-weight: 600;
+    color:black;
+  }
+}
+
 p{
   font-size:15px;
   line-height:1.4em;
+}
+
+nav ul li a.nuxt-link-active{
+  font-weight:600;
+  border-bottom: 2px solid black;
 }
