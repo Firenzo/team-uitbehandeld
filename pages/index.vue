@@ -210,8 +210,7 @@ main {
           justify-content: center;
           align-items: center;
           height: inherit;
-          // background-color: rgba(0,0,0, 0.2);
-          background-image: linear-gradient(rgba(0,0,0, 0.1), rgba(0,0,0, 0.4));
+          background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0, 0.4));
 
             @include min-700{
               display: flex;
@@ -243,7 +242,7 @@ main {
          width: 100%;
          height: 100%;
            div {
-            color: $dark-green;
+            // color: $dark-green;
             width: 100%;
             height: auto;
            h1 {
@@ -253,6 +252,7 @@ main {
               font-weight: 500;
               text-shadow: 0 1px 1.5px rgba(0,0,0,0.5);
               margin-bottom: 50px;
+              color: white;
               @include min-356 {
               }
               @include min-700 {
@@ -537,6 +537,13 @@ main {
           background:$light-green;
           flex-basis:calc(50% - 180px - 20px);
         }
+      }
+
+      h2 {
+        color: $light-text-color;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
       }
 
       ul{
