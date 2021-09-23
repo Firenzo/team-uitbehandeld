@@ -26,11 +26,11 @@
         <h2>Contact</h2>
         <div class="contact-info email">
           <Fa-icon :icon="['fas', 'envelope']" />
-          <a href="mailto:info@teamuitbehandeld.nl">info@teamuitbehandeld.nl</a>
+          <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
         </div>
         <div class="contact-info phone">
           <Fa-icon :icon="['fas', 'phone']" />
-          <a href="#">06 - 1234 56 78</a>
+          <a href="#">{{ contactInfo.phoneNumber }}</a>
         </div>
         <!-- <div class="contact-info address">
           <Fa-icon :icon="['fas', 'map-marker-alt']" />
@@ -50,6 +50,19 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  computed: {
+    contactInfo () {
+      return this.$store.state.contactInfo
+    }
+  },
+  mounted () {
+    console.log(this.$store.state.contactInfo)
+  }
+}
+</script>
 
 <style lang="scss">
 @use 'styles/main' as *;

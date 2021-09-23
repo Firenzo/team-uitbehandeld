@@ -7,7 +7,7 @@
       </ul>
       <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
       <div class="latestNews">
-        <h1>Laatse nieuws</h1>
+        <h1>Laatste nieuws</h1>
         <p>in de media</p>
         <div class="newsImage">
         <img src="~/assets/images/Nieuws1_cropped.jpg" alt="npo1">
