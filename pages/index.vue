@@ -137,7 +137,17 @@
     <section id="hulpvraag-onderwerpen">
       <div class="container">
         <h1>Hulpvraag onderwerpen</h1>
+        <h2>Ziektespecifiek</h2>
         <ul>
+          <!-- <li v-for="subject in subjects" :key="subject.id">
+            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{subject.title}}</NuxtLink>
+          </li> -->
+          <li><a class="button" href="#">Kanker</a></li>
+          <li><a class="button" href="#">ALS</a></li>
+          <li><a class="button" href="#">Hartfalen</a></li>
+        </ul>
+        <h2>Generiek</h2>
+            <ul>
           <li v-for="subject in subjects" :key="subject.id">
             <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{subject.title}}</NuxtLink>
           </li>
@@ -309,6 +319,8 @@ main {
             @include min-900{
             width: 100%;
             margin: 0;
+            display: flex;
+            justify-content: flex-end;
           }
 
          img{
