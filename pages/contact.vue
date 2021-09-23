@@ -101,17 +101,9 @@ main {
       @include min-900 {
         max-width: 800px;
         width: 60%;
-     }
-   }
-
-    @include min-900 {
-      margin-top: 50px;
-      max-width: 1200px;
-      display: grid;
-      row-gap: 40px;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 35px fit-content(2px) 1fr;
+      }
     }
+
     p {
       grid-row-start: 2;
     }
@@ -140,6 +132,7 @@ main {
         margin-bottom: 15px;
       }
     }
+
     div.contact-info {
       display: flex;
       justify-content: space-between;
@@ -147,11 +140,15 @@ main {
       align-items: center;
       margin-bottom: 40px;
 
-      @include min-900 {
+      @include min-550{
         flex-direction: row;
-        display: flex;
+        flex-wrap: wrap;
+      }
+
+      @include min-900 {
+        flex-wrap: nowrap;
         text-align: center;
-        grid-column: 1 / span 3;
+        justify-content: space-between;
       }
 
       div.contact-info-item {
@@ -160,12 +157,15 @@ main {
         align-items: center;
         margin-top: 20px;
 
-        @include min-900 {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          display: flex;
+        @include min-550{
+          flex-basis: 50%;
         }
+
+        @include min-900 {
+          text-align: center;
+          flex-basis: auto;
+        }
+
         div.contact-info-icon {
           width: 75px;
           height: 75px;
@@ -176,9 +176,11 @@ main {
           align-items: center;
           margin-bottom: 10px;
         }
+
         p {
           font-size: 16px;
         }
+
         a {
           text-decoration: none;
           color: $light-text-color;
@@ -186,26 +188,13 @@ main {
           margin-top: 5px;
         }
       }
+
       svg {
         color: $light-text-color;
         @include min-900 {
           padding: 5px;
           width: 30px;
           height: 30px;
-        }
-      }
-    }
-    div.mapouter {
-      height: 100%;
-      width: 100%;
-      div.gmap_canvas {
-        overflow: hidden;
-        background: none !important;
-        height: 100%;
-        width: 100%;
-        iframe {
-          height: 500px;
-          width: 100%;
         }
       }
     }

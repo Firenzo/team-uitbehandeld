@@ -32,10 +32,10 @@
           <Fa-icon :icon="['fas', 'phone']" />
           <a href="#">06 - 1234 56 78</a>
         </div>
-        <div class="contact-info address">
+        <!-- <div class="contact-info address">
           <Fa-icon :icon="['fas', 'map-marker-alt']" />
           <span>den Blieklaan 33<br />3766AP Soest</span>
-        </div>
+        </div> -->
       </div>
 
       <div class="about">
@@ -97,7 +97,7 @@ footer {
       margin-bottom: 20px;
 
       @include min-900 {
-        flex-basis: 320px;
+        flex-basis:25%;
         margin-right: 50px;
       }
 
@@ -154,6 +154,7 @@ footer {
       @include min-900 {
         padding-right: 25px;
         border-right: 1px solid $footer-border-color;
+        flex-basis: calc(25% - 50px);
       }
 
       div.contact-info {
