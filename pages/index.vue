@@ -248,7 +248,6 @@ main {
            h1 {
               font-size: 30px;
               line-height: 1.2;
-              font-family: Arial, Helvetica, sans-serif;
               font-weight: 500;
               text-shadow: 0 1px 1.5px rgba(0,0,0,0.5);
               margin-bottom: 50px;
