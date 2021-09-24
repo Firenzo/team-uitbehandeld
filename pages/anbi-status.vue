@@ -6,7 +6,7 @@
           IBAN Rekeningnummer: NL84 RABO 0350 6129 00</h2>
          <p>RSIN / FISCAAL NUMMER 8553.10.431
           ANBI STATUS
-          Stichting Teamuitbehandeld.nl is aangemerkt als algemeen nut beogende instelling (ANBI).</p> 
+          Stichting Teamuitbehandeld.nl is aangemerkt als algemeen nut beogende instelling (ANBI).</p>
       <h2>Downloads:</h2>
       <ul class="reports">
         <li v-for="report in reports" :key="report.id" class="report" >
@@ -16,7 +16,6 @@
     </div>
   </main>
 </template>
-
 <script>
 export default {
   async asyncData ({ params, $axios }) {
