@@ -71,7 +71,7 @@ export default {
 
 main {
   section#news {
-    background: lightgrey;
+    background: #ededed;
     padding: 25px 0;
     margin-top: 40px;
   }
@@ -81,12 +81,6 @@ main {
     position: relative;
     display: flex;
     flex-flow: row wrap;
-
-    section{
-      background-color: green;
-      box-sizing: border-box;
-      flex: 1 0 100%;
-    }
 
     ul {
       width: 200px;
@@ -117,7 +111,7 @@ main {
       }
 
       h1 {
-        color: $light-green;
+        color: #000;
         margin-bottom: 0;
         flex-basis: 100%;
       }
@@ -125,7 +119,7 @@ main {
       >p {
         flex-basis: 100%;
         font-size: 28px;
-
+        color: $light-text-color;
       }
 
       div.newsImage{
