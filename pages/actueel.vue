@@ -1,24 +1,28 @@
 <template>
   <main>
-    <div class="container">
-      <h1>Actueel</h1>
-      <ul>
+    <section id="posts">
+      <div class="container">
+       <h1>Actueel</h1>
+        <ul>
         <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
-      </ul>
-      <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
-      <div class="latestNews">
+        </ul>
+        <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
+      </div>
+    </section>
+    <section id="news">
+      <div class="container">
         <h1>Laatste nieuws</h1>
         <p>in de media</p>
         <div class="newsImage">
         <img src="~/assets/images/Nieuws1_cropped.jpg" alt="npo1">
         <p>Luister het interview terug op <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase">nporadio</a></p>
-        </div>
+      </div>
         <div class="newsImage">
         <img src="~/assets/images/Nieuws2.jpg" alt="baarnschecourant">
         <p>Lees het interview op <a href="https://www.baarnschecourant.nl/lokaal/mensen/353325/wout-middelman-maakt-platform-voor-uitbehandelde-patinten">baarnschecourant.nl</a></p>
-        </div>
       </div>
-    </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -66,7 +70,24 @@ export default {
 @use "styles/main" as *;
 
 main {
+  section#news {
+    background: lightgrey;
+    padding: 25px 0;
+    margin-top: 40px;
+  }
+
   div.container {
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+
+    section{
+      background-color: green;
+      box-sizing: border-box;
+      flex: 1 0 100%;
+    }
+
     ul {
       width: 200px;
       margin: auto;
@@ -88,13 +109,6 @@ main {
     button {
       margin: auto;
     }
-
-    div.latestNews{
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: center;
-      margin-top: 20px;
 
       @include min-1000 {
         justify-content: space-between;
@@ -136,7 +150,6 @@ main {
             }
           }
       }
-    }
   }
 }
 </style>

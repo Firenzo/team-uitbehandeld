@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-     <div ref="top"></div>
     <PageHeaderMobile v-if="viewportIsMobile"/>
     <PageHeader v-else />
     <Nuxt />
     <PageFooter />
-    <div class="back-to-top" @click="scrollToTop('top')" :class="{visible: backToTopButton}" >
-    <NuxtLink to= #top><Fa-icon :icon="['fas', 'chevron-up']"  /></NuxtLink></div>
+    <div class="back-to-top" @click="scrollToTop()" :class="{visible: backToTopButton}" >
+      <a><Fa-icon :icon="['fas', 'chevron-up']"  /></a>
+    </div>
   </div>
 </template>
 
@@ -46,10 +46,8 @@ export default {
       this.viewportIsMobile = window.innerWidth < 1200
     },
 
-    scrollToTop (top) {
-      const element = this.$refs[top]
-      const topTop = element.offsetTop
-      window.scrollTo(0, topTop)
+    scrollToTop () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
 
     onElementObserved () {
@@ -83,6 +81,8 @@ body {
   align-items: center;
   justify-content: center;
   transition: background-color 0.5s ease;
+  cursor: pointer;
+
   &:hover {
     background-color: rgb(116, 151, 1);
   }

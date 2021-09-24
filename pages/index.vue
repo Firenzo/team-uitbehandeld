@@ -535,7 +535,7 @@ main {
           display:block;
           height:2px;
           background:$light-green;
-          flex-basis:calc(50% - 161px - 20px);
+          flex-basis:calc(50% - 180px - 20px);
         }
       }
 

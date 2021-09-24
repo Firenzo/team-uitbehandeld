@@ -36,7 +36,7 @@ li {
     }
   }
   p.content {
-    height: 120px;
+    height: 130px;
     overflow: hidden;
     color: $light-text-color;
   }
