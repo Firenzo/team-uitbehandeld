@@ -30,6 +30,7 @@ main {
     h1 {
       margin-bottom: 30px;
       font-size: 18px;
+      font-weight: 550;
       color: $light-text-color;
         @include min-700 {
         font-size: 25px;

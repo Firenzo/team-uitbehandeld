@@ -1,12 +1,10 @@
 !<template>
   <main>
     <div class="container">
-      <h1>ANBI Status (draft)</h1>
-      <h2>STICHTING teamuitbehandeld.nl <br>
-          IBAN Rekeningnummer: NL84 RABO 0350 6129 00</h2>
-         <p>RSIN / FISCAAL NUMMER 8553.10.431
-          ANBI STATUS
-          Stichting Teamuitbehandeld.nl is aangemerkt als algemeen nut beogende instelling (ANBI).</p>
+      <h1>ANBI Status</h1>
+      <h2>Stichting Teamuitbehandeld.nl is aangemerkt als algemeen nut beogende instelling (ANBI). </h2>
+      <h2>IBAN Rekeningnummer: NL84 RABO 0350 6129 00</h2>
+      <h2>RSIN / FISCAAL NUMMER 8553.10.431</h2>
       <h2>Downloads:</h2>
       <ul class="reports">
         <li v-for="report in reports" :key="report.id" class="report" >
@@ -16,7 +14,6 @@
     </div>
   </main>
 </template>
-
 <script>
 export default {
   async asyncData ({ params, $axios }) {
@@ -38,6 +35,7 @@ main {
     h1 {
       margin-bottom: 30px;
       font-size: 18px;
+      font-weight: 600;
       color: $light-text-color;
         @include min-700 {
         font-size: 25px;
@@ -53,8 +51,9 @@ main {
       }
     }
 
-    h2:nth-of-type(2) {
+    h2:nth-of-type(4) {
       color: $dark-green;
+      font-weight: bold;
     }
 
     ul.reports {
