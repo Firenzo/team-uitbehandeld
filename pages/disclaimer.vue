@@ -1,19 +1,35 @@
 !<template>
   <main>
     <div class="container">
-      <h1>Disclaimer</h1>
+      <p>{{markdown}}</p>
       <div class="disclaimer">
-        <p>{{disclaimer.text}}</p>
+        <!-- <p>{{disclaimer.text}}</p> -->
+        <p v-html="markDownToHTML"></p>
+        <!-- <p> {{markdown}} </p> -->
       </div>
     </div>
   </main>
 </template>
 <script>
+
+import marked from 'marked'
+
 export default {
+  // data () {
+  //   return {
+  //     markdowm: '# __Disclaimer__'
+  //   }
+  // },
   async asyncData ({ params, $axios }) {
     const disclaimer = await $axios.$get(`${process.env.strapiAPI}/disclaimer`)
     console.log(disclaimer)
     return { disclaimer }
+  },
+  computed: {
+    markDownToHTML () {
+      return marked(this.disclaimer.text)
+      // return marked(this.markdowm)
+    }
   }
 }
 </script>
