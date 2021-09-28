@@ -3,10 +3,12 @@
     <div class="container">
       <div class="team-uitbehandeld">
         <div class="image footer-logo">
+          <NuxtLink to="/">
           <img
             src="~/assets/images/teamuitbehandeld_logo.svg"
             alt="Team Uitbehandeld logo"
           />
+          </NuxtLink>
         </div>
         <p>
           KvK: 76638251<br />

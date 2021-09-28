@@ -6,7 +6,7 @@
         <li v-for="teamMember in teamMembers" :key="teamMember.id" class="member">
           <div class="name-and-role">
             <div class="image">
-              <img :src="teamMember.photo ? `${$store.state.baseUrl}${teamMember.photo.url}` : ''" />
+              <img :src="teamMember.photo ? `${$store.state.baseUrl}${teamMember.photo.url}` : `${$store.state.baseUrl}/uploads/stock_ee325cb78c.jpg`" />
             </div>
           </div>
           <div class="title-and-role">
@@ -26,7 +26,7 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    const teamMembers = await $axios.$get(`${process.env.strapiAPI}/team-members`)
+    const teamMembers = await $axios.$get(`${process.env.strapiAPI}/team-members?_sort=order:ASC`)
     console.log(teamMembers)
     return { teamMembers }
   }
