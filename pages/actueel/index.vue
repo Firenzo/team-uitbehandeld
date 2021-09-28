@@ -159,7 +159,7 @@ main {
       ul {
         width: 200px;
         margin: auto;
-        display: grid;
+        ;
         gap: 20px;
         margin-bottom: 20px;
 
