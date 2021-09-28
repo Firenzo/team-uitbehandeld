@@ -45,7 +45,7 @@
           <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
           <li><NuxtLink to="/disclaimer">Disclaimer</NuxtLink></li>
         </ul>
-        <button>Doneer</button>
+        <NuxtLink to="/doneren" class="button">Doneer</NuxtLink>
       </div>
     </div>
   </footer>
@@ -202,7 +202,7 @@ footer {
         text-align: center;
       }
 
-      button {
+      a.button {
         width: 130px;
         padding: 20px 0;
         font-weight: 600;

@@ -14,12 +14,20 @@
         <h1>Laatste nieuws</h1>
         <p>in de media</p>
         <div class="newsImage">
-        <img src="~/assets/images/Nieuws1_cropped.jpg" alt="npo1">
-        <p>Luister het interview terug op <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase">nporadio</a></p>
+        <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase" target="_blank">
+          <div class="image">
+            <img src="~/assets/images/Nieuws1_cropped.jpg" alt="npo1">
+          </div>
+        </a>
+        <p>Luister het interview terug op <a href="https://www.nporadio1.nl/langs-de-lijn-en-omstreken/onderwerpen/63246-2020-08-13-team-uitbehandeld-helpt-in-loodzware-levensfase" target="_blank">nporadio</a></p>
       </div>
         <div class="newsImage">
-        <img src="~/assets/images/Nieuws2.jpg" alt="baarnschecourant">
-        <p>Lees het interview op <a href="https://www.baarnschecourant.nl/lokaal/mensen/353325/wout-middelman-maakt-platform-voor-uitbehandelde-patinten">baarnschecourant.nl</a></p>
+        <a href="https://www.baarnschecourant.nl/lokaal/mensen/353325/wout-middelman-maakt-platform-voor-uitbehandelde-patinten" target="_blank">
+          <div class="image">
+            <img src="~/assets/images/Nieuws2.jpg" alt="baarnschecourant">
+          </div>
+        </a>
+        <p>Lees het interview op <a href="https://www.baarnschecourant.nl/lokaal/mensen/353325/wout-middelman-maakt-platform-voor-uitbehandelde-patinten" target="_blank">baarnschecourant.nl</a></p>
       </div>
       </div>
     </section>
@@ -30,7 +38,7 @@
 export default {
 
   async asyncData ({ params, $axios }) {
-    const posts = await $axios.$get(`${process.env.strapiAPI}/posts`)
+    const posts = await $axios.$get(`${process.env.strapiAPI}/posts?_sort=created_at:DESC`)
     console.log(posts)
     return { posts }
   },
@@ -74,68 +82,52 @@ main {
     background: #ededed;
     padding: 25px 0;
     margin-top: 40px;
-  }
 
-  div.container {
-    width: 100vw;
-    position: relative;
-    display: flex;
-    flex-flow: row wrap;
+    div.container{
+      position: relative;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content:center;
 
-    ul {
-      width: 200px;
-      margin: auto;
-      display: grid;
-      gap: 20px;
-      margin-bottom: 20px;
-      @include min-450 {
-        grid-template-columns: repeat(2, minmax(200px, 1fr));
-        width: auto;
-        margin: 0;
-        margin-bottom: 20px;
-      }
-
-      @include min-750 {
-        gap: 15px;
-        grid-template-columns: repeat(3, minmax(200px, 1fr));
-      }
-    }
-    button {
-      margin: auto;
-    }
-
-      @include min-1000 {
+      @include min-1000{
         justify-content: space-between;
-        align-items: stretch;
-        position: relative;
       }
 
       h1 {
         color: #000;
         margin-bottom: 0;
         flex-basis: 100%;
+        text-align: center;
+        font-size: 28px;
+
+        @include min-550{
+          font-size: 35px;
+        }
       }
 
       >p {
         flex-basis: 100%;
-        font-size: 28px;
+        font-size: 24px;
         color: $light-text-color;
+        text-align: center;
       }
 
       div.newsImage{
-        img {
-          width: 100%;
-          display: block;
-          margin-bottom: 20px;
-          margin-top: 20px;
 
-          @include min-1000 {
-            display: block;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            flex-basis: 50%;
-          }
+        @include min-1000{
+          flex-basis:calc(50% - 10px);
         }
+        >a{
+          div.image{
+            img {
+              width: 100%;
+              display: block;
+              margin-bottom: 20px;
+              margin-top: 20px;
+              border-radius:5px;
+              box-shadow: 0 0 8px rgba(0,0,0,0.2);
+            }
+          }
 
           p {
             @include min-1000 {
@@ -143,7 +135,51 @@ main {
               bottom: 0;
             }
           }
+        }
       }
+    }
+  }
+
+  section#posts{
+    div.container {
+      position: relative;
+      display: flex;
+      flex-flow: row wrap;
+
+      @include min-1000 {
+        justify-content: space-between;
+        align-items: stretch;
+        position: relative;
+      }
+
+      h1{
+        flex-basis:100%;
+      }
+
+      ul {
+        width: 200px;
+        margin: auto;
+        display: grid;
+        gap: 20px;
+        margin-bottom: 20px;
+
+        @include min-450 {
+          grid-template-columns: repeat(2, minmax(200px, 1fr));
+          width: auto;
+          margin: 0;
+          margin-bottom: 20px;
+        }
+
+        @include min-750 {
+          gap: 15px;
+          grid-template-columns: repeat(3, minmax(200px, 1fr));
+        }
+      }
+
+      button {
+        margin: auto;
+      }
+    }
   }
 }
 </style>
