@@ -1,34 +1,43 @@
 !<template>
   <main>
     <div class="container">
-      <p>{{markdown}}</p>
       <div class="disclaimer">
-        <!-- <p>{{disclaimer.text}}</p> -->
-        <p v-html="markDownToHTML"></p>
-        <!-- <p> {{markdown}} </p> -->
+        <div v-html="markDownToHTML" class="md-container">{{ getPs }}</div>
       </div>
     </div>
   </main>
 </template>
 <script>
 
-import marked from 'marked'
+const md = require('markdown-it')({
+  html: true,
+  linkify: false,
+  typographer: true
+})
 
 export default {
-  // data () {
-  //   return {
-  //     markdowm: '# __Disclaimer__'
-  //   }
-  // },
+  data () {
+    // return {
+    //   ps: document.getElementsByTagName("P")
+    // }
+  },
   async asyncData ({ params, $axios }) {
     const disclaimer = await $axios.$get(`${process.env.strapiAPI}/disclaimer`)
-    console.log(disclaimer)
+    // console.log(disclaimer)
     return { disclaimer }
   },
   computed: {
     markDownToHTML () {
-      return marked(this.disclaimer.text)
-      // return marked(this.markdowm)
+      return md.render(this.disclaimer.text)
+    }
+  },
+  methods: {
+  },
+  mounted () {
+    const ps = document.querySelector('.md-container')
+    console.log(ps.innerHTML)
+    if (ps.innerHTML.includes('\n')) {
+      console.log('line break here')
     }
   }
 }
@@ -43,48 +52,20 @@ main {
     max-width: 1200px;
     margin: auto;
 
-    h1 {
-      margin-bottom: 30px;
-      font-size: 18px;
-      font-weight: 550;
-      color: $light-text-color;
-        @include min-700 {
-        font-size: 25px;
-      }
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      line-height: 1.5;
-      font-size: 16px;
-        @include min-700 {
-        font-size: 20px;
-      }
-    }
-
-    h2:nth-of-type(2) {
-      color: $dark-green;
-    }
-
-    ul.reports {
-      li.report {
-        margin-bottom: 15px;
-        list-style: none;
-        width: 30px;
-        a.linkToAReport {
-          text-decoration: none;
-          color: black;
-          font-weight:700;
-          &:hover {
-            color: $light-text-color;
-          }
-        }
-      }
-    }
-
     @include min-700 {
       max-width: 1200px;
     }
+
+    div.disclaimer {
+      div.md-container {
+        background-color: yellow;
+        > p {
+          color: red;
+          font-size: 50px;
+        }
+      }
+    }
   }
 }
+
 </style>
