@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="container">
-      <h1>Partners</h1>
+      <h1>Samenwerkingen</h1>
       <p>Why is the sky orange?</p>
       <div class="partners">
         <div v-for="partner in partners" :key="partner.id" class="image" >
