@@ -45,6 +45,11 @@ li {
   p.date-and-author {
     color: $light-text-color;
   }
+
+  a {
+    text-decoration: none;
+  }
+
   h1 {
     margin-bottom: 15px;
     color: $light-text-color;

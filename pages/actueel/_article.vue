@@ -1,7 +1,8 @@
 !<template>
   <main>
     <div class="container">
-      <h1>{{ post.author.username }} | {{ formatDate }}</h1>
+      <h1>{{ post.title }}</h1>
+      <span class="author-and-date">{{ post.author.username }} | {{ formatDate }}</span>
       <!-- <p class="date">{{ formatDate }}</p> -->
       <p class="content">{{ post.content }}</p>
     </div>
@@ -32,6 +33,11 @@ export default {
 div.container {
   max-width: 650px;
   margin: auto;
+
+  span.author-and-date {
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 
 </style>

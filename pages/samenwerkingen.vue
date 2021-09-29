@@ -3,11 +3,16 @@
     <div class="container">
       <h1>Samenwerkingen</h1>
       <p>Why is the sky orange?</p>
-      <div class="partners">
-        <div v-for="partner in partners" :key="partner.id" class="image" >
+      <splide :options="options" >
+        <splide-slide v-for="partner in partners" :key="partner.id">
           <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
+      <!-- <div class="partners">
+        <div v-for="partner in partners" :key="partner.id" class="image">
+          <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''"/>
         </div>
-      </div>
+      </div> -->
+        </splide-slide>
+      </splide>
     </div>
   </main>
 </template>
@@ -18,6 +23,18 @@ export default {
     const partners = await $axios.$get(`${process.env.strapiAPI}/partners`)
     console.log(partners)
     return { partners }
+  },
+
+  data () {
+    return {
+      options: {
+        rewind: true,
+        width: 1600,
+        gap: '1rem',
+        arrows: true,
+        perPage: 2
+      }
+    }
   }
 }
 </script>
@@ -57,7 +74,6 @@ main {
           display: block;
           width: 100%;
           height: auto;
-          // max-width:25%;
         }
       }
     }
