@@ -58,7 +58,7 @@ main {
 
     div.disclaimer {
       div.md-container {
-        background-color: yellow;
+        // background-color: yellow;
         > p {
           color: red;
           font-size: 50px;
