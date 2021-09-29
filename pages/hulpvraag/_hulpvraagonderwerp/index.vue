@@ -33,7 +33,10 @@
             <h2>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].title : '' }}</h2>
             <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ subject.experts[indexNumber] ? subject.experts[indexNumber].location : ''}}</span>
             <p>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].content : '' }}</p>
-            <NuxtLink to="/hulpvraag/send_message/personID" class="button">Stuur bericht</NuxtLink>
+             <NuxtLink :to="`/hulpvraag/stuur-bericht/${subject.experts[indexNumber].id}`" class="button">Stuur bericht</NuxtLink>
+             <!-- <NuxtLink
+             :to="stuur-bericht"
+             ></NuxtLink> -->
           </div>
         </div>
       </div>

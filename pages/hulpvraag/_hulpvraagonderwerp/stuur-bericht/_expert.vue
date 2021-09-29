@@ -2,6 +2,8 @@
   <main>
     <div class="container">
       <h1>Stel je medische vraag</h1>
+      <pre> {{ expertsData.name }} </pre>
+
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque soluta quod ratione rerum voluptatem quaerat perspiciatis cum illum animi doloribus.</p>
       <div class="ask-question-form">
         <form action="">
@@ -41,7 +43,12 @@
 
 <script>
 export default {
-
+  async asyncData ({ params, $axios }) {
+    console.log(process.env.strapiAPI)
+    const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
+    console.log(expertsData)
+    return { expertsData }
+  }
 }
 </script>
 
