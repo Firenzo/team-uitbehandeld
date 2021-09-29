@@ -59,7 +59,7 @@ main {
     div.disclaimer {
       div.md-container {
         background-color: yellow;
-        > p {
+        >p {
           color: red;
           font-size: 50px;
         }
