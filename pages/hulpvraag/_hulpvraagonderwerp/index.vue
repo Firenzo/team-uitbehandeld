@@ -33,7 +33,10 @@
             <h2>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].title : '' }}</h2>
             <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ subject.experts[indexNumber] ? subject.experts[indexNumber].location : ''}}</span>
             <p>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].content : '' }}</p>
-            <NuxtLink to="/hulpvraag/currentpage/send-message" class="button">Stuur bericht</NuxtLink>
+             <NuxtLink :to="`/hulpvraag/stuur-bericht/${subject.experts[indexNumber].id}`" class="button">Stuur bericht</NuxtLink>
+             <!-- <NuxtLink
+             :to="stuur-bericht"
+             ></NuxtLink> -->
           </div>
         </div>
       </div>
@@ -57,7 +60,7 @@ export default {
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
     const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?title=${slug}`)
-    // console.log(contentObjects)
+    console.log(contentObjects)
     const firstFourSubjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     const subject = contentObjects[0]
     return { subject, firstFourSubjectQuestions }
