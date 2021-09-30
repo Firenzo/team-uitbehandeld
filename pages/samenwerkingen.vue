@@ -28,11 +28,28 @@ export default {
   data () {
     return {
       options: {
-        rewind: true,
-        width: 1600,
-        gap: '1rem',
+        type: 'loop',
+        trimSpace: false,
+        autoplay: true,
+        interval: 2000,
+        pauseOnHover: false,
+        pagination: false,
         arrows: true,
-        perPage: 2
+        perMove: 1,
+        // autoWidth: true,
+        // focus: 'center',
+        perPage: 4,
+        breakpoints: {
+          600: {
+            perPage: 1
+          },
+          900: {
+            perPage: 2
+          },
+          1300: {
+            perPage: 3
+          }
+        }
       }
     }
   }
@@ -48,35 +65,46 @@ main {
       margin-bottom: 40px;
       max-width: 750px;
     }
-    div.partners {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      max-width: 285px;
+
+    //let op, styling past nu op elke img toe
+    li.splide__slide img {
+      // max-width: 285px;
+      width: 100%;
+      height: auto;
+      display: block;
       margin: auto;
-
-      @include min-550 {
-        max-width: none;
-      }
-
-      div.image {
-        border: 1px solid $light-green;
-
-        @include min-550 {
-          flex-basis: 50%;
-          max-width: none;
-        }
-
-        @include min-700 {
-          flex-basis: 25%;
-        }
-        img {
-          display: block;
-          width: 100%;
-          height: auto;
-        }
-      }
     }
+
+    // div.partners {
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   flex-direction: row;
+    //   max-width: 285px;
+    //   margin: auto;
+
+    //   @include min-550 {
+    //     max-width: none;
+    //   }
+
+    //   div.image {
+    //     border: 1px solid $light-green;
+
+    //     @include min-550 {
+    //       flex-basis: 50%;
+    //       max-width: none;
+    //     }
+
+    //     @include min-700 {
+    //       flex-basis: 25%;
+    //     }
+    //     img {
+    //       display: block;
+    //       width: 100%;
+    //       height: auto;
+    //       // max-width: 25%;
+    //     }
+    //   }
+    // }
   }
 }
 </style>
