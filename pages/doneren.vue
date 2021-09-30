@@ -9,7 +9,7 @@
         <p>Ten name van Firenzo Jorden</p>
       </div>
       <form action="">
-        <div class="price">
+        <fieldset class="price">
           <label for="">Kies zelf een donatiebedrag:</label>
           <div class="inputfield-for-price">
             <div class="euro-sign">
@@ -17,29 +17,87 @@
             </div>
             <input type="text" v-model="donationAmountString" placeholder="Donatiebedrag" @keypress="checkNumber($event)" @input="adaptString()">
           </div>
-          <p v-if="donationAmount">{{donationAmount}}</p>
-        </div>
+          <p v-if="donationAmount || payTransactionCosts ">{{donationAmount}} {{payTransactionCosts}}</p>
+        </fieldset>
 
-        <div class="select-donation-amount">
+        <fieldset class="select-donation-amount">
           <label for="">Of kies een vaak gekozen bedrag:</label>
           <ul>
             <li v-for="(donationSelection, index) in donationSelections" :key="index" @click="setDonationAmount($event, donationSelections[index])">
               <button>€ {{donationSelections[index]}}</button>
             </li>
           </ul>
-        </div>
+        </fieldset>
 
-        <div class="transaction-costs">
+        <fieldset class="transaction-costs">
           <div class="pay-transaction-costs">
-            <input type="radio" name="pay_transaction_costs" id="pay_transaction_costs">
+            <input
+              v-model="payTransactionCosts"
+              type="radio"
+              name="pay_transaction_costs"
+              id="pay_transaction_costs"
+              value="true"
+              checked
+              @change="setTransactionCosts()"
+            >
             <label for="pay_transaction_costs">Ik wil bijdragen aan de transactiekosten en betaal € 0,65 extra</label>
           </div>
 
           <div class="dont-pay-transaction-costs">
-            <input type="radio" name="pay_transaction_costs" id="dont_pay_transaction_costs">
+            <input
+              v-model="payTransactionCosts"
+              type="radio"
+              name="pay_transaction_costs"
+              id="dont_pay_transaction_costs"
+              value="false"
+              @change="setTransactionCosts()"
+            >
             <label for="dont_pay_transaction_costs">Ik wil niet bijdragen aan de transactiekosten</label>
           </div>
+        </fieldset>
+
+        <div class="donateAs">
+          <button @click="setContributor($event, true)" :class="donateAsPerson ? 'selected' : ''">Doneren als persoon</button>
+          <button @click="setContributor($event, false)" :class="donateAsPerson ? '' : 'selected'">Doneren als bedrijf</button>
         </div>
+
+        <fieldset v-if="donateAsPerson" class="contributor-info">
+          <div class="label-and-input firstName">
+            <label for="naam">Voornaam:</label>
+            <input v-model="contributorInfo.person.firstName" type="text" name="naam" id="naam" placeholder="Typ hier je voornaam">
+          </div>
+
+          <div class="label-and-input lastName">
+            <label for="achternaam">Achternaam:</label>
+            <input v-model="contributorInfo.person.lastName" type="text" name="achternaam" id="achternaam" placeholder="Typ hier je achternaam">
+          </div>
+
+          <div class="label-and-input email">
+            <label for="email">E-mailadres:</label>
+            <input v-model="contributorInfo.person.email" type="email" name="email" id="email" placeholder="voorbeed@team-uitbehandeld.nl">
+          </div>
+        </fieldset>
+
+        <fieldset v-else class="contributor-info">
+          <div class="label-and-input companyName">
+            <label for="bedrijfsnaam">Bedrijfsnaam:</label>
+            <input v-model="contributorInfo.company.name" type="text" name="bedrijfsnaam" id="bedrijfsnaam" placeholder="Typ hier je bedrijfsnaam">
+          </div>
+
+          <div class="label-and-input email">
+            <label for="email">E-mailadres:</label>
+            <input v-model="contributorInfo.company.email" type="email" name="email" id="email" placeholder="voorbeed@team-uitbehandeld.nl">
+          </div>
+        </fieldset>
+
+        <fieldset class="additional-preferences">
+          <div class="label-and-checkbox">
+            <input type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions">
+            <label for="accept-terms-and-conditions">Ik accepteer de Algemene voorwaarden.</label>
+          </div>
+
+          <p>Ga verder <Fa-icon :icon="['fas', 'chevron-right']" @click="getUserInput($event)"/></p>
+        </fieldset>
       </form>
     </div>
   </main>
@@ -48,12 +106,50 @@
 <script>
 export default {
   data: () => ({
-    donationAmount: null,
+    donationAmount: '0',
     donationAmountString: '',
-    donationSelections: [15, 25, 50, 100]
+    donationSelections: [15, 25, 50, 100],
+    payTransactionCosts: 'true',
+    donateAsPerson: true,
+
+    contributorInfo: {
+      euros: 0,
+      cents: 0,
+      person: {
+        firstName: 'Firenzo',
+        lastName: 'Jorden',
+        email: 'firenzo.jorden@capgemini.com'
+      },
+      company: {
+        companyName: 'Team Uitbehandeld',
+        email: 'info@teamuitbehandeld.nl'
+      }
+    }
   }),
 
   methods: {
+
+    getUserInput (event) {
+      console.log(this.contributorInfo)
+      event.preventDefault()
+    },
+
+    setContributor (event, val) {
+      event.preventDefault()
+      this.donateAsPerson = val
+      console.log(this.donateAsPerson)
+    },
+
+    setTransactionCosts () {
+      if (this.payTransactionCosts === 'true') {
+        console.log('+65')
+      }
+
+      if (this.payTransactionCosts === 'false') {
+        console.log('-65')
+      }
+    },
+
     checkNumber (event) {
       if (isNaN(parseInt(event.key)) && event.key !== ',') {
         event.preventDefault()
@@ -99,6 +195,10 @@ export default {
       this.donationAmount = this.donationAmountString.replace(/\./g, '')
       this.donationAmountString = this.donationAmount.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       console.log('without seperators:', this.donationAmount)
+
+      if (this.donationAmountString === '') {
+        this.donationAmount = '0'
+      }
     },
 
     setDonationAmount (event, amount) {
@@ -115,8 +215,33 @@ export default {
 
 main{
   div.container{
+    div.donation-information{
+      p{
+        margin-bottom:10px;
+      }
+    }
     form{
-      div.price{
+      margin-top:50px;
+      >fieldset{
+        border: none;
+
+        >div.label-and-input{
+          display:flex;
+          flex-wrap:wrap;
+          margin-bottom:10px;
+
+          label{
+            flex-basis:100%;
+            margin-bottom:5px;
+          }
+
+          input{
+            flex-basis:100%;
+          }
+        }
+      }
+
+      fieldset.price{
         display:flex;
         flex-wrap:wrap;
         margin-bottom:20px;
@@ -158,7 +283,7 @@ main{
         }
       }
 
-      div.select-donation-amount{
+      fieldset.select-donation-amount{
         display:flex;
         flex-wrap:wrap;
 
@@ -185,9 +310,47 @@ main{
         }
       }
 
-      div.transaction-costs{
+      fieldset.transaction-costs{
         div.pay-transaction-costs{
           margin-bottom:10px;
+        }
+      }
+
+      div.donateAs{
+        margin-top:20px;
+        margin-bottom:20px;
+        display:flex;
+        justify-content: space-between;
+
+        button{
+          background:transparent;
+          color:black;
+          font-weight:600;
+          padding:15px 5px;
+          border: 2px solid $light-green;
+          flex-basis: calc(50% - 5px);
+
+          &.selected{
+            background:rgba(156, 190, 47, 0.2);
+          }
+        }
+      }
+
+      fieldset.additional-preferences{
+
+        div.label-and-checkbox{
+          display:flex;
+          align-items: center;
+
+          input[type="checkbox"]{
+            height:20px;
+            width:20px;
+            margin-right:10px;
+          }
+        }
+
+        button[type="submit"]{
+          margin-top:10px;
         }
       }
     }
