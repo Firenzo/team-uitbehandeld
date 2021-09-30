@@ -1,8 +1,7 @@
 <template>
   <main>
     <div class="container">
-      <h1>Stel je medische vraag</h1>
-      <pre> {{ expertsData.name }} </pre>
+      <h1>Stel een medische vraag aan {{ expertsData.name }}</h1>
 
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque soluta quod ratione rerum voluptatem quaerat perspiciatis cum illum animi doloribus.</p>
       <div class="ask-question-form">
@@ -35,7 +34,7 @@
         </form>
       </div>
       <div class="image">
-        <img src="~assets/images/Strand_HR.jpeg" alt="?">
+        <img :src="`${$store.state.baseUrl}${expertsData.photo.url}`"/>
       </div>
     </div>
   </main>
@@ -46,7 +45,7 @@ export default {
   async asyncData ({ params, $axios }) {
     // console.log(process.env.strapiAPI)
     const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
-    // console.log(expertsData)
+    console.log(expertsData)
     return { expertsData }
   }
 }

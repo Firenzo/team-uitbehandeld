@@ -3,7 +3,6 @@
     <div class="container">
       <h1>{{ post.title }}</h1>
       <span class="author-and-date">{{ post.author.username }} | {{ formatDate }}</span>
-      <!-- <p class="date">{{ formatDate }}</p> -->
       <p class="content">{{ post.content }}</p>
     </div>
   </main>
@@ -30,7 +29,7 @@ export default {
 <style scoped lang="scss">
 @use 'styles/main' as *;
 
-div.container {
+div.container::v-deep {
   max-width: 650px;
   margin: auto;
 

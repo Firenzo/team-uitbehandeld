@@ -4,7 +4,7 @@
       <div class="container">
         <!-- <pre>{{ subject }}</pre> -->
         <h1>{{ subject.title }}</h1>
-        <div class="hulpvraag-info-text">
+        <div class="hulpvraag-info-text md-container">
           {{ subject.content }}{{ subject.content }}
         </div>
       </div>
