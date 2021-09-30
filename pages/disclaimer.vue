@@ -17,13 +17,9 @@ const md = require('markdown-it')({
 
 export default {
   data () {
-    // return {
-    //   ps: document.getElementsByTagName("P")
-    // }
   },
   async asyncData ({ params, $axios }) {
     const disclaimer = await $axios.$get(`${process.env.strapiAPI}/disclaimer`)
-    // console.log(disclaimer)
     return { disclaimer }
   },
   computed: {
@@ -54,23 +50,6 @@ main {
 
     @include min-700 {
       max-width: 1200px;
-    }
-
-    div.disclaimer {
-      div.md-container {
-        background-color: yellow;
-          ::v-deep h1 {
-          color: blue;
-        }
-        ::v-deep h2 {
-          color: plum;
-          margin-bottom: 10px;
-        }
-         ::v-deep p  {
-          color: red;
-          margin-bottom: 50px;
-        }
-      }
     }
   }
 }

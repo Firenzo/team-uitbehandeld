@@ -9,7 +9,7 @@
               <img :src="teamMember.photo ? `${$store.state.baseUrl}${teamMember.photo.url}` : `${$store.state.baseUrl}/uploads/stock_ee325cb78c.jpg`" />
             </div>
           </div>
-          <div class="title-and-role">
+          <div class="title-and-role md-container">
             <h2>{{ teamMember.name }}</h2>
             <p class="role">{{ teamMember.role }}</p>
             <p class="second-role">{{ teamMember.short_description }}</p>
