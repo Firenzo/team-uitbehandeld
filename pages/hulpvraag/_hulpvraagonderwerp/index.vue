@@ -60,7 +60,7 @@ export default {
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
     const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?title=${slug}`)
-    console.log(contentObjects)
+    // console.log(contentObjects)
     const firstFourSubjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
     const subject = contentObjects[0]
     return { subject, firstFourSubjectQuestions }
@@ -73,7 +73,7 @@ export default {
   methods: {
     getIndex (i) {
       this.indexNumber = i
-      console.log(this.subject.experts[i].name)
+      // console.log(this.subject.experts[i].name)
     }
   }
 }

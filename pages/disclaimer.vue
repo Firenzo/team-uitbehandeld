@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <div class="disclaimer">
-        <div v-html="markDownToHTML" class="md-container">{{ getPs }}</div>
+        <div v-html="markDownToHTML" class="md-container" ></div>
       </div>
     </div>
   </main>
@@ -59,9 +59,16 @@ main {
     div.disclaimer {
       div.md-container {
         background-color: yellow;
-        >p {
+          ::v-deep h1 {
+          color: blue;
+        }
+        ::v-deep h2 {
+          color: plum;
+          margin-bottom: 10px;
+        }
+         ::v-deep p  {
           color: red;
-          font-size: 50px;
+          margin-bottom: 50px;
         }
       }
     }

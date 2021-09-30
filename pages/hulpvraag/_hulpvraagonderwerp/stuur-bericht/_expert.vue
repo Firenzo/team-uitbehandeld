@@ -44,9 +44,9 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    console.log(process.env.strapiAPI)
+    // console.log(process.env.strapiAPI)
     const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
-    console.log(expertsData)
+    // console.log(expertsData)
     return { expertsData }
   }
 }
