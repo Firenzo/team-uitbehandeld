@@ -3,7 +3,7 @@
     <div class="container">
       <h1>{{ post.title }}</h1>
       <span class="author-and-date">{{ post.author.username }} | {{ formatDate }}</span>
-      <p class="content">{{ post.content }}</p>
+      <div v-html="$md.render(post.content)" class="md-container"></div>
     </div>
   </main>
 </template>
