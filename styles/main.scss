@@ -164,8 +164,7 @@ nav ul li a.nuxt-link-exact-active{
 }
 
 /// Style for all the rich texts, as 'disclaimer', etc which use markdown
-.md-container::v-deep  {
-  // background-color: aqua;
+div.md-container::v-deep  {
 
   h1 {
     color: black;
