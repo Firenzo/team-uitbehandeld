@@ -6,7 +6,7 @@
       <h1>{{ post.title }}</h1>
       </NuxtLink>
       <p class="content">
-        {{ post.content }}
+        {{ post.excerpt }}
       </p>
     </div>
   </li>

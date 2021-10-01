@@ -4,7 +4,7 @@
       <h2>{{subject}}</h2>
       <div v-for="subjectQuestion in subjectQuestions" :key="subjectQuestion.id" class="faq">
         <h3>{{subjectQuestion.question}}?</h3>
-        <p>{{subjectQuestion.answer}}</p>
+        <div v-html="$md.render(subjectQuestion.answer)" class="md-container"></div>
       </div>
     </div>
   </section>

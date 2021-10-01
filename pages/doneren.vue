@@ -95,9 +95,8 @@
             <input type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions">
             <label for="accept-terms-and-conditions">Ik accepteer de Algemene voorwaarden.</label>
           </div>
-
-          <p>Ga verder <Fa-icon :icon="['fas', 'chevron-right']" @click="getUserInput($event)"/></p>
         </fieldset>
+        <a class="button" href="#">Ga verder <Fa-icon :icon="['fas', 'chevron-right']" @click="getUserInput($event)"/></a>
       </form>
     </div>
   </main>
@@ -130,8 +129,8 @@ export default {
   methods: {
 
     getUserInput (event) {
-      console.log(this.contributorInfo)
       event.preventDefault()
+      console.log(this.contributorInfo)
     },
 
     setContributor (event, val) {
@@ -349,7 +348,7 @@ main{
           }
         }
 
-        button[type="submit"]{
+        a.button{
           margin-top:10px;
         }
       }

@@ -1,40 +1,20 @@
-!<template>
+<template>
   <main>
     <div class="container">
       <div class="disclaimer">
-        <div v-html="markDownToHTML" class="md-container" ></div>
+        <div v-html="$md.render(this.disclaimer.text)" class="md-container" ></div>
       </div>
     </div>
   </main>
 </template>
 <script>
-
-const md = require('markdown-it')({
-  html: true,
-  linkify: false,
-  typographer: true
-})
-
 export default {
   data () {
   },
+
   async asyncData ({ params, $axios }) {
     const disclaimer = await $axios.$get(`${process.env.strapiAPI}/disclaimer`)
     return { disclaimer }
-  },
-  computed: {
-    markDownToHTML () {
-      return md.render(this.disclaimer.text)
-    }
-  },
-  methods: {
-  },
-  mounted () {
-    const ps = document.querySelector('.md-container')
-    console.log(ps.innerHTML)
-    if (ps.innerHTML.includes('\n')) {
-      console.log('line break here')
-    }
   }
 }
 </script>

@@ -67,7 +67,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/markdownit'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -78,6 +79,13 @@ export default {
     manifest: {
       lang: 'en'
     }
+  },
+
+  markdownit: {
+    html: true,
+    linkify: false,
+    typographer: true,
+    runtime: true // supports '$md()'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
