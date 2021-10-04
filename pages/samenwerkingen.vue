@@ -1,16 +1,11 @@
 <template>
   <main>
     <div class="container">
-      <h1>Samenwerkingen</h1>
+      <h1>Samenwerking</h1>
       <p>Why is the sky orange?</p>
-      <splide :options="options" >
+      <splide :options="options">
         <splide-slide v-for="partner in partners" :key="partner.id">
           <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
-      <!-- <div class="partners">
-        <div v-for="partner in partners" :key="partner.id" class="image">
-          <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''"/>
-        </div>
-      </div> -->
         </splide-slide>
       </splide>
     </div>
@@ -29,25 +24,22 @@ export default {
     return {
       options: {
         type: 'loop',
-        trimSpace: false,
         autoplay: true,
-        interval: 2000,
-        pauseOnHover: false,
+        interval: 3000,
+        // true is recommended for accessibility
+        pauseOnFocus: true,
         pagination: false,
         arrows: true,
+        perPage: 3,
         perMove: 1,
-        // autoWidth: true,
-        // focus: 'center',
-        perPage: 4,
+        focus: 'center',
+        gap: '3em',
         breakpoints: {
           600: {
             perPage: 1
           },
           900: {
             perPage: 2
-          },
-          1300: {
-            perPage: 3
           }
         }
       }
@@ -66,45 +58,18 @@ main {
       max-width: 750px;
     }
 
-    //let op, styling past nu op elke img toe
-    li.splide__slide img {
-      // max-width: 285px;
+    .splide__slide img {
       width: 100%;
-      height: auto;
-      display: block;
-      margin: auto;
+      opacity: 0.5;
     }
 
-    // div.partners {
-    //   display: flex;
-    //   flex-wrap: wrap;
-    //   flex-direction: row;
-    //   max-width: 285px;
-    //   margin: auto;
+    .splide__arrow {
+      background: green !important;
+    }
 
-    //   @include min-550 {
-    //     max-width: none;
-    //   }
-
-    //   div.image {
-    //     border: 1px solid $light-green;
-
-    //     @include min-550 {
-    //       flex-basis: 50%;
-    //       max-width: none;
-    //     }
-
-    //     @include min-700 {
-    //       flex-basis: 25%;
-    //     }
-    //     img {
-    //       display: block;
-    //       width: 100%;
-    //       height: auto;
-    //       // max-width: 25%;
-    //     }
-    //   }
-    // }
+    .splide__slide.is-active img {
+      opacity: 1;
+    }
   }
 }
 </style>
