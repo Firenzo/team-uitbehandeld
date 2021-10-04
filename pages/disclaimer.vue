@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <div class="disclaimer">
-        <div v-html="$md.render(this.disclaimer.text)" class="md-container" ></div>
+        <div v-html="$md.render(disclaimer.text)" class="md-container"></div>
       </div>
     </div>
   </main>

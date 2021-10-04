@@ -3,16 +3,16 @@
     <div class="container">
       <h1>Samenwerkingen</h1>
       <p>Why is the sky orange?</p>
-      <!-- <splide :options="options" >
+      <splide :options="options" >
         <splide-slide v-for="partner in partners" :key="partner.id">
           <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
-      <div class="partners">
+      <!-- <div class="partners">
         <div v-for="partner in partners" :key="partner.id" class="image">
           <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''"/>
         </div>
-      </div>
+      </div> -->
         </splide-slide>
-      </splide> -->
+      </splide>
     </div>
   </main>
 </template>
