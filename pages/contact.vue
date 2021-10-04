@@ -9,14 +9,20 @@
         Aenean congue nunc eget accumsan ornare. Sed ut massa dolor.</p>
       <form action="">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Email" />
+        <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        v-model="userInput"/>
         <label for="message">Jouw bericht:</label>
         <textarea
           id="subject"
           name="subject"
           placeholder="Type je bericht..."
+          :class="addClasses"
         ></textarea>
-        <input type="submit" value="Verstuur" />
+        <input type="submit" value="Verstuur" @click.prevent="funcSelected"/>
       </form>
 
       <div class="contact-info">
@@ -66,6 +72,21 @@ export default {
     const contactInfo = await $axios.$get(`${process.env.strapiAPI}/contact-info`)
     console.log(contactInfo)
     return { contactInfo }
+  },
+  data () {
+    return {
+      userInput: ''
+    }
+  },
+  computed: {
+    addClasses () {
+      return { warning: this.userInput }
+    }
+  },
+  methods: {
+    funcSelected () {
+      this.userInput = !this.userInput
+    }
   }
 }
 </script>
@@ -125,6 +146,14 @@ main {
 
       label {
         margin-bottom: 10px;
+      }
+
+      .warning {
+        border: 2px solid crimson;
+      }
+
+      .nowarning {
+        background-color: cyan;
       }
 
       input[type="email"],
