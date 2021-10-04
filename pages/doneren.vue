@@ -64,39 +64,85 @@
         <fieldset v-if="donateAsPerson" class="contributor-info">
           <div class="label-and-input firstName">
             <label for="naam">Voornaam:</label>
-            <input v-model="contributorInfo.person.firstName" type="text" name="naam" id="naam" placeholder="Typ hier je voornaam">
+            <input
+              v-model="contributorInfo.person.firstName"
+              type="text"
+              name="naam"
+              id="naam"
+              placeholder="Typ hier je voornaam"
+              :class="{invalid: invalidInput.firstName}"
+            >
           </div>
+
+          <p v-if="invalidInput.firstName" class="error-text">Vul een voornaam in.</p>
 
           <div class="label-and-input lastName">
             <label for="achternaam">Achternaam:</label>
-            <input v-model="contributorInfo.person.lastName" type="text" name="achternaam" id="achternaam" placeholder="Typ hier je achternaam">
+            <input
+              v-model="contributorInfo.person.lastName"
+              type="text"
+              name="achternaam"
+              id="achternaam"
+              placeholder="Typ hier je achternaam"
+              :class="{invalid: invalidInput.lastName}"
+            >
           </div>
+
+          <p v-if="invalidInput.lastName" class="error-text">Vul een achternaam in.</p>
 
           <div class="label-and-input email">
             <label for="email">E-mailadres:</label>
-            <input v-model="contributorInfo.person.email" type="email" name="email" id="email" placeholder="voorbeed@team-uitbehandeld.nl">
+            <input
+              v-model="contributorInfo.person.email"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="voorbeed@team-uitbehandeld.nl"
+              :class="{invalid: invalidInput.personEmail}"
+            >
           </div>
+          <p v-if="invalidInput.personEmail" class="error-text">Vul een geldig emailadres in.</p>
         </fieldset>
 
         <fieldset v-else class="contributor-info">
           <div class="label-and-input companyName">
             <label for="bedrijfsnaam">Bedrijfsnaam:</label>
-            <input v-model="contributorInfo.company.name" type="text" name="bedrijfsnaam" id="bedrijfsnaam" placeholder="Typ hier je bedrijfsnaam">
+            <input
+              v-model="contributorInfo.company.companyName"
+              type="text"
+              name="bedrijfsnaam"
+              id="bedrijfsnaam"
+              placeholder="Typ hier je bedrijfsnaam"
+              :class="{invalid: invalidInput.companyName}"
+            >
           </div>
+
+          <p v-if="invalidInput.companyName" class="error-text">Vul een bedrijfsnaam in.</p>
 
           <div class="label-and-input email">
             <label for="email">E-mailadres:</label>
-            <input v-model="contributorInfo.company.email" type="email" name="email" id="email" placeholder="voorbeed@team-uitbehandeld.nl">
+            <input
+              v-model="contributorInfo.company.email"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="voorbeed@team-uitbehandeld.nl"
+              :class="{invalid: invalidInput.companyEmail}"
+            >
           </div>
+
+          <p v-if="invalidInput.companyEmail" class="error-text">Vul een geldig emailadres in.</p>
         </fieldset>
 
         <fieldset class="additional-preferences">
           <div class="label-and-checkbox">
-            <input type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions">
+            <input v-model="acceptTermsAndConditions" type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions">
             <label for="accept-terms-and-conditions">Ik accepteer de Algemene voorwaarden.</label>
           </div>
+          <p v-if="invalidInput.termsAndConditions" class="terms-and-conditions-error error-text">U dient akkoord te gaan met de algemene voorwaarden om verder te kunnen gaan!</p>
         </fieldset>
-        <a class="button" href="#">Ga verder <Fa-icon :icon="['fas', 'chevron-right']" @click="getUserInput($event)"/></a>
+        <button type="submit" @click="validateForm($event)">Ga verder <Fa-icon :icon="['fas', 'chevron-right']"/></button>
+        <!-- <input type="submit" value="Ga Verder" class="button" @click="validateForm($event)"> -->
       </form>
     </div>
   </main>
@@ -110,6 +156,16 @@ export default {
     donationSelections: [15, 25, 50, 100],
     payTransactionCosts: 'true',
     donateAsPerson: true,
+    acceptTermsAndConditions: false,
+
+    invalidInput: {
+      firstName: false,
+      lastName: false,
+      companyName: false,
+      personEmail: false,
+      companyEmail: false,
+      termsAndConditions: false
+    },
 
     contributorInfo: {
       euros: 0,
@@ -128,13 +184,48 @@ export default {
 
   methods: {
 
-    getUserInput (event) {
+    validateForm (event) {
       event.preventDefault()
+      if (this.donateAsPerson) {
+        this.contributorInfo.person.firstName.match(/^[a-z'-]+$/i) ? this.invalidInput.firstName = false : this.invalidInput.firstName = true
+        this.contributorInfo.person.lastName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.lastName = false : this.invalidInput.lastName = true
+        this.contributorInfo.person.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.personEmail = false : this.invalidInput.personEmail = true
+      }
+
+      if (!this.donateAsPerson) {
+        this.contributorInfo.company.companyName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.companyName = false : this.invalidInput.companyName = true
+        console.log(this.contributorInfo.company.companyName)
+        this.contributorInfo.company.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.companyEmail = false : this.invalidInput.companyEmail = true
+      }
+
+      this.acceptTermsAndConditions ? this.invalidInput.termsAndConditions = false : this.invalidInput.termsAndConditions = true
+      console.log(this.invalidInput)
+      console.log(Object.values(this.invalidInput))
+
+      if (Object.values(this.invalidInput).every((element, index) => element === false)) {
+        console.log('form valid:', true)
+        this.getUserInput()
+      }
+    },
+
+    getUserInput () {
       console.log(this.contributorInfo)
     },
 
     setContributor (event, val) {
       event.preventDefault()
+
+      if (val === true) {
+        this.invalidInput.companyName = false
+        this.invalidInput.companyEmail = false
+      }
+
+      if (val === true) {
+        this.invalidInput.firstName = false
+        this.invalidInput.lastName = false
+        this.invalidInput.personEmail = false
+      }
+
       this.donateAsPerson = val
       console.log(this.donateAsPerson)
     },
