@@ -267,7 +267,7 @@ main#hulpvraag-onderwerp{
             box-shadow: 0 0 4px rgba(0,0,0,0.5);
 
             &:hover img{
-              border: 4px solid $light-green;
+              border: 5px solid $light-green;
               cursor: pointer;
             }
 
@@ -277,6 +277,7 @@ main#hulpvraag-onderwerp{
               border-radius:5px;
               display:block;
               border: 5px solid transparent;
+               transition: all ease-out 0.5s;
 
               @include min-1334{
                 max-width:160px;
@@ -284,9 +285,9 @@ main#hulpvraag-onderwerp{
             }
           }
 
-          &:nth-of-type(2) div.image img{
-            border: 5px solid $light-green;
-          }
+          // &:nth-of-type(2) div.image img{
+          //   border: 5px solid $light-green;
+          // }
 
           &:first-of-type{
             padding-left:5vw;
