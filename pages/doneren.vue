@@ -15,7 +15,14 @@
             <div class="euro-sign">
               <Fa-icon :icon="['fas', 'euro-sign']" />
             </div>
-            <input type="text" v-model="donationAmountString" placeholder="Donatiebedrag" @keypress="checkNumber($event)" @input="adaptString()">
+            <input
+              type="text"
+              v-model="donationAmountString"
+              placeholder="Donatiebedrag"
+              @keypress="checkNumber($event)"
+              @input="adaptString()"
+              @blur="fixString()"
+            >
           </div>
           <p v-if="donationAmount || payTransactionCosts ">{{donationAmount}} {{payTransactionCosts}}</p>
         </fieldset>
@@ -186,6 +193,17 @@ export default {
 
     validateForm (event) {
       event.preventDefault()
+
+      // get euro
+      if (this.donationAmountString.includes(',')) {
+        console.log('euro:', this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')))
+      }
+
+      // get cents
+      if (this.donationAmountString.includes(',')) {
+        console.log('cents:', this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length))
+      }
+
       if (this.donateAsPerson) {
         this.contributorInfo.person.firstName.match(/^[a-z'-]+$/i) ? this.invalidInput.firstName = false : this.invalidInput.firstName = true
         this.contributorInfo.person.lastName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.lastName = false : this.invalidInput.lastName = true
@@ -267,6 +285,7 @@ export default {
           console.log(this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length))
           event.preventDefault()
         }
+        // until here -----------------------------------------/
       }
 
       if (!this.donationAmountString.includes(',')) {
@@ -274,7 +293,25 @@ export default {
         if (this.donationAmountString.length > 17 && event.key !== ',') {
           event.preventDefault()
         }
+        // until here
       }
+    },
+
+    fixString () {
+      console.log('string fixed', this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length))
+      if (this.donationAmountString.includes(',')) {
+        if (this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length).length === 1) {
+          this.donationAmountString = this.donationAmountString.concat('0')
+          console.log(this.donationAmountString)
+        }
+
+        if (this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length).length === 0) {
+          this.donationAmountString = this.donationAmountString.concat('00')
+        }
+      }
+
+      this.donationAmountString = this.donationAmountString.replace(/^(0+.?)+/, '')
+      console.log(this.donationAmountString)
     },
 
     adaptString () {
@@ -431,6 +468,8 @@ main{
         div.label-and-checkbox{
           display:flex;
           align-items: center;
+          margin-top:20px;
+          margin-bottom:10px;
 
           input[type="checkbox"]{
             height:20px;
@@ -438,10 +477,10 @@ main{
             margin-right:10px;
           }
         }
+      }
 
-        a.button{
-          margin-top:10px;
-        }
+      button[type="submit"]{
+        margin-top:10px;
       }
     }
   }
