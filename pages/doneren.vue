@@ -22,6 +22,7 @@
               @keypress="checkNumber($event)"
               @input="adaptString()"
               @blur="fixString()"
+              @paste.prevent
             >
           </div>
           <p v-if="donationAmount || payTransactionCosts ">{{donationAmount}} {{payTransactionCosts}}</p>
@@ -195,13 +196,13 @@ export default {
       event.preventDefault()
 
       // get euro
-      if (this.donationAmountString.includes(',')) {
-        console.log('euro:', this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')))
+      if (this.donationAmount.includes(',')) {
+        console.log('euro:', this.donationAmount.substring(0, this.donationAmount.indexOf(',')))
       }
 
       // get cents
-      if (this.donationAmountString.includes(',')) {
-        console.log('cents:', this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length))
+      if (this.donationAmount.includes(',')) {
+        console.log('cents:', this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
       }
 
       if (this.donateAsPerson) {
@@ -298,19 +299,30 @@ export default {
     },
 
     fixString () {
-      console.log('string fixed', this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length))
-      if (this.donationAmountString.includes(',')) {
-        if (this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length).length === 1) {
-          this.donationAmountString = this.donationAmountString.concat('0')
-          console.log(this.donationAmountString)
+      console.log('string fixed', this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
+      if (this.donationAmount.includes(',')) {
+        if (this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length).length === 1) {
+          this.donationAmount = this.donationAmount.concat('0')
+          console.log(this.donationAmount)
         }
 
-        if (this.donationAmountString.substring(this.donationAmountString.indexOf(',') + 1, this.donationAmountString.length).length === 0) {
-          this.donationAmountString = this.donationAmountString.concat('00')
+        if (this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length).length === 0) {
+          this.donationAmount = this.donationAmount.concat('00')
         }
       }
 
-      this.donationAmountString = this.donationAmountString.replace(/^(0+.?)+/, '')
+      if (!this.donationAmount.includes(',') && this.donationAmount.length >= 1) {
+        console.log('no comma!!')
+        this.donationAmount = this.donationAmount.concat(',00')
+      }
+
+      this.donationAmount = this.donationAmount.replace(/^0+/, '')
+      this.donationAmountString = this.donationAmount.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+      if (this.donationAmountString === '') {
+        this.donationAmount = '0'
+      }
+
       console.log(this.donationAmountString)
     },
 
