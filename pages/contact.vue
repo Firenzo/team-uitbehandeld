@@ -14,15 +14,19 @@
         id="email"
         name="email"
         placeholder="Email"
-        v-model="userInput"/>
+       :class="{invalid: invalidEmailClass}"
+        v-model="userEmail"/>
+        <p v-if="invalidEmailClass" class="error-text">Vul een geldig emailadres in</p>
         <label for="message">Jouw bericht:</label>
         <textarea
           id="subject"
           name="subject"
           placeholder="Type je bericht..."
-          :class="addClasses"
+         :class="{invalid: invalidTextClass}"
+         v-model="userText"
         ></textarea>
-        <input type="submit" value="Verstuur" @click.prevent="funcSelected"/>
+        <p v-if="invalidTextClass" class="error-text">Schrijf uw bericht</p>
+        <input type="submit" @click.prevent="validateContactForm($event)" value="Verstuur" />
       </form>
 
       <div class="contact-info">
@@ -75,18 +79,31 @@ export default {
   },
   data () {
     return {
-      userInput: ''
-    }
-  },
-  computed: {
-    addClasses () {
-      return { warning: this.userInput }
+      userText: '',
+      userEmail: '',
+      invalidEmailClass: false,
+      invalidTextClass: false
     }
   },
   methods: {
-    funcSelected () {
-      this.userInput = !this.userInput
+    validateContactForm (event) {
+      event.preventDefault()
+      console.log(this.userText.length)
+      // if (this.userText === '') {
+      //   this.invalidClass = true
+      // }
+      // this.userText === '' ? this.invalidClass = true : this.invalidClass = false
+      this.userText.length >= 10 ? this.invalidTextClass = false : this.invalidTextClass = true
+      // this.userText.match(/\w/i) ? this.invalidTextClass = false : this.invalidTextClass = true
+      this.userEmail.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidEmailClass = false : this.invalidEmailClass = true
+      if (this.invalidEmailClass === false && this.invalidTextClass === false) {
+        this.getUserMessage()
+      }
+    },
+    getUserMessage () {
+      console.log(this.userText, this.userEmail)
     }
+
   }
 }
 </script>
@@ -146,14 +163,6 @@ main {
 
       label {
         margin-bottom: 10px;
-      }
-
-      .warning {
-        border: 2px solid crimson;
-      }
-
-      .nowarning {
-        background-color: cyan;
       }
 
       input[type="email"],
