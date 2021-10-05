@@ -1,7 +1,7 @@
 !<template>
   <main>
     <div class="container">
-      <h1>{{ post.title }}</h1>
+      <h1 class="post-title">{{ post.title }}</h1>
       <span class="author-and-date">{{ post.author.username }} | {{ formatDate }}</span>
       <div v-html="$md.render(post.content)" class="md-container"></div>
     </div>
@@ -33,9 +33,14 @@ div.container::v-deep {
   max-width: 650px;
   margin: auto;
 
+    h1.post-title {
+      margin-bottom: 10px;
+    }
+
   span.author-and-date {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
+    color: $light-text-color;
   }
 }
 
