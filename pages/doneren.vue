@@ -4,9 +4,9 @@
       <h1>Bedankt dat je ons wilt steunen!</h1>
       <div class="donation-information">
         <p>Alle online betalingen gaan via ideal. Mocht u het handmatig willen overmaken, dan kan dat ook direct op onze rekening.</p>
-        <p>Rekeningnummer: NL67 INGB 0009 0216 57</p>
+        <p>Rekeningnummer: NL00 RABO 0123 4567 89</p>
         <p>BIC: RABONL2U</p>
-        <p>Ten name van Firenzo Jorden</p>
+        <p>Ten name van Team Uitbehandeld</p>
       </div>
       <form action="">
         <fieldset class="price">
