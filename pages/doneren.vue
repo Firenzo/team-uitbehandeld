@@ -159,7 +159,7 @@
 <script>
 export default {
   data: () => ({
-    donationAmount: '0',
+    donationAmount: '0,00',
     donationAmountString: '',
     donationSelections: [15, 25, 50, 100],
     payTransactionCosts: 'true',
@@ -312,15 +312,27 @@ export default {
       }
 
       if (!this.donationAmount.includes(',') && this.donationAmount.length >= 1) {
-        console.log('no comma!!')
-        this.donationAmount = this.donationAmount.concat(',00')
+        if (this.donationAmountString !== '') {
+          this.donationAmount = this.donationAmount.concat(',00')
+        }
       }
 
-      this.donationAmount = this.donationAmount.replace(/^0+/, '')
+      // if string has "0," at the beginning /// if string has 1 or more 0's followed by a number between 1 and 9 at the beginning
+      if (this.donationAmount.match(/^0+,/)) {
+        this.donationAmount = this.donationAmount.replace(/^0+/, '0')
+      } else if (this.donationAmount.match(/^0+[1-9]+,?/)) {
+        this.donationAmount = this.donationAmount.replace(/^0+/, '')
+      }
+
+      // if string starts with a comma
+      if (this.donationAmountString.match(/^,/)) {
+        this.donationAmount = this.donationAmount.replace(',', '0,')
+      }
+
       this.donationAmountString = this.donationAmount.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
       if (this.donationAmountString === '') {
-        this.donationAmount = '0'
+        this.donationAmount = '0,00'
       }
 
       console.log(this.donationAmountString)
@@ -336,7 +348,7 @@ export default {
       console.log('without seperators:', this.donationAmount)
 
       if (this.donationAmountString === '') {
-        this.donationAmount = '0'
+        this.donationAmount = '0,00'
       }
     },
 
