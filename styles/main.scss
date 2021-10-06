@@ -49,10 +49,16 @@ textarea{
   outline:none;
   border:1px solid $light-green;
   box-shadow:none;
+  font-family: "Open Sans", sans-serif;
 
   &.invalid{
     border: 2px solid red;
   }
+}
+
+input[type="radio"]{
+  height:25px;
+  width:25px;
 }
 
 h1{

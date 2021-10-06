@@ -19,13 +19,14 @@
               type="text"
               v-model="donationAmountString"
               placeholder="Donatiebedrag"
+              :class="{invalid: invalidInput.euros}"
               @keypress="checkNumber($event)"
               @input="adaptString()"
               @blur="fixString()"
               @paste.prevent
             >
           </div>
-          <p v-if="donationAmount || payTransactionCosts ">{{donationAmount}} {{payTransactionCosts}}</p>
+          <p v-if="invalidInput.euros" class="error-text">Vul een bedrag van minimaal {{`€${minimumDonationAmountInEuros},00`}} in.</p>
         </fieldset>
 
         <fieldset class="select-donation-amount">
@@ -38,7 +39,7 @@
         </fieldset>
 
         <fieldset class="transaction-costs">
-          <div class="pay-transaction-costs">
+          <div class="radio-option pay-transaction-costs">
             <input
               v-model="payTransactionCosts"
               type="radio"
@@ -46,19 +47,17 @@
               id="pay_transaction_costs"
               value="true"
               checked
-              @change="setTransactionCosts()"
             >
-            <label for="pay_transaction_costs">Ik wil bijdragen aan de transactiekosten en betaal € 0,65 extra</label>
+            <label for="pay_transaction_costs">Ik wil bijdragen aan de transactiekosten en betaal {{`€${transactionCosts.euros},${transactionCosts.cents}`}} extra</label>
           </div>
 
-          <div class="dont-pay-transaction-costs">
+          <div class="radio-option dont-pay-transaction-costs">
             <input
               v-model="payTransactionCosts"
               type="radio"
               name="pay_transaction_costs"
               id="dont_pay_transaction_costs"
               value="false"
-              @change="setTransactionCosts()"
             >
             <label for="dont_pay_transaction_costs">Ik wil niet bijdragen aan de transactiekosten</label>
           </div>
@@ -159,9 +158,16 @@
 <script>
 export default {
   data: () => ({
+    minimumDonationAmountInEuros: 5,
+    donationSelections: [15, 25, 50, 100],
+    transactionCosts: {
+      euros: 0,
+      cents: 30
+    },
+
     donationAmount: '0,00',
     donationAmountString: '',
-    donationSelections: [15, 25, 50, 100],
+
     payTransactionCosts: 'true',
     donateAsPerson: true,
     acceptTermsAndConditions: false,
@@ -172,7 +178,8 @@ export default {
       companyName: false,
       personEmail: false,
       companyEmail: false,
-      termsAndConditions: false
+      termsAndConditions: false,
+      euros: false
     },
 
     contributorInfo: {
@@ -197,14 +204,27 @@ export default {
 
       // get euro
       if (this.donationAmount.includes(',')) {
-        console.log('euro:', this.donationAmount.substring(0, this.donationAmount.indexOf(',')))
+        // console.log('euro:', parseInt(this.donationAmount.substring(0, this.donationAmount.indexOf(','))))
+        this.contributorInfo.euros = parseInt(this.donationAmount.substring(0, this.donationAmount.indexOf(',')))
       }
 
       // get cents
       if (this.donationAmount.includes(',')) {
-        console.log('cents:', this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
+        // console.log('cents:', parseInt(this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length)))
+        this.contributorInfo.cents = parseInt(this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
+
+        if (this.payTransactionCosts === 'true') {
+          this.contributorInfo.euros += this.transactionCosts.euros
+          this.contributorInfo.cents += this.transactionCosts.cents
+
+          if (this.contributorInfo.cents >= 100) {
+            this.contributorInfo.euros += 1
+            this.contributorInfo.cents -= 100
+          }
+        }
       }
 
+      // check for errors in input fields
       if (this.donateAsPerson) {
         this.contributorInfo.person.firstName.match(/^[a-z'-]+$/i) ? this.invalidInput.firstName = false : this.invalidInput.firstName = true
         this.contributorInfo.person.lastName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.lastName = false : this.invalidInput.lastName = true
@@ -217,18 +237,37 @@ export default {
         this.contributorInfo.company.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.companyEmail = false : this.invalidInput.companyEmail = true
       }
 
+      // check if the donation amount is higher than the minimum donation amount in euros
+      if (this.payTransactionCosts === 'true') {
+        if (this.contributorInfo.euros === this.minimumDonationAmountInEuros && this.contributorInfo.cents >= this.transactionCosts.cents) {
+          this.invalidInput.euros = false
+        } else if (this.contributorInfo.euros === this.minimumDonationAmountInEuros && this.contributorInfo.cents < this.transactionCosts.cents) {
+          this.invalidInput.euros = true
+        } else if (this.contributorInfo.euros > this.minimumDonationAmountInEuros) {
+          this.invalidInput.euros = false
+        } else if (this.contributorInfo.euros < this.minimumDonationAmountInEuros) {
+          this.invalidInput.euros = true
+        }
+      }
+
+      if (this.payTransactionCosts === 'false') {
+        this.contributorInfo.euros >= this.minimumDonationAmountInEuros ? this.invalidInput.euros = false : this.invalidInput.euros = true
+      }
+
+      // check if the user has accepted the terms and conditions
       this.acceptTermsAndConditions ? this.invalidInput.termsAndConditions = false : this.invalidInput.termsAndConditions = true
       console.log(this.invalidInput)
       console.log(Object.values(this.invalidInput))
 
+      // check if there are no error's and proceed with the payment
       if (Object.values(this.invalidInput).every((element, index) => element === false)) {
         console.log('form valid:', true)
-        this.getUserInput()
+        this.getUserInput(this.contributorInfo)
       }
     },
 
-    getUserInput () {
-      console.log(this.contributorInfo)
+    getUserInput (contributorInfo) {
+      console.log(contributorInfo)
     },
 
     setContributor (event, val) {
@@ -247,16 +286,6 @@ export default {
 
       this.donateAsPerson = val
       console.log(this.donateAsPerson)
-    },
-
-    setTransactionCosts () {
-      if (this.payTransactionCosts === 'true') {
-        console.log('+65')
-      }
-
-      if (this.payTransactionCosts === 'false') {
-        console.log('-65')
-      }
     },
 
     checkNumber (event) {
@@ -366,6 +395,8 @@ export default {
 
 main{
   div.container{
+    max-width:850px;
+
     div.donation-information{
       p{
         margin-bottom:10px;
@@ -373,8 +404,12 @@ main{
     }
     form{
       margin-top:50px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
       >fieldset{
         border: none;
+        flex-basis:100%;
 
         >div.label-and-input{
           display:flex;
@@ -394,17 +429,21 @@ main{
 
       fieldset.price{
         display:flex;
-        flex-wrap:wrap;
+        flex-direction: column;
         margin-bottom:20px;
 
+        @include min-700 {
+          flex-basis:calc(50% - 10px);
+        }
+
         label{
-          flex-basis:100%;
           margin-bottom:10px;
         }
 
         div.inputfield-for-price{
           display:flex;
           border-radius:5px;
+          width:100%;
 
           input[type="text"]{
             border-radius: 0 5px 5px 0;
@@ -438,6 +477,10 @@ main{
         display:flex;
         flex-wrap:wrap;
 
+        @include min-700 {
+          flex-basis:calc(50% - 10px);
+        }
+
         label{
           flex-basis:100%;
           margin-bottom:10px;
@@ -454,22 +497,37 @@ main{
             margin-bottom:10px;
 
             button{
+              font-size:16px;
               width:100%;
               padding:20px;
+              font-weight: 600;
             }
           }
         }
       }
 
       fieldset.transaction-costs{
-        div.pay-transaction-costs{
-          margin-bottom:10px;
+        margin-top:20px;
+        margin-bottom:20px;
+
+        div.radio-option{
+          &:first-of-type {
+            margin-bottom:15px;
+          }
+          display:flex;
+          align-items: center;
+
+          input[type="radio"] {
+            margin-right:8px;
+          }
         }
       }
 
       div.donateAs{
         margin-top:20px;
         margin-bottom:20px;
+        flex-basis:100%;
+        width:100%;
         display:flex;
         justify-content: space-between;
 
@@ -483,6 +541,10 @@ main{
 
           &.selected{
             background:rgba(156, 190, 47, 0.2);
+          }
+
+          &:focus{
+            text-decoration: none;
           }
         }
       }
