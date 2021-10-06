@@ -8,29 +8,63 @@
         <form action="">
           <div class="label-and-input">
             <label for="">Naam:</label>
-            <input type="text" placeholder="Naam">
+            <input
+            v-model="senderInfo.name"
+            type="text"
+            name="name"
+            placeholder="Typ hier je voornaam"
+            :class="{invalid: invalidInput.name}"
+            >
           </div>
+          <p v-if="invalidInput.name" class="error-text">Vul je naam in</p>
 
           <div class="label-and-input">
             <label for="">Email:</label>
-            <input type="email" placeholder="voorbeeld@teamuitbehandeld.nl">
+            <input
+            type="email"
+            v-model="senderInfo.email"
+            name="name"
+            placeholder="voorbeeld@teamuitbehandeld.nl"
+            :class="{invalid: invalidInput.email}"
+            >
           </div>
+           <p v-if="invalidInput.email" class="error-text">Vul je email in</p>
 
           <div class="label-and-input">
             <label for="">Telefoonnummer:</label>
-            <input type="tel" placeholder="06-12345678">
+            <input
+            type="tel"
+            v-model="senderInfo.phoneNumber"
+            placeholder="06-12345678"
+            :class="{invalid: invalidInput.phoneNumber}"
+            >
           </div>
+          <p v-if="invalidInput.phoneNumber" class="error-text">Vul je telefoonnummer in</p>
 
           <div class="label-and-input">
             <label for="">Onderwerp:</label>
-            <input type="text" placeholder="Onderwerp">
+            <input
+            type="text"
+            v-model="senderInfo.messageSubject"
+            name="subject"
+            placeholder="Onderwerp"
+            :class="{invalid: invalidInput.messageSubject}"
+            >
           </div>
+          <p v-if="invalidInput.messageSubject" class="error-text">Vul jouw onderwerp in</p>
 
           <div class="label-and-input">
             <label for="">Jouw bericht:</label>
-            <textarea name="" id="" placeholder="type hier je bericht..."></textarea>
+            <textarea
+            name=""
+            id=""
+            v-model="senderInfo.messageText"
+            placeholder="type hier je bericht..."
+            :class="{invalid: invalidInput.messageText}"
+            ></textarea>
           </div>
-          <input type="submit" value="Verstuur">
+          <p v-if="invalidInput.messageText" class="error-text">Vul jouw bericht in</p>
+          <input type="submit" value="Verstuur" @click='validateContactForm($event)'>
         </form>
       </div>
       <div class="image">
@@ -47,6 +81,43 @@ export default {
     const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
     console.log(expertsData)
     return { expertsData }
+  },
+  data () {
+    return {
+      senderInfo: {
+        name: 'Naam',
+        email: 'email',
+        phoneNumber: 'telefoonnummer',
+        messageSubject: 'Subject',
+        messageText: 'Message'
+      },
+      invalidInput: {
+        name: false,
+        email: false,
+        phoneNumber: false,
+        messageSubject: false,
+        messageText: false
+      }
+    }
+  },
+  methods: {
+    validateContactForm (event) {
+      event.preventDefault()
+      this.senderInfo.name.match(/^[a-z'-\s]+$/i) ? this.invalidInput.name = false : this.invalidInput.name = true
+      this.senderInfo.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.email = false : this.invalidInput.email = true
+      this.senderInfo.phoneNumber.match(/^[0-9\s]+$/i) ? this.invalidInput.phoneNumber = false : this.invalidInput.phoneNumber = true
+      this.senderInfo.messageSubject.match(/^[a-z'-\s]+$/i) ? this.invalidInput.messageSubject = false : this.invalidInput.messageSubject = true
+      this.senderInfo.messageText.length > 10 ? this.invalidInput.messageText = false : this.invalidInput.messageText = true
+
+      if (Object.values(this.invalidInput).every(element => element === false)) {
+        console.log('form valid:', true)
+        this.getUserInput()
+      }
+    },
+
+    getUserInput () {
+      console.log(this.senderInfo)
+    }
   }
 }
 </script>
@@ -85,6 +156,10 @@ main{
         flex-wrap:wrap;
         margin-top:20px;
         margin-bottom:20px;
+
+        p.error-text {
+          flex-basis: 100%;
+        }
 
         div.label-and-input{
           flex-basis:100%;

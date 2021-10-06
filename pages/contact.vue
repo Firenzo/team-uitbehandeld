@@ -88,13 +88,7 @@ export default {
   methods: {
     validateContactForm (event) {
       event.preventDefault()
-      console.log(this.userText.length)
-      // if (this.userText === '') {
-      //   this.invalidClass = true
-      // }
-      // this.userText === '' ? this.invalidClass = true : this.invalidClass = false
       this.userText.length >= 10 ? this.invalidTextClass = false : this.invalidTextClass = true
-      // this.userText.match(/\w/i) ? this.invalidTextClass = false : this.invalidTextClass = true
       this.userEmail.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidEmailClass = false : this.invalidEmailClass = true
       if (this.invalidEmailClass === false && this.invalidTextClass === false) {
         this.getUserMessage()
@@ -103,7 +97,6 @@ export default {
     getUserMessage () {
       console.log(this.userText, this.userEmail)
     }
-
   }
 }
 </script>
