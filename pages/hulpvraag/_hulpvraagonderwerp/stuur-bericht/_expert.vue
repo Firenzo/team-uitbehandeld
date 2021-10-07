@@ -64,7 +64,7 @@
             ></textarea>
           </div>
           <p v-if="invalidInput.messageText" class="error-text">Vul jouw bericht in</p>
-          <input type="submit" value="Verstuur" @click='validateContactForm($event)'>
+          <input id="submitInput" type="submit" value="Verstuur" @click='validateContactForm($event)'>
         </form>
       </div>
       <div class="image">
@@ -157,9 +157,18 @@ main{
         margin-top:20px;
         margin-bottom:20px;
 
+        #submitInput {
+          margin-top: 20px;
+        }
+
         p.error-text {
           flex-basis: 100%;
         }
+
+        // input.submitInput {
+        //   margin-top: 100px;
+        //   height: 100px;
+        // }
 
         div.label-and-input{
           flex-basis:100%;
@@ -169,10 +178,11 @@ main{
           label{
             flex-basis:100%;
             margin-bottom:5px;
+            margin-top: 25px;
           }
 
           input, textarea{
-            margin-bottom:15px;
+            // margin-bottom:15px;
             flex-basis:100%;
           }
 
