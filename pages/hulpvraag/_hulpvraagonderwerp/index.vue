@@ -9,11 +9,11 @@
     </section>
 
     <section class="faq">
-      <div class="container">
+      <div class="container" v-if="firstFourSubjectQuestions.length !== 0">
         <ul>
             <li v-for="subjectQuestion in firstFourSubjectQuestions" :key="subjectQuestion.id" class="vragen">{{ subjectQuestion.question }}</li>
         </ul>
-        <NuxtLink to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
+        <NuxtLink v-if="firstFourSubjectQuestions.length === 4" to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
       </div>
     </section>
 
@@ -21,7 +21,7 @@
       <div class="container">
         <h2 class="lines">Stel je vraag aan een deskundige</h2>
       </div>
-      <div class="container">
+      <div class="container" v-if="subject.experts.length !== 0">
         <div class="person-info">
           <div class="image">
             <img :src="subject.experts[indexNumber] ? `${$store.state.baseUrl}${subject.experts[indexNumber].photo.url}` : ''" />
@@ -31,12 +31,12 @@
             <h2>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].title : '' }}</h2>
             <span><Fa-icon :icon="['fas', 'map-marker-alt']" />{{ subject.experts[indexNumber] ? subject.experts[indexNumber].location : ''}}</span>
             <p>{{ subject.experts[indexNumber] ? subject.experts[indexNumber].content : '' }}</p>
-             <NuxtLink :to="`/hulpvraag/stuur-bericht/${subject.experts[indexNumber].id}`" class="button">Stuur bericht</NuxtLink>
-             <!-- <NuxtLink
-             :to="stuur-bericht"
-             ></NuxtLink> -->
+              <NuxtLink :to="`/hulpvraag/stuur-bericht/${subject.experts[indexNumber].id}`" class="button">Stuur bericht</NuxtLink>
           </div>
         </div>
+      </div>
+      <div v-else class="container">
+        <p class="empty-state-text">Op dit moment zijn er nog geen deskundigen voor dit onderwerp.</p>
       </div>
       <div class="people-list">
         <ul>
@@ -177,6 +177,13 @@ main#hulpvraag-onderwerp{
         &:before, &:after{
           flex-basis: calc(50% - (378px /2 ) - 20px);
         }
+      }
+
+      p.empty-state-text{
+        margin-top:30px;
+        font-size:20px;
+        color:$light-text-color;
+        text-align:center;
       }
 
       div.person-info{
