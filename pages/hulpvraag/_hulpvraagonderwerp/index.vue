@@ -285,9 +285,9 @@ main#hulpvraag-onderwerp{
             }
           }
 
-          // &:nth-of-type(2) div.image img{
-          //   border: 5px solid $light-green;
-          // }
+          &:nth-of-type(1) div.image img{
+            border: 5px solid $light-green;
+          }
 
           &:first-of-type{
             padding-left:5vw;
