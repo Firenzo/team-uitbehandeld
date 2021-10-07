@@ -1,6 +1,6 @@
 <template>
   <li>
-    <div class="grid-element md-container">
+    <div class="grid-element">
       <p class="date-and-author">{{ formatDate }} | {{ post.author ? post.author.username : '' }}</p>
       <NuxtLink :to="`/actueel/${ post.id }`">
       <h1>{{ post.title }}</h1>
