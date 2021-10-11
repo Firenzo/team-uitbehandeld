@@ -206,7 +206,7 @@ export default {
       }
 
       if (this.donateAsPerson) {
-        this.contributorInfo.person.firstName.match(/^[a-z'-]+$/i) ? this.invalidInput.firstName = false : this.invalidInput.firstName = true
+        this.contributorInfo.person.firstName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.firstName = false : this.invalidInput.firstName = true
         this.contributorInfo.person.lastName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.lastName = false : this.invalidInput.lastName = true
         this.contributorInfo.person.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.personEmail = false : this.invalidInput.personEmail = true
       }

@@ -105,7 +105,7 @@ export default {
       event.preventDefault()
       this.senderInfo.name.match(/^[a-z'-\s]+$/i) ? this.invalidInput.name = false : this.invalidInput.name = true
       this.senderInfo.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.email = false : this.invalidInput.email = true
-      this.senderInfo.phoneNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/i) ? this.invalidInput.phoneNumber = false : this.invalidInput.phoneNumber = true
+      this.senderInfo.phoneNumber.match(/(^((\+|00(\s|\s?-\s?)?)31(\s|\s?-\s?)?(\(0\)[-\s]?)?|0)[1-9]((\s|\s?-\s?)?[0-9])((\s|\s?-\s?)?[0-9])((\s|\s?-\s?)?[0-9])\s?[0-9]\s?[0-9]\s?[0-9]\s?[0-9]\s?[0-9]$)/i) ? this.invalidInput.phoneNumber = false : this.invalidInput.phoneNumber = true
       this.senderInfo.messageSubject.match(/^[a-z'-\s]+$/i) ? this.invalidInput.messageSubject = false : this.invalidInput.messageSubject = true
       this.senderInfo.messageText.length > 10 ? this.invalidInput.messageText = false : this.invalidInput.messageText = true
       if (Object.values(this.invalidInput).every(element => element === false)) {
