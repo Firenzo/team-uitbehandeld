@@ -137,20 +137,19 @@
     <section id="hulpvraag-onderwerpen">
       <div class="container">
         <h1>Hulpvraag onderwerpen</h1>
-        <h2>Ziektespecifiek</h2>
         <ul>
           <li v-for="disease in diseases" :key="disease.id" :class="{selected: filterDiseaseId === disease.id}">
             <button :id="disease.id" class="button" @click="setDiseaseId">{{ disease.disease_name }}</button>
           </li>
         </ul>
-        <h2>{{getSubjectTitle()}}</h2>
-            <ul>
+        <h2 v-if="filterDiseaseId">{{ getSubjectTitle() }}</h2>
+        <ul>
           <li v-for="(subject, index) in filteredData" :key="subject.id" :class="`trans trans-${index}`">
             <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
-        </div>
-        </section>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -174,23 +173,18 @@ export default {
   },
 
   mounted () {
-    this.setDiseaseId()
+
   },
 
   methods: {
     setDiseaseId (e) {
-      if (e) {
-        e.preventDefault()
-        this.filterDiseaseId = parseInt(e.target.id, 10)
-        this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
-      } else {
-        this.filterDiseaseId = 0
-        this.filteredData = this.subjects
-      }
+      e.preventDefault()
+      this.filterDiseaseId = parseInt(e.target.id, 10)
+      this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
     },
     getSubjectTitle () {
       const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
-      return currentDisease.length ? `Hulpvragen over ${currentDisease[0].disease_name}` : 'Generiek'
+      return currentDisease.length ? `Hulpvragen over ${currentDisease[0].disease_name}` : ''
     }
   }
 }
@@ -647,7 +641,7 @@ main {
             100% {opacity:1;}
           }
           &.trans {
-            display: inline-block;
+            display: list-item;
             animation: fadeIn linear .5s;
             transition-delay: 0s;
             -webkit-transition-delay: 0ms;
