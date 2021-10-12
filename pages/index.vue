@@ -145,7 +145,7 @@
         </ul>
         <h2>{{getSubjectTitle()}}</h2>
             <ul>
-          <li v-for="subject in filteredData" :key="subject.id">
+          <li v-for="(subject, index) in filteredData" :key="subject.id" :class="`trans trans-${index}`">
             <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
@@ -639,8 +639,19 @@ main {
           }
 
           &.selected button{
-              background:rgba(156, 190, 47, 0.2);
-            }
+            background:rgba(156, 190, 47, 0.2);
+          }
+
+          @keyframes fadeIn {
+            0% {opacity:0;}
+            100% {opacity:1;}
+          }
+          &.trans {
+            display: inline-block;
+            animation: fadeIn linear .5s;
+            transition-delay: 0s;
+            -webkit-transition-delay: 0ms;
+          }
         }
       }
     }
