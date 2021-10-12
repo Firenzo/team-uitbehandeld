@@ -37,6 +37,15 @@ button, a.button, input[type="submit"]{
     text-decoration: underline;
     cursor:pointer;
   }
+
+  &:disabled {
+    background-color: $lavender;
+    color: $light-text-color;
+    &:hover{
+      text-decoration: none;
+      cursor: default;
+    }
+  }
 }
 
 input[type="text"],

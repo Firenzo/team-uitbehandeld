@@ -148,14 +148,16 @@
           </div>
           <p v-if="invalidInput.termsAndConditions" class="terms-and-conditions-error error-text">U dient akkoord te gaan met de algemene voorwaarden om verder te kunnen gaan!</p>
         </fieldset>
-        <button type="submit" @click="validateForm($event)">Ga verder <Fa-icon :icon="['fas', 'chevron-right']"/></button>
-        <!-- <input type="submit" value="Ga Verder" class="button" @click="validateForm($event)"> -->
+        <button type="submit" :disabled="mollie.sending" @click="submitPaymentForm($event)">Ga verder <Fa-icon :icon="['fas', 'chevron-right']" /></button>
       </form>
     </div>
   </main>
 </template>
 
 <script>
+// import createMollieClient from '@mollie/api-client'
+// const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' })
+
 export default {
   data: () => ({
     minimumDonationAmountInEuros: 5,
@@ -194,11 +196,26 @@ export default {
         companyName: 'Team Uitbehandeld',
         email: 'info@teamuitbehandeld.nl'
       }
+    },
+
+    mollie: {
+      sending: false
     }
   }),
 
   methods: {
-
+    submitPaymentForm (e) {
+      const valid = this.validateForm(e)
+      e.preventDefault()
+      if (valid) {
+        this.mollie.sending = true
+        this.sendPaymentRequest()
+      }
+    },
+    sendPaymentRequest () {
+      console.log('paying now')
+      // mollieClient
+    },
     validateForm (event) {
       event.preventDefault()
 
@@ -262,8 +279,9 @@ export default {
       // check if there are no error's and proceed with the payment
       if (Object.values(this.invalidInput).every((element, index) => element === false)) {
         console.log('form valid:', true)
-        this.getUserInput(this.contributorInfo)
+        return true
       }
+      return false
     },
 
     getUserInput (contributorInfo) {
@@ -567,6 +585,10 @@ main{
 
       button[type="submit"]{
         margin-top:10px;
+        &:disabled {
+          background-color: $lavender;
+          color: $light-text-color;
+        }
       }
     }
   }
