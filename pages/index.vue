@@ -139,17 +139,14 @@
         <h1>Hulpvraag onderwerpen</h1>
         <h2>Ziektespecifiek</h2>
         <ul>
-          <!-- <li v-for="subject in subjects" :key="subject.id">
-            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{subject.title}}</NuxtLink>
-          </li> -->
-          <li><a class="button" href="#">Kanker</a></li>
-          <li><a class="button" href="#">ALS</a></li>
-          <li><a class="button" href="#">Hartfalen</a></li>
+          <li v-for="disease in diseases" :key="disease.id" :class="{selected: filterDiseaseId === disease.id}">
+            <button :id="disease.id" class="button" @click="setDiseaseId">{{ disease.disease_name }}</button>
+          </li>
         </ul>
-        <h2>Generiek</h2>
+        <h2>{{getSubjectTitle()}}</h2>
             <ul>
-          <li v-for="subject in subjects" :key="subject.id">
-            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{subject.title}}</NuxtLink>
+          <li v-for="subject in filteredData" :key="subject.id">
+            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
         </div>
@@ -161,24 +158,40 @@
 export default {
   async asyncData ({ params, $axios }) {
     const subjects = await $axios.$get(`${process.env.strapiAPI}/subjects`)
-    console.log(subjects)
-    return { subjects }
+    const diseases = await $axios.$get(`${process.env.strapiAPI}/diseases`)
+    return { subjects, diseases }
   },
 
-  data: () => ({
-
-  }),
+  data () {
+    return {
+      filteredData: this.subjects,
+      filterDiseaseId: 0
+    }
+  },
 
   computed: {
 
   },
 
   mounted () {
-
+    this.setDiseaseId()
   },
 
   methods: {
-
+    setDiseaseId (e) {
+      if (e) {
+        e.preventDefault()
+        this.filterDiseaseId = parseInt(e.target.id, 10)
+        this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
+      } else {
+        this.filterDiseaseId = 0
+        this.filteredData = this.subjects
+      }
+    },
+    getSubjectTitle () {
+      const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
+      return currentDisease.length ? `Hulpvragen over ${currentDisease[0].disease_name}` : 'Generiek'
+    }
   }
 }
 </script>
@@ -479,17 +492,17 @@ main {
           margin-left: 20px;
           }
         button {
-        width: 130px;
-        padding: 15px 0;
-        font-weight: 600;
-        font-size: 16px;
-        background-color: $cta-color;
-        margin: 10px auto;
+          width: 130px;
+          padding: 15px 0;
+          font-weight: 600;
+          font-size: 16px;
+          background-color: $cta-color;
+          margin: 10px auto;
 
-        @include min-450 {
-          margin: 10px 0px;
+          @include min-450 {
+            margin: 10px 0px;
+          }
         }
-      }
       }
 
       div.landelijke-dekking-content-image {
@@ -561,7 +574,7 @@ main {
 
         li{
           list-style: none;
-          background:$light-green;
+          background: none;
           border-radius:10px;
           flex-basis:70%;
           margin-bottom:20px;
@@ -599,6 +612,7 @@ main {
             padding: 25px 0px;
             width:200px;
             text-decoration: none;
+            border: 3px solid $light-green;
 
             &:hover{
               text-decoration:underline;
@@ -609,6 +623,24 @@ main {
               padding: 35px 0;
             }
           }
+
+          button{
+            background:transparent;
+            color:black;
+            font-weight:600;
+            padding:15px 5px;
+            border: 2px solid $light-green;
+            flex-basis: calc(50% - 5px);
+            width: 100%;
+
+            &:focus{
+              text-decoration: none;
+            }
+          }
+
+          &.selected button{
+              background:rgba(156, 190, 47, 0.2);
+            }
         }
       }
     }
