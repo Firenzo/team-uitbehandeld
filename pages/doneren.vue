@@ -20,6 +20,7 @@
               v-model="donationAmountString"
               placeholder="Donatiebedrag"
               :class="{invalid: invalidInput.euros}"
+              :disabled="mollie.loading"
               @keypress="checkNumber($event)"
               @input="adaptString()"
               @blur="fixString()"
@@ -33,7 +34,7 @@
           <label for="">Of kies een vaak gekozen bedrag:</label>
           <ul>
             <li v-for="(donationSelection, index) in donationSelections" :key="index" @click="setDonationAmount($event, donationSelections[index])">
-              <button>€ {{donationSelections[index]}}</button>
+              <button :disabled="mollie.loading">€ {{donationSelections[index]}}</button>
             </li>
           </ul>
         </fieldset>
@@ -47,6 +48,7 @@
               id="pay_transaction_costs"
               value="true"
               checked
+              :disabled="mollie.loading"
             >
             <label for="pay_transaction_costs">Ik wil bijdragen aan de transactiekosten en betaal {{`€${transactionCosts.euros},${transactionCosts.cents}`}} extra</label>
           </div>
@@ -58,14 +60,15 @@
               name="pay_transaction_costs"
               id="dont_pay_transaction_costs"
               value="false"
+              :disabled="mollie.loading"
             >
             <label for="dont_pay_transaction_costs">Ik wil niet bijdragen aan de transactiekosten</label>
           </div>
         </fieldset>
 
         <div class="donateAs">
-          <button @click="setContributor($event, true)" :class="donateAsPerson ? 'selected' : ''">Doneren als persoon</button>
-          <button @click="setContributor($event, false)" :class="donateAsPerson ? '' : 'selected'">Doneren als bedrijf</button>
+          <button @click="setContributor($event, true)" :class="donateAsPerson ? 'selected' : ''" :disabled="mollie.loading">Doneren als persoon</button>
+          <button @click="setContributor($event, false)" :class="donateAsPerson ? '' : 'selected'" :disabled="mollie.loading">Doneren als bedrijf</button>
         </div>
 
         <fieldset v-if="donateAsPerson" class="contributor-info">
@@ -78,6 +81,7 @@
               id="naam"
               placeholder="Typ hier je voornaam"
               :class="{invalid: invalidInput.firstName}"
+              :disabled="mollie.loading"
             >
           </div>
 
@@ -92,6 +96,7 @@
               id="achternaam"
               placeholder="Typ hier je achternaam"
               :class="{invalid: invalidInput.lastName}"
+              :disabled="mollie.loading"
             >
           </div>
 
@@ -106,6 +111,7 @@
               id="email"
               placeholder="voorbeed@team-uitbehandeld.nl"
               :class="{invalid: invalidInput.personEmail}"
+              :disabled="mollie.loading"
             >
           </div>
           <p v-if="invalidInput.personEmail" class="error-text">Vul een geldig emailadres in.</p>
@@ -121,6 +127,7 @@
               id="bedrijfsnaam"
               placeholder="Typ hier je bedrijfsnaam"
               :class="{invalid: invalidInput.companyName}"
+              :disabled="mollie.loading"
             >
           </div>
 
@@ -135,6 +142,7 @@
               id="email"
               placeholder="voorbeed@team-uitbehandeld.nl"
               :class="{invalid: invalidInput.companyEmail}"
+              :disabled="mollie.loading"
             >
           </div>
 
@@ -143,12 +151,16 @@
 
         <fieldset class="additional-preferences">
           <div class="label-and-checkbox">
-            <input v-model="acceptTermsAndConditions" type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions">
+            <input v-model="acceptTermsAndConditions" type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions" :disabled="mollie.loading">
             <label for="accept-terms-and-conditions">Ik accepteer de Algemene voorwaarden.</label>
           </div>
           <p v-if="invalidInput.termsAndConditions" class="terms-and-conditions-error error-text">U dient akkoord te gaan met de algemene voorwaarden om verder te kunnen gaan!</p>
         </fieldset>
-        <button type="submit" :disabled="mollie.sending" @click="submitPaymentForm($event)">Ga verder <Fa-icon :icon="['fas', 'chevron-right']" /></button>
+        <button type="submit" :disabled="mollie.loading" @click="submitPaymentForm($event)">
+          Ga verder
+          <Fa-icon v-if="!mollie.loading" :icon="['fas', 'chevron-right']" />
+          <span v-else>...</span>
+        </button>
       </form>
     </div>
   </main>
@@ -199,7 +211,7 @@ export default {
     },
 
     mollie: {
-      sending: false
+      loading: false
     }
   }),
 
@@ -208,7 +220,7 @@ export default {
       const valid = this.validateForm(e)
       e.preventDefault()
       if (valid) {
-        this.mollie.sending = true
+        this.mollie.loading = true
         this.sendPaymentRequest()
       }
     },
@@ -585,10 +597,6 @@ main{
 
       button[type="submit"]{
         margin-top:10px;
-        &:disabled {
-          background-color: $lavender;
-          color: $light-text-color;
-        }
       }
     }
   }
