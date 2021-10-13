@@ -145,7 +145,7 @@
         <h2 v-if="filterDiseaseId">{{ getSubjectTitle() }}</h2>
         <ul>
           <li v-for="(subject, index) in filteredData" :key="subject.id" :class="`trans trans-${index}`">
-            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{ subject.title }}</NuxtLink>
+            <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
       </div>
