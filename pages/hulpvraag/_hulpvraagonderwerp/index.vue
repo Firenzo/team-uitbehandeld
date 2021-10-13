@@ -8,7 +8,7 @@
       </div>
     </section>
 
-    <FaqList :subject-questions="subjectQuestions" subject="Veelgestelde vragen" max="4" page="subject" />
+    <FaqList :subject-questions="subjectQuestions" subject="Veelgestelde vragen" :max="4" page="subject" />
 
     <section class="ask-question">
       <div class="container">
