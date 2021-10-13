@@ -4,44 +4,73 @@
       <div class="container">
         <h1>Veelgestelde vragen</h1>
       </div>
-      <ul>
+      <ul class="diseases">
         <li
-        v-for="(subject, index) in subjects"
-        :key="subject.id"
-        @click="getIndex(index)"
-        :class="{selected: index===indexNumber}"><button>{{subject.title}}</button></li>
+          v-for="(disease, index) in diseases"
+          :key="disease.id"
+          @click="getDiseaseIndex"
+          :class="{selected: index===indexNumber.disease}"><button>{{disease.disease_name}}</button>
+        </li>
+      </ul>
+
+      <ul class="subjects">
+        <li
+          v-for="(subject, index) in filteredData"
+          :key="subject.id"
+          @click="getSubjectIndex(index)"
+          :class="{selected: index===indexNumber.subject}"><button>{{subject.title}}</button>
+        </li>
       </ul>
     </section>
-    <FaqList :subjectQuestions="subjectQuestions" :subject="subjects[indexNumber].title" />
+    <FaqList
+      :subjectQuestions="subjectQuestions"
+      :subject="subjects[indexNumber.subject].title"
+    />
   </main>
 </template>
 
 <script>
 export default {
   async asyncData ({ params, $axios }) {
+    const diseases = await $axios.$get(`${process.env.strapiAPI}/diseases`)
     const subjects = await $axios.$get(`${process.env.strapiAPI}/subjects`)
-    return { subjects }
+    return { subjects, diseases }
   },
 
-  data: () => ({
-    indexNumber: 0
-  }),
+  data () {
+    return {
+      filteredData: this.subjects,
+      filterDiseaseId: 0,
+
+      indexNumber: {
+        subject: 0,
+        disease: 0
+      }
+    }
+  },
 
   computed: {
     subjectQuestions () {
-      return this.subjects[this.indexNumber].subject_questions
+      return this.subjects[this.indexNumber.subject].subject_questions
     }
   },
 
   methods: {
-    getIndex (i) {
-      this.indexNumber = i
+    getSubjectIndex (i) {
+      this.indexNumber.subject = i
+    },
+
+    getDiseaseIndex (e) {
+      e.preventDefault()
+      this.filterDiseaseId = parseInt(e.target.id, 10)
+      this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
     }
   },
 
   mounted () {
     console.log(this.subjects)
     console.log(this.subjectQuestions)
+    console.log(this.diseases)
   }
 }
 </script>
