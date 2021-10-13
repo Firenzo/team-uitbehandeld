@@ -2,10 +2,12 @@
   <section class="questions-and-answers">
     <div class="container">
       <h2 v-if="subject">{{subject}}</h2>
-      <div v-for="subjectQuestion in subjectQuestionsDisplayed" :key="subjectQuestion.id" class="faq">
-        <h3>{{subjectQuestion.question}}?</h3>
-        <div v-html="$md.render(subjectQuestion.answer)" class="md-container"></div>
-      </div>
+      <ul :class="{grid: page !== 'faq'}">
+        <li v-for="subjectQuestion in subjectQuestionsDisplayed" :key="subjectQuestion.id" class="faq">
+          <h3>{{subjectQuestion.question}}?</h3>
+          <div v-html="$md.render(subjectQuestion.answer)" class="md-container"></div>
+        </li>
+      </ul>
       <NuxtLink v-if="showMoreLink" to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
     </div>
   </section>
@@ -53,13 +55,23 @@ section.questions-and-answers{
       font-weight:400;
     }
 
-    div.faq{
-      &:not(:last-of-type){
-        margin-bottom:40px
+    ul {
+      list-style-type: none;
+      &.grid {
+        @include min-700 {
+          display: grid;
+          grid-template-columns: auto auto;
+          gap: 2rem;
+        }
       }
-      h3{
-        font-size:18px;
-        font-weight:400;
+      li.faq{
+        &:not(:last-of-type){
+          margin-bottom:40px
+        }
+        h3{
+          font-size:18px;
+          font-weight:400;
+        }
       }
     }
 
