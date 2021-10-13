@@ -46,6 +46,7 @@
           <!-- <li><NuxtLink to='/team'>Ons team</NuxtLink></li> -->
           <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
           <li><NuxtLink to="/disclaimer">Disclaimer</NuxtLink></li>
+          <li><NuxtLink to="/hulpvraag/faq">Veelgestelde vragen</NuxtLink></li>
         </ul>
         <NuxtLink to="/doneren" class="button">Doneer</NuxtLink>
       </div>

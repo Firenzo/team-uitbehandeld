@@ -3,28 +3,31 @@
     <section class="subjects">
       <div class="container">
         <h1>Veelgestelde vragen</h1>
+        <h2>Over welke ziekte heeft u een vraag?</h2>
       </div>
       <ul class="diseases">
-        <li
-          v-for="(disease, index) in diseases"
-          :key="disease.id"
-          @click="getDiseaseIndex"
-          :class="{selected: index===indexNumber.disease}"><button>{{disease.disease_name}}</button>
+        <li v-for="(disease, index) in diseases" :key="disease.id" :class="{selected: index===indexNumber.disease}">
+          <button :id="disease.id" @click="getDiseaseIndex($event, index)">{{disease.disease_name}}</button>
         </li>
       </ul>
 
-      <ul class="subjects">
-        <li
-          v-for="(subject, index) in filteredData"
-          :key="subject.id"
-          @click="getSubjectIndex(index)"
-          :class="{selected: index===indexNumber.subject}"><button>{{subject.title}}</button>
-        </li>
-      </ul>
+      <transition name="fade" mode="out-in">
+        <div v-if="filterDiseaseId" class="container">
+          <h2>{{ getSubjectTitle() }}</h2>
+        </div>
+      </transition>
+      <transition name="fade" mode="out-in">
+        <ul v-if="filterDiseaseId" class="subjects">
+          <li v-for="(subject, index) in filteredData" :key="subject.id" :class="{selected: index===indexNumber.subject}">
+            <button @click="getSubjectIndex(index)">{{subject.title}}</button>
+          </li>
+        </ul>
+      </transition>
     </section>
     <FaqList
+      v-if="this.indexNumber.subject !== null"
       :subjectQuestions="subjectQuestions"
-      :subject="subjects[indexNumber.subject].title"
+      :subject="filteredData[indexNumber.subject].title"
     />
   </main>
 </template>
@@ -43,15 +46,18 @@ export default {
       filterDiseaseId: 0,
 
       indexNumber: {
-        subject: 0,
-        disease: 0
+        subject: null,
+        disease: null
       }
     }
   },
 
   computed: {
     subjectQuestions () {
-      return this.subjects[this.indexNumber.subject].subject_questions
+      if (this.indexNumber.subject !== null) {
+        return this.subjects[this.indexNumber.subject].subject_questions
+      }
+      return 0
     }
   },
 
@@ -60,10 +66,18 @@ export default {
       this.indexNumber.subject = i
     },
 
-    getDiseaseIndex (e) {
+    getDiseaseIndex (e, i) {
       e.preventDefault()
+      this.indexNumber.disease = i
+      this.indexNumber.subject = null
       this.filterDiseaseId = parseInt(e.target.id, 10)
       this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
+    },
+
+    getSubjectTitle () {
+      const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
+      // return currentDisease.length ? `Kies een onderwerp ${currentDisease[0].disease_name}` : ''
+      return currentDisease.length ? 'Kies een onderwerp' : ''
     }
   },
 
@@ -79,6 +93,32 @@ export default {
 @use "styles/main" as *;
 
 main section.subjects{
+
+  .fade-enter-active{
+    transition: transform 0.4s, opacity 0.4s;
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  .fade-enter-to{
+    transform: translateY(0vw);
+    opacity: 1;
+  }
+
+  .fade-leave-active{
+    transition: transform 0.4s, opacity 0.4s;
+    transform: translateY(0vw);
+    opacity: 1;
+  }
+
+  .fade-leave-to{
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  >div.container>h2{
+    margin-bottom:15px;
+  }
 
   ul{
     display:flex;

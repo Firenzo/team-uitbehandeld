@@ -4,7 +4,7 @@
       <h2 v-if="subject">{{subject}}</h2>
       <ul :class="{grid: page !== 'faq'}">
         <li v-for="subjectQuestion in subjectQuestionsDisplayed" :key="subjectQuestion.id" class="faq">
-          <h3>{{subjectQuestion.question}}?</h3>
+          <h3>{{subjectQuestion.question}}</h3>
           <div v-html="$md.render(subjectQuestion.answer)" class="md-container"></div>
         </li>
       </ul>
