@@ -8,14 +8,7 @@
       </div>
     </section>
 
-    <section class="faq">
-      <div class="container" v-if="firstFourSubjectQuestions.length !== 0">
-        <ul>
-            <li v-for="subjectQuestion in firstFourSubjectQuestions" :key="subjectQuestion.id" class="vragen">{{ subjectQuestion.question }}</li>
-        </ul>
-        <NuxtLink v-if="firstFourSubjectQuestions.length === 4" to="/hulpvraag/faq" class="standalone-link">Meer veelgestelde vragen<Fa-icon :icon="['fas', 'arrow-right']" /></NuxtLink>
-      </div>
-    </section>
+    <FaqList :subject-questions="subjectQuestions" subject="Veelgestelde vragen" :max="4" page="subject" />
 
     <section class="ask-question">
       <div class="container">
@@ -56,12 +49,12 @@
 export default {
   // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
-    const slug = params.hulpvraagonderwerp.charAt(0).toUpperCase() + params.hulpvraagonderwerp.slice(1)
-    const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?title=${slug}`)
+    const slug = params.hulpvraagonderwerp
+    const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?slug=${slug}`)
     // console.log(contentObjects)
-    const firstFourSubjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.title=${slug}&_start=0&_limit=4`)
+    const subjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.slug=${slug}&_start=0`)
     const subject = contentObjects[0]
-    return { subject, firstFourSubjectQuestions }
+    return { subject, subjectQuestions }
   },
 
   data: () => ({
@@ -143,16 +136,6 @@ main#hulpvraag-onderwerp{
               }
             }
           }
-        }
-      }
-
-      a.standalone-link{
-        display:block;
-        text-align:center;
-        color:gray;
-
-        svg{
-          margin-left:7px;
         }
       }
     }
