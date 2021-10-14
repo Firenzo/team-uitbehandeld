@@ -40,7 +40,6 @@
     <section id="vragen">
       <div class="container">
         <ul class="practische-vragen">
-          <!-- ul met h2 in een div moet laten staan -->
           <li><h2>Je kunt denken aan heel concrete, praktische vragen zoals:</h2></li>
           <li>Wie is mijn aanspreekpunt bij problemen?</li>
           <li>Welke zorg is er nog wel?</li>
@@ -511,7 +510,6 @@ main {
       overflow:hidden;
       display: flex;
       justify-content: flex-end;
-      // min-width: 300px;
       display: flex;
       justify-content: center;
 
@@ -526,7 +524,6 @@ main {
 
         img{
           object-fit: contain;
-          // min-width: 350px;
           width: 100%;
         }
       }

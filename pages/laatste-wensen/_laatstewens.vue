@@ -11,7 +11,6 @@
 export default {
   async asyncData ({ params, $axios }) {
     const laatsteWensen = await $axios.$get(`${process.env.strapiAPI}/last-wishes/${params.laatstewens}`)
-    console.log(laatsteWensen)
     return { laatsteWensen }
   }
 }

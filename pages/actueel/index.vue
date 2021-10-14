@@ -44,7 +44,6 @@ export default {
 
   async asyncData ({ params, $axios }) {
     const posts = await $axios.$get(`${process.env.strapiAPI}/posts?_sort=created_at:DESC`)
-    console.log(posts)
     return { posts }
   },
 
