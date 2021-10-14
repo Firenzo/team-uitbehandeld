@@ -75,7 +75,6 @@ header {
     }
 
     a.logo {
-      // flex-basis: 100%;
       order: 1;
       transform: translateY(-14px);
       display: flex;
@@ -125,7 +124,7 @@ header {
       svg {
         width: 22px;
         height: 22px;
-        color: white; // is hex better?
+        color: white;
       }
     }
   }

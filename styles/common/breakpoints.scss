@@ -1,3 +1,4 @@
+// Mediaqueries with only min-width
 @mixin min-356 {@media screen and (min-width: 356px){@content;}}
 @mixin min-450 {@media screen and (min-width: 450px){@content;}}
 @mixin min-550 {@media screen and (min-width: 550px){@content;}}
@@ -10,5 +11,5 @@
 @mixin min-1300 {@media screen and (min-width: 1300px){@content;}}
 @mixin min-1334 {@media screen and (min-width: 1334px){@content;}} //container max-width 1200 is reached
 
-//
+// Mediaqueries with min-width and max-width
 @mixin min-700-max-999{@media only screen and (min-width: 700px) and (max-width: 999px){@content;}}

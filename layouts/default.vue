@@ -34,7 +34,6 @@ export default {
   computed: {
 
   },
-  /// I only need methods, mounted or created (created fires before mounted)
   mounted () {
     this.changeMobileState()
     window.addEventListener('resize', this.changeMobileState)

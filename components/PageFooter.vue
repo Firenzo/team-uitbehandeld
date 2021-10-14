@@ -34,16 +34,11 @@
           <Fa-icon :icon="['fas', 'phone']" />
           <a href="#">{{ contactInfo.phoneNumber }}</a>
         </div>
-        <!-- <div class="contact-info address">
-          <Fa-icon :icon="['fas', 'map-marker-alt']" />
-          <span>den Blieklaan 33<br />3766AP Soest</span>
-        </div> -->
       </div>
 
       <div class="about">
         <h2>Over team uitbehandeld</h2>
         <ul>
-          <!-- <li><NuxtLink to='/team'>Ons team</NuxtLink></li> -->
           <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
           <li><NuxtLink to="/disclaimer">Disclaimer</NuxtLink></li>
           <li><NuxtLink to="/hulpvraag/faq">Veelgestelde vragen</NuxtLink></li>
