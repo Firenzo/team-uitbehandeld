@@ -3,10 +3,11 @@
     <div class="container">
       <ul class='laatsteWensFlexContainer'>
         <h1>Laatste wensen</h1>
-        <li v-for="laatsteWens in laatsteWensen" :key="laatsteWens.id">
-          <h2>{{ laatsteWens.title }}</h2>
-            <p>{{ laatsteWens.description }}</p>
-             <NuxtLink :to="`laatste-wensen/${laatsteWens.id}`">Lees meer</NuxtLink>
+          <li v-for="laatsteWens in laatsteWensen" :key="laatsteWens.id">
+            <div class="liCont">
+              <NuxtLink :to="`laatste-wensen/${laatsteWens.id}`"><h2>{{ laatsteWens.title }}</h2></NuxtLink>
+              <p>{{ laatsteWens.preview_text }}</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -53,26 +54,47 @@ main {
       }
 
       li {
+        border: solid 1px #9cbe2f;
         flex-basis: 250px;
-        min-width: 200px;
-        height: auto;
-        max-height: 250px;
+        margin: 10px;
+        padding: 20px 10px;
+        list-style: none;
+        .liCont {
+        // min-width: 200px;
+        // height: auto;
+        // max-height: 250px;
+        // overflow: hidden;
+        // width: 100%;
+        // justify-content: center;
+        // list-style: none;
+        // padding: 20px 10px;
+
+        margin: 10px;
+        padding: 0px 20px;
+        // padding: 120px;
+        // line-clamp: 4;
+        // box-orient: vertical;
         overflow: hidden;
-        width: 100%;
-        margin: 20px;
-        justify-content: center;
-        padding: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
 
         @include min-550 {
           flex-basis: 350px;
           min-width: 300px;
         }
+        a {
+          text-decoration: none;
 
-        h2 {
-          margin-bottom: 15px;
+          h2 {
+            margin-bottom: 15px;
+            color: black;
+            text-decoration: underline;
+          }
         }
       }
     }
+  }
 
     p.headerText {
       width: 90%;

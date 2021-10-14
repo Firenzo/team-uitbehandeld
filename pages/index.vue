@@ -542,7 +542,7 @@ main {
           display:block;
           height:2px;
           background:$light-green;
-          flex-basis:calc(50% - 280px - 20px);
+          flex-basis:calc(50% - 245px - 20px);
         }
       }
 
