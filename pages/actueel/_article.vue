@@ -18,9 +18,7 @@ export default {
   },
 
   async asyncData ({ params, $axios }) {
-    console.log(params)
     const post = await $axios.$get(`${process.env.strapiAPI}/posts/${params.article}`)
-    console.log(post)
     return { post }
   }
 }

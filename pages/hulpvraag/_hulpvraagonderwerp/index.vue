@@ -2,7 +2,6 @@
   <main id="hulpvraag-onderwerp">
     <section class='hulpvraag-info'>
       <div class="container">
-        <!-- <pre>{{ subject }}</pre> -->
         <h1>{{ subject.title }}</h1>
         <div v-html="$md.render(subject.content)" class="hulpvraag-info-text md-container" />
       </div>
@@ -47,11 +46,9 @@
 <script>
 
 export default {
-  // Not sure it's a good idea to write several calls in one async function
   async asyncData ({ params, $axios }) {
     const slug = params.hulpvraagonderwerp
     const contentObjects = await $axios.$get(`${process.env.strapiAPI}/subjects?slug=${slug}`)
-    // console.log(contentObjects)
     const subjectQuestions = await $axios.$get(`${process.env.strapiAPI}/subject-questions?subject.slug=${slug}&_start=0`)
     const subject = contentObjects[0]
     return { subject, subjectQuestions }
@@ -64,7 +61,6 @@ export default {
   methods: {
     getIndex (i) {
       this.indexNumber = i
-      // console.log(this.subject.experts[i].name)
     }
   }
 }

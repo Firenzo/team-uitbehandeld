@@ -76,15 +76,11 @@ export default {
 
     getSubjectTitle () {
       const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
-      // return currentDisease.length ? `Kies een onderwerp ${currentDisease[0].disease_name}` : ''
       return currentDisease.length ? 'Kies een onderwerp' : ''
     }
   },
 
   mounted () {
-    console.log(this.subjects)
-    console.log(this.subjectQuestions)
-    console.log(this.diseases)
   }
 }
 </script>

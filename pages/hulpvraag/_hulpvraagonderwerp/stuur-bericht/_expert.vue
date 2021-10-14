@@ -77,7 +77,6 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    // console.log(process.env.strapiAPI)
     const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
     console.log(expertsData)
     return { expertsData }
@@ -121,10 +120,8 @@ export default {
       this.trimPhoneNumber()
     },
     trimPhoneNumber () {
-      console.log(this.senderInfo.phoneNumber.split('-'))
     },
     getUserInput () {
-      console.log(this.senderInfo)
     }
   }
 }
@@ -173,11 +170,6 @@ main{
           flex-basis: 100%;
         }
 
-        // input.submitInput {
-        //   margin-top: 100px;
-        //   height: 100px;
-        // }
-
         div.label-and-input{
           flex-basis:100%;
           display:flex;
@@ -190,7 +182,6 @@ main{
           }
 
           input, textarea{
-            // margin-bottom:15px;
             flex-basis:100%;
           }
 

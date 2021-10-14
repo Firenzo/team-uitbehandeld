@@ -16,7 +16,6 @@
 export default {
   async asyncData ({ params, $axios }) {
     const partners = await $axios.$get(`${process.env.strapiAPI}/partners`)
-    console.log(partners)
     return { partners }
   },
 
@@ -26,7 +25,6 @@ export default {
         type: 'loop',
         autoplay: true,
         interval: 3000,
-        // true is recommended for accessibility
         pauseOnFocus: true,
         pagination: false,
         arrows: true,

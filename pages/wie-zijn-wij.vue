@@ -25,7 +25,6 @@
 export default {
   async asyncData ({ params, $axios }) {
     const teamMembers = await $axios.$get(`${process.env.strapiAPI}/team-members?_sort=order:ASC`)
-    console.log(teamMembers)
     return { teamMembers }
   }
 }
@@ -70,7 +69,6 @@ main {
           }
 
           &:not(:first-of-type) {
-            // margin-top: 65px;
             margin-top: 85px;
           }
         }
