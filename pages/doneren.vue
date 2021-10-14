@@ -321,22 +321,41 @@ export default {
     },
 
     checkNumber (event) {
-      const keyIsComma = event.key === ','
-      const amountArray = this.donationAmountString.split(',')
-      const amountHasAComma = amountArray.length > 1
-      const euros = amountArray[0]
-      const cents = amountArray.length > 1 ? amountArray[1] : ''
-
-      if (
-        (isNaN(parseInt(event.key)) && !keyIsComma) || // no number and no comma
-        (keyIsComma && amountHasAComma) || // tried a second comma
-        (euros.length >= 17 && ( // tried more than a million million...
-          (!amountHasAComma && !keyIsComma) || // ... without a comma
-          (amountHasAComma && event.target.selectionEnd < this.donationAmountString.indexOf(','))) // ... before the comma
-        ) ||
-        (cents.length >= 2 && event.target.selectionEnd > this.donationAmountString.indexOf(',')) // no more than two digits for cents
-      ) {
+      if (isNaN(parseInt(event.key)) && event.key !== ',') {
         event.preventDefault()
+        console.log(parseInt(event.key))
+      }
+
+      if (event.key === ',' && /[,-]/.test(this.donationAmountString)) {
+        event.preventDefault()
+      }
+
+      console.log(this.donationAmountString.indexOf(','))
+      console.log(this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length)
+
+      if (this.donationAmountString.includes(',')) {
+        // code for when the string has a comma
+        if (this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length > 17 && event.key !== ',' && event.target.selectionEnd < this.donationAmountString.indexOf(',')) {
+          console.log(event.target.selectionEnd)
+          console.log(this.donationAmountString.indexOf(','))
+          console.log('case 1')
+          event.preventDefault()
+        }
+
+        if (this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length - 1).length >= 2 && event.target.selectionEnd > this.donationAmountString.indexOf(',')) {
+          console.log('case 2')
+          console.log(this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length))
+          event.preventDefault()
+        }
+        // until here -----------------------------------------/
+      }
+
+      if (!this.donationAmountString.includes(',')) {
+        // code for when the string has no comma
+        if (this.donationAmountString.length > 17 && event.key !== ',') {
+          event.preventDefault()
+        }
+        // until here
       }
     },
 
