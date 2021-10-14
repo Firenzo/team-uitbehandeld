@@ -168,7 +168,6 @@
 export default {
   async asyncData ({ params, $axios }) {
     const donate = await $axios.$get(`${process.env.strapiAPI}/donate`)
-    console.log(donate)
     return { donate }
   },
 
