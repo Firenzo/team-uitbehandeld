@@ -12,9 +12,9 @@
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="/wie-zijn-wij">Wie zijn wij?</NuxtLink></li>
           <li><NuxtLink :to="{  path: '/',hash:'#hulpvraag-onderwerpen'}">Hulpvraag</NuxtLink></li>
+          <li><NuxtLink to="/laatste-wensen">Laatste wensen</NuxtLink></li>
           <li><NuxtLink to="/actueel">Actueel</NuxtLink></li>
           <li><NuxtLink to="/samenwerkingen">Samenwerkingen</NuxtLink></li>
-          <li><NuxtLink to="/laatste-wens">Laatste wens</NuxtLink></li>
           <li><NuxtLink to="/contact">Contact</NuxtLink></li>
         </ul>
       </nav>

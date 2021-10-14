@@ -145,7 +145,13 @@
         <h2 v-if="filterDiseaseId">{{ getSubjectTitle() }}</h2>
         <ul>
           <li v-for="(subject, index) in filteredData" :key="subject.id" :class="`trans trans-${index}`">
-            <NuxtLink class="button" :to="`hulpvraag/${subject.title}`">{{ subject.title }}</NuxtLink>
+            <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
+          </li>
+        </ul>
+        <h1>Generiek</h1>
+        <ul>
+          <li v-for="(subject, index) in genericData" :key="subject.id" :class="`trans trans-${index}`">
+            <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
       </div>
@@ -163,13 +169,15 @@ export default {
 
   data () {
     return {
-      filteredData: this.subjects,
+      filteredData: [],
       filterDiseaseId: 0
     }
   },
 
   computed: {
-
+    genericData () {
+      return this.subjects.filter(subject => subject.disease === null)
+    }
   },
 
   mounted () {
@@ -527,29 +535,29 @@ main {
 
     section#hulpvraag-onderwerpen{
       width:100%;
+      margin-top: 70px;
 
       h1{
-        font-size:28px;
+        font-size:40px;
         display:flex;
         justify-content: space-between;
         align-items: center;
         text-align: center;
-        margin-bottom:20px;
+        margin-bottom:50px;
 
         &:before, &:after{
           content:'';
           display:block;
           height:2px;
           background:$light-green;
-          flex-basis:calc(50% - 180px - 20px);
+          flex-basis:calc(50% - 280px - 20px);
         }
       }
 
       h2 {
         color: $light-text-color;
         text-align: center;
-        margin-bottom: 20px;
-        margin-top: 40px;
+        margin: 40px 0px;
       }
 
       ul{
@@ -557,6 +565,7 @@ main {
         justify-content: space-between;
         overflow:auto;
         -webkit-overflow-scrolling: touch;
+        margin-bottom: 30px;
 
         @include min-450{
           flex-wrap:wrap;
@@ -607,6 +616,7 @@ main {
             width:200px;
             text-decoration: none;
             border: 3px solid $light-green;
+            font-size: 18px;
 
             &:hover{
               text-decoration:underline;
@@ -626,6 +636,7 @@ main {
             border: 2px solid $light-green;
             flex-basis: calc(50% - 5px);
             width: 100%;
+            font-size: 18px;
 
             &:focus{
               text-decoration: none;

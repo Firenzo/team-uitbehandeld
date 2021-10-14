@@ -30,41 +30,50 @@
       </form>
 
       <div class="contact-info">
-        <div class="contact-info-item email">
+        <div v-if="contactInfo.email" class="contact-info-item email">
+
           <div class="contact-info-icon">
             <Fa-icon :icon="['fas', 'envelope']" />
           </div>
           <p>Email</p>
-          <a href="mailto:info@teamuitbehandeld.nl">{{ contactInfo.email }}</a>
+          <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
         </div>
-        <div class="contact-info-item phone-number">
+
+        <div v-if="contactInfo.phoneNumber" class="contact-info-item phone-number">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fas', 'phone']" />
           </div>
           <p>Telefoonnr.</p>
-          <a href="#">{{ contactInfo.phoneNumber }}</a>
+          <a :href="`tel:${contactInfo.phoneNumber}`">{{ contactInfo.phoneNumber }}</a>
         </div>
-        <div class="contact-info-item facebook">
+
+        <div v-if="contactInfo.facebook" class="contact-info-item facebook">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'facebook-f']" />
           </div>
           <p>Facebook</p>
-          <a href="#">{{ contactInfo.facebook }}</a>
+          <a v-if="contactInfo.facebook_link" :href="contactInfo.facebook_link" target="_blank">{{ contactInfo.facebook }}</a>
+          <p v-else class="link-replacement">{{ contactInfo.facebook }}</p>
         </div>
-        <div class="contact-info-item twitter">
+
+        <div v-if="contactInfo.instagram" class="contact-info-item instagram">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'instagram']" />
           </div>
           <p>Instagram</p>
-          <a href="#">{{ contactInfo.instagram }}</a>
+          <a v-if="contactInfo.instagram_link" :href="contactInfo.instagram_link" target="_blank">{{ contactInfo.instagram }}</a>
+          <p v-else class="link-replacement">{{ contactInfo.instagram }}</p>
         </div>
-        <div class="contact-info-item facebook">
+
+        <div v-if="contactInfo.linkedin" class="contact-info-item linkedin">
           <div class="contact-info-icon">
             <Fa-icon :icon="['fab', 'linkedin-in']" />
           </div>
           <p>LinkedIn</p>
-          <a href="#">{{ contactInfo.linkedin }}</a>
+          <a v-if="contactInfo.linkedin_link" :href="contactInfo.linkedin_link" target="_blank">{{ contactInfo.linkedin }}</a>
+          <p v-else class="link-replacement">{{ contactInfo.linkedin }}</p>
         </div>
+
       </div>
     </div>
   </main>
@@ -85,6 +94,11 @@ export default {
       invalidTextClass: false
     }
   },
+
+  computed: {
+
+  },
+
   methods: {
     validateContactForm (event) {
       event.preventDefault()
@@ -217,6 +231,13 @@ main {
 
         p {
           font-size: 16px;
+        }
+
+        p.link-replacement{
+          text-decoration: none;
+          color: $light-text-color;
+          font-size: 14px;
+          margin-top: 5px;
         }
 
         a {

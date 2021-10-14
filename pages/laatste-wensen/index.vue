@@ -6,6 +6,7 @@
         <li v-for="laatsteWens in laatsteWensen" :key="laatsteWens.id">
           <h2>{{ laatsteWens.title }}</h2>
             <p>{{ laatsteWens.description }}</p>
+             <NuxtLink :to="`laatste-wensen/${laatsteWens.id}`">Lees meer</NuxtLink>
         </li>
       </ul>
     </div>

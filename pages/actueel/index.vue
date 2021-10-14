@@ -3,10 +3,15 @@
     <section id="posts">
       <div class="container">
        <h1>Actueel</h1>
-        <ul>
-          <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
-        </ul>
-        <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
+        <div v-if="visiblePosts.length">
+          <ul>
+            <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
+          </ul>
+          <button v-if="this.range < this.posts.length" @click="addComponent()">Laad meer...</button>
+        </div>
+        <div v-else>
+          Er is nog geen nieuws
+        </div>
       </div>
     </section>
     <section id="news">
