@@ -1,5 +1,5 @@
 <template>
-  <section class="questions-and-answers">
+  <section class="questions-and-answers" v-if="subjectQuestionsDisplayed.length">
     <div class="container">
       <h2 v-if="subject">{{subject}}</h2>
       <ul :class="{grid: page !== 'faq'}">

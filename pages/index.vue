@@ -148,6 +148,12 @@
             <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
+        <h1>Generiek</h1>
+        <ul>
+          <li v-for="(subject, index) in genericData" :key="subject.id" :class="`trans trans-${index}`">
+            <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
@@ -163,13 +169,15 @@ export default {
 
   data () {
     return {
-      filteredData: this.subjects,
+      filteredData: [],
       filterDiseaseId: 0
     }
   },
 
   computed: {
-
+    genericData () {
+      return this.subjects.filter(subject => subject.disease === null)
+    }
   },
 
   mounted () {
@@ -557,6 +565,7 @@ main {
         justify-content: space-between;
         overflow:auto;
         -webkit-overflow-scrolling: touch;
+        margin-bottom: 30px;
 
         @include min-450{
           flex-wrap:wrap;
