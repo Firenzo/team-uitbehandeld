@@ -20,7 +20,7 @@
               v-model="donationAmountString"
               placeholder="Donatiebedrag"
               :class="{invalid: invalidInput.euros}"
-              :disabled="mollie.loading"
+              :disabled="loading"
               @keypress="checkNumber($event)"
               @input="adaptString()"
               @blur="fixString()"
@@ -34,7 +34,7 @@
           <label for="">Of kies een vaak gekozen bedrag:</label>
           <ul>
             <li v-for="(donationSelection, index) in donationSelections" :key="index" @click="setDonationAmount($event, donationSelections[index])">
-              <button :disabled="mollie.loading">€ {{donationSelections[index]}}</button>
+              <button :disabled="loading">€ {{donationSelections[index]}}</button>
             </li>
           </ul>
         </fieldset>
@@ -48,7 +48,7 @@
               id="pay_transaction_costs"
               value="true"
               checked
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
             <label for="pay_transaction_costs">Ik wil bijdragen aan de transactiekosten en betaal {{`€${transactionCosts.euros},${transactionCosts.cents}`}} extra</label>
           </div>
@@ -60,15 +60,15 @@
               name="pay_transaction_costs"
               id="dont_pay_transaction_costs"
               value="false"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
             <label for="dont_pay_transaction_costs">Ik wil niet bijdragen aan de transactiekosten</label>
           </div>
         </fieldset>
 
         <div class="donateAs">
-          <button @click="setContributor($event, true)" :class="donateAsPerson ? 'selected' : ''" :disabled="mollie.loading">Doneren als persoon</button>
-          <button @click="setContributor($event, false)" :class="donateAsPerson ? '' : 'selected'" :disabled="mollie.loading">Doneren als bedrijf</button>
+          <button @click="setContributor($event, true)" :class="donateAsPerson ? 'selected' : ''" :disabled="loading">Doneren als persoon</button>
+          <button @click="setContributor($event, false)" :class="donateAsPerson ? '' : 'selected'" :disabled="loading">Doneren als bedrijf</button>
         </div>
 
         <fieldset v-if="donateAsPerson" class="contributor-info">
@@ -81,7 +81,7 @@
               id="naam"
               placeholder="Typ hier je voornaam"
               :class="{invalid: invalidInput.firstName}"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
           </div>
 
@@ -96,7 +96,7 @@
               id="achternaam"
               placeholder="Typ hier je achternaam"
               :class="{invalid: invalidInput.lastName}"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
           </div>
 
@@ -111,7 +111,7 @@
               id="email"
               placeholder="voorbeed@team-uitbehandeld.nl"
               :class="{invalid: invalidInput.personEmail}"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
           </div>
           <p v-if="invalidInput.personEmail" class="error-text">Vul een geldig emailadres in.</p>
@@ -127,7 +127,7 @@
               id="bedrijfsnaam"
               placeholder="Typ hier je bedrijfsnaam"
               :class="{invalid: invalidInput.companyName}"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
           </div>
 
@@ -142,7 +142,7 @@
               id="email"
               placeholder="voorbeed@team-uitbehandeld.nl"
               :class="{invalid: invalidInput.companyEmail}"
-              :disabled="mollie.loading"
+              :disabled="loading"
             >
           </div>
 
@@ -151,14 +151,14 @@
 
         <fieldset class="additional-preferences">
           <div class="label-and-checkbox">
-            <input v-model="acceptTermsAndConditions" type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions" :disabled="mollie.loading">
+            <input v-model="acceptTermsAndConditions" type="checkbox" name="accept-terms-and-conditions" id="accept-terms-and-conditions" :disabled="loading">
             <label for="accept-terms-and-conditions">Ik accepteer de Algemene voorwaarden.</label>
           </div>
           <p v-if="invalidInput.termsAndConditions" class="terms-and-conditions-error error-text">U dient akkoord te gaan met de algemene voorwaarden om verder te kunnen gaan!</p>
         </fieldset>
-        <button type="submit" :disabled="mollie.loading" @click="submitPaymentForm($event)">
+        <button type="submit" :disabled="loading" @click="submitPaymentForm($event)">
           Ga verder
-          <Fa-icon v-if="!mollie.loading" :icon="['fas', 'chevron-right']" />
+          <Fa-icon v-if="!loading" :icon="['fas', 'chevron-right']" />
           <span v-else>...</span>
         </button>
       </form>
@@ -167,9 +167,6 @@
 </template>
 
 <script>
-// import createMollieClient from '@mollie/api-client'
-// const mollieClient = createMollieClient({ apiKey: 'test_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' })
-
 export default {
   data: () => ({
     minimumDonationAmountInEuros: 5,
@@ -209,10 +206,7 @@ export default {
         email: 'info@teamuitbehandeld.nl'
       }
     },
-
-    mollie: {
-      loading: false
-    }
+    loading: false
   }),
 
   methods: {
@@ -220,13 +214,19 @@ export default {
       const valid = this.validateForm(e)
       e.preventDefault()
       if (valid) {
-        this.mollie.loading = true
+        this.loading = true
         this.sendPaymentRequest()
       }
     },
     sendPaymentRequest () {
-      console.log('paying now')
-      // mollieClient
+      // form is valid, send data to server-side function
+      // const sendMail = await $axios.$post(`${process.env.serverAPI}/donation`, this.contributorInfo)
+      // .then(function (response) {
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
     },
     validateForm (event) {
       event.preventDefault()
@@ -319,41 +319,22 @@ export default {
     },
 
     checkNumber (event) {
-      if (isNaN(parseInt(event.key)) && event.key !== ',') {
+      const keyIsComma = event.key === ','
+      const amountArray = this.donationAmountString.split(',')
+      const amountHasAComma = amountArray.length > 1
+      const euros = amountArray[0]
+      const cents = amountArray.length > 1 ? amountArray[1] : ''
+
+      if (
+        (isNaN(parseInt(event.key)) && !keyIsComma) || // no number and no comma
+        (keyIsComma && amountHasAComma) || // tried a second comma
+        (euros.length >= 17 && ( // tried more than a million million...
+          (!amountHasAComma && !keyIsComma) || // ... without a comma
+          (amountHasAComma && event.target.selectionEnd < this.donationAmountString.indexOf(','))) // ... before the comma
+        ) ||
+        (cents.length >= 2 && event.target.selectionEnd > this.donationAmountString.indexOf(',')) // no more than two digits for cents
+      ) {
         event.preventDefault()
-        console.log(parseInt(event.key))
-      }
-
-      if (event.key === ',' && /[,-]/.test(this.donationAmountString)) {
-        event.preventDefault()
-      }
-
-      console.log(this.donationAmountString.indexOf(','))
-      console.log(this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length)
-
-      if (this.donationAmountString.includes(',')) {
-        // code for when the string has a comma
-        if (this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length > 17 && event.key !== ',' && event.target.selectionEnd < this.donationAmountString.indexOf(',')) {
-          console.log(event.target.selectionEnd)
-          console.log(this.donationAmountString.indexOf(','))
-          console.log('case 1')
-          event.preventDefault()
-        }
-
-        if (this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length - 1).length >= 2 && event.target.selectionEnd > this.donationAmountString.indexOf(',')) {
-          console.log('case 2')
-          console.log(this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length))
-          event.preventDefault()
-        }
-        // until here -----------------------------------------/
-      }
-
-      if (!this.donationAmountString.includes(',')) {
-        // code for when the string has no comma
-        if (this.donationAmountString.length > 17 && event.key !== ',') {
-          event.preventDefault()
-        }
-        // until here
       }
     },
 

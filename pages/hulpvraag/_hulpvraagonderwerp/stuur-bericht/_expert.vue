@@ -109,8 +109,14 @@ export default {
       this.senderInfo.messageSubject.match(/^[a-z'-\s]+$/i) ? this.invalidInput.messageSubject = false : this.invalidInput.messageSubject = true
       this.senderInfo.messageText.length > 10 ? this.invalidInput.messageText = false : this.invalidInput.messageText = true
       if (Object.values(this.invalidInput).every(element => element === false)) {
-        console.log('form valid:', true)
-        this.getUserInput()
+        // form is valid, send data to server-side function
+        // const sendMail = await $axios.$post(`${process.env.serverAPI}/sendMail`, this.senderInfo)
+        // .then(function (response) {
+        //   console.log(response);
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
       }
       this.trimPhoneNumber()
     },

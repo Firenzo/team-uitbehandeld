@@ -91,7 +91,14 @@ export default {
       this.userText.length >= 10 ? this.invalidTextClass = false : this.invalidTextClass = true
       this.userEmail.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidEmailClass = false : this.invalidEmailClass = true
       if (this.invalidEmailClass === false && this.invalidTextClass === false) {
-        this.getUserMessage()
+        // form is valid, send data to server-side function
+        // const sendMail = await $axios.$post(`${process.env.serverAPI}/sendMail`, this.senderInfo)
+        // .then(function (response) {
+        //   console.log(response);
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
       }
     },
     getUserMessage () {
