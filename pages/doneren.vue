@@ -201,13 +201,13 @@ export default {
       euros: 0,
       cents: 0,
       person: {
-        firstName: 'Firenzo',
-        lastName: 'Jorden',
-        email: 'firenzo.jorden@capgemini.com'
+        firstName: '',
+        lastName: '',
+        email: ''
       },
       company: {
-        companyName: 'Team Uitbehandeld',
-        email: 'info@teamuitbehandeld.nl'
+        companyName: '',
+        email: ''
       }
     },
     loading: false
@@ -239,13 +239,11 @@ export default {
 
       // get euro
       if (this.donationAmount.includes(',')) {
-        // console.log('euro:', parseInt(this.donationAmount.substring(0, this.donationAmount.indexOf(','))))
         this.contributorInfo.euros = parseInt(this.donationAmount.substring(0, this.donationAmount.indexOf(',')))
       }
 
       // get cents
       if (this.donationAmount.includes(',')) {
-        // console.log('cents:', parseInt(this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length)))
         this.contributorInfo.cents = parseInt(this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
 
         if (this.payTransactionCosts === 'true') {
@@ -268,7 +266,6 @@ export default {
 
       if (!this.donateAsPerson) {
         this.contributorInfo.company.companyName.match(/^[a-z'-\s]+$/i) ? this.invalidInput.companyName = false : this.invalidInput.companyName = true
-        console.log(this.contributorInfo.company.companyName)
         this.contributorInfo.company.email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i) ? this.invalidInput.companyEmail = false : this.invalidInput.companyEmail = true
       }
 
@@ -291,19 +288,12 @@ export default {
 
       // check if the user has accepted the terms and conditions
       this.acceptTermsAndConditions ? this.invalidInput.termsAndConditions = false : this.invalidInput.termsAndConditions = true
-      console.log(this.invalidInput)
-      console.log(Object.values(this.invalidInput))
 
       // check if there are no error's and proceed with the payment
       if (Object.values(this.invalidInput).every((element, index) => element === false)) {
-        console.log('form valid:', true)
         return true
       }
       return false
-    },
-
-    getUserInput (contributorInfo) {
-      console.log(contributorInfo)
     },
 
     setContributor (event, val) {
@@ -321,34 +311,24 @@ export default {
       }
 
       this.donateAsPerson = val
-      console.log(this.donateAsPerson)
     },
 
     checkNumber (event) {
       if (isNaN(parseInt(event.key)) && event.key !== ',') {
         event.preventDefault()
-        console.log(parseInt(event.key))
       }
 
       if (event.key === ',' && /[,-]/.test(this.donationAmountString)) {
         event.preventDefault()
       }
 
-      console.log(this.donationAmountString.indexOf(','))
-      console.log(this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length)
-
       if (this.donationAmountString.includes(',')) {
         // code for when the string has a comma
         if (this.donationAmountString.substring(0, this.donationAmountString.indexOf(',')).length > 17 && event.key !== ',' && event.target.selectionEnd < this.donationAmountString.indexOf(',')) {
-          console.log(event.target.selectionEnd)
-          console.log(this.donationAmountString.indexOf(','))
-          console.log('case 1')
           event.preventDefault()
         }
 
         if (this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length - 1).length >= 2 && event.target.selectionEnd > this.donationAmountString.indexOf(',')) {
-          console.log('case 2')
-          console.log(this.donationAmountString.substring(this.donationAmountString.indexOf(','), this.donationAmountString.length))
           event.preventDefault()
         }
         // until here -----------------------------------------/
@@ -359,16 +339,14 @@ export default {
         if (this.donationAmountString.length > 17 && event.key !== ',') {
           event.preventDefault()
         }
-        // until here
+        // until here -----------------------------------------/
       }
     },
 
     fixString () {
-      console.log('string fixed', this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length))
       if (this.donationAmount.includes(',')) {
         if (this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length).length === 1) {
           this.donationAmount = this.donationAmount.concat('0')
-          console.log(this.donationAmount)
         }
 
         if (this.donationAmount.substring(this.donationAmount.indexOf(',') + 1, this.donationAmount.length).length === 0) {
@@ -399,8 +377,6 @@ export default {
       if (this.donationAmountString === '') {
         this.donationAmount = '0,00'
       }
-
-      console.log(this.donationAmountString)
     },
 
     adaptString () {
@@ -410,7 +386,6 @@ export default {
 
       this.donationAmount = this.donationAmountString.replace(/\./g, '')
       this.donationAmountString = this.donationAmount.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      console.log('without seperators:', this.donationAmount)
 
       if (this.donationAmountString === '') {
         this.donationAmount = '0,00'
