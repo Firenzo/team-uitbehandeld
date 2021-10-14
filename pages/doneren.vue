@@ -223,9 +223,11 @@ export default {
       // const sendMail = await $axios.$post(`${process.env.serverAPI}/donation`, this.contributorInfo)
       // .then(function (response) {
       //   console.log(response);
+      //    this.loading = false
       // })
       // .catch(function (error) {
       //   console.log(error);
+      //    this.loading = false
       // });
     },
     validateForm (event) {
