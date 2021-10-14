@@ -1,13 +1,11 @@
 <template>
   <main>
     <div class="container">
+      <div class="content">
       <h1>Bedankt dat je ons wilt steunen!</h1>
-      <div class="donation-information">
-        <p>Alle online betalingen gaan via ideal. Mocht u het handmatig willen overmaken, dan kan dat ook direct op onze rekening.</p>
-        <p>Rekeningnummer: NL00 RABO 0123 4567 89</p>
-        <p>BIC: RABONL2U</p>
-        <p>Ten name van Team Uitbehandeld</p>
+      <div v-html="$md.render(donate.content)" class="md-container donation-information">
       </div>
+    </div>
       <form action="">
         <fieldset class="price">
           <label for="">Kies zelf een donatiebedrag:</label>
@@ -157,6 +155,12 @@
 
 <script>
 export default {
+  async asyncData ({ params, $axios }) {
+    const donate = await $axios.$get(`${process.env.strapiAPI}/donate`)
+    console.log(donate)
+    return { donate }
+  },
+
   data: () => ({
     minimumDonationAmountInEuros: 5,
     donationSelections: [15, 25, 50, 100],

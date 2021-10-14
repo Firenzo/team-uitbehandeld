@@ -11,13 +11,13 @@
           </NuxtLink>
         </div>
         <p>
-          KvK: 76638251<br />
-          BSIN / fiscaal: 860717318
+          KvK: {{ contactInfo.kvk }}<br />
+          BSIN / fiscaal: {{ contactInfo.bsin }}
         </p>
         <div class="image anbi-status">
        <NuxtLink to="/anbi-status">
           <img
-            src="~/assets/images/anbi-algemeen-nut-beogende-instelling.svg"
+            :src="contactInfo.anbi_logo ? `${$store.state.baseUrl}${contactInfo.anbi_logo.url}` : ''"
             alt="ANBI logo"
           />
       </NuxtLink>
