@@ -98,11 +98,13 @@ export default {
         if(process.env.OS && process.env.USERNAME){
           if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
             exec("start cmd /k copy-nuxt-project.bat")
+            console.log('copied files to Strapi')
           }
         }
 
         if(process.env.OS === undefined && process.env.USER === "tubadmin"){
           exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+          console.log('copied files to Strapi')
         }
       }
     }
