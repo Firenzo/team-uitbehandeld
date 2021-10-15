@@ -3,7 +3,7 @@
     <section id="posts">
       <div class="container">
        <h1>Actueel</h1>
-        <div v-if="visiblePosts.length">
+        <div class="postsAndButton" v-if="visiblePosts.length">
           <ul>
             <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
           </ul>
@@ -41,23 +41,19 @@
 
 <script>
 export default {
-
   async asyncData ({ params, $axios }) {
     const posts = await $axios.$get(`${process.env.strapiAPI}/posts?_sort=created_at:DESC`)
     return { posts }
   },
-
   data: () => ({
     range: 0,
     visiblePosts: []
   }),
-
   computed: {
     maxPosts () {
       return this.range > this.posts.length ? this.posts.length - 1 : this.range
     }
   },
-
   methods: {
     addComponent () {
       this.visiblePosts = []
@@ -71,7 +67,6 @@ export default {
       }
     }
   },
-
   created () {
     this.addComponent()
   }
@@ -80,44 +75,36 @@ export default {
 
 <style scoped lang="scss">
 @use "styles/main" as *;
-
 main {
   section#news {
     background: #ededed;
     padding: 25px 0;
     margin-top: 40px;
-
     div.container{
       position: relative;
       display: flex;
       flex-flow: row wrap;
       justify-content:center;
-
       @include min-1000{
         justify-content: space-between;
       }
-
       h1 {
         color: #000;
         margin-bottom: 0;
         flex-basis: 100%;
         text-align: center;
         font-size: 28px;
-
         @include min-550{
           font-size: 35px;
         }
       }
-
       >p {
         flex-basis: 100%;
         font-size: 24px;
         color: $light-text-color;
         text-align: center;
       }
-
       div.newsImage{
-
         @include min-1000{
           flex-basis:calc(50% - 10px);
         }
@@ -132,7 +119,6 @@ main {
               box-shadow: 0 0 8px rgba(0,0,0,0.2);
             }
           }
-
           p {
             @include min-1000 {
               position: absolute;
@@ -156,32 +142,40 @@ main {
         position: relative;
       }
 
-      h1{
-        flex-basis:100%;
-      }
+      div.postsAndButton {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content:center;
 
-      ul {
-        width: 200px;
-        margin: auto;
-        display: grid;
-        gap: 20px;
-        margin-bottom: 20px;
-
-        @include min-450 {
-          grid-template-columns: repeat(2, minmax(200px, 1fr));
-          width: auto;
-          margin: 0;
+        h1{
+          flex-basis:100%;
+        }
+        ul {
+          // width: 200px;
+          margin: auto;
+          display: grid;
+          gap: 20px;
           margin-bottom: 20px;
+          width: 100%;
+
+          @include min-450 {
+            grid-template-columns: repeat(2, minmax(calc(100% /2), 1fr));
+            width: auto;
+            margin: 0;
+            margin-bottom: 20px;
+          }
+
+          @include min-750 {
+            gap: 15px;
+            grid-template-columns: repeat(3, minmax(calc(100% /3), 1fr));
+          }
         }
 
-        @include min-750 {
-          gap: 15px;
-          grid-template-columns: repeat(3, minmax(200px, 1fr));
+        button {
+          margin: auto;
         }
-      }
-
-      button {
-        margin: auto;
       }
     }
   }

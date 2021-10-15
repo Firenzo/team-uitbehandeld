@@ -1,8 +1,8 @@
 <template>
   <main>
     <div class="container">
-      <h1> {{ laatsteWensen.title }} </h1>
-      <p>{{ laatsteWensen.description }}</p>
+      <h1>{{ laatsteWensen.title }}</h1>
+      <div class="md-container" v-html="$md.render(laatsteWensen.description)"></div>
     </div>
   </main>
 </template>
