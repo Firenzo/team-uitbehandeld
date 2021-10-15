@@ -150,10 +150,12 @@ main {
           flex-basis:100%;
         }
         ul {
+          // width: 200px;
           margin: auto;
           display: grid;
           gap: 20px;
           margin-bottom: 20px;
+          width: 100%;
 
           @include min-450 {
             grid-template-columns: repeat(2, minmax(calc(100% /2), 1fr));
@@ -164,8 +166,7 @@ main {
 
           @include min-750 {
             gap: 15px;
-            grid-template-columns: repeat(3, 1fr);
-            width: 100%;
+            grid-template-columns: repeat(3, minmax(calc(100% /3), 1fr));
           }
         }
 
