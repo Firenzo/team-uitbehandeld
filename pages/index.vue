@@ -135,7 +135,7 @@
     </section>
     <section id="hulpvraag-onderwerpen">
       <div class="container">
-        <h1>Hulpvraag onderwerpen</h1>
+        <h1 class="hulpvraag-onderwerpen">Hulpvraag onderwerpen</h1>
         <ul>
           <li v-for="disease in diseases" :key="disease.id" :class="{selected: filterDiseaseId === disease.id}">
             <button :id="disease.id" class="button" @click="setDiseaseId">{{ disease.disease_name }}</button>
@@ -147,7 +147,7 @@
             <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
-        <h1>Generiek</h1>
+        <h1 class="generiek">Generiek</h1>
         <ul>
           <li v-for="(subject, index) in genericData" :key="subject.id" :class="`trans trans-${index}`">
             <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
@@ -215,7 +215,7 @@ main {
         height: 400px;
       }
 
-      @include min-700{
+      @include min-1000{
         height: 450px;
       }
         .hero-overlay-container {
@@ -226,7 +226,7 @@ main {
           height: inherit;
           background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0, 0.4));
 
-            @include min-700{
+            @include min-1000{
               display: flex;
               flex-direction: row;
             }
@@ -242,7 +242,7 @@ main {
               height: 230px;
             }
 
-            @include min-700{
+            @include min-1000{
               height: 450px;
             }
           }
@@ -255,24 +255,25 @@ main {
          align-items: center;
          width: 100%;
          height: 100%;
+
            div {
-            // color: $dark-green;
             width: 100%;
             height: auto;
+
            h1 {
               font-size: 30px;
               line-height: 1.2;
               font-weight: 500;
               text-shadow: 0 1px 1.5px rgba(0,0,0,0.5);
-              margin-bottom: 50px;
               color: white;
-              @include min-356 {
-              }
-              @include min-700 {
-                font-size: 50px;
-              }
-              @include min-900 {
+              width: 90%;
+              margin: 0 auto;
+              margin-bottom: 50px;
+
+              @include min-1000 {
+                margin: 0 0;
                 margin-bottom: 70px;
+                font-size:50px;
               }
            }
         }
@@ -549,6 +550,18 @@ main {
           background:$light-green;
           flex-basis:calc(50% - 280px - 20px);
         }
+
+        &.hulpvraag-onderwerpen{
+          &:before, &:after{
+            flex-basis:calc(50% - 280px - 20px);
+          }
+        }
+
+        &.generiek{
+          &:before, &:after{
+            flex-basis:calc(50% - 90px - 20px);
+          }
+        }
       }
 
       h2 {
@@ -579,6 +592,7 @@ main {
           flex-basis:70%;
           margin-bottom:20px;
           margin-right:20px;
+          min-width:200px;
 
           @include min-450{
             flex-basis:calc( (100% / 2) - 10px);
