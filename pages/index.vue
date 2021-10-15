@@ -59,7 +59,7 @@
     <section id="terecht-met-vragen">
       <div class="container">
         <div class="image terecht-met-vragen-image">
-          <img src="~/assets/images/terecht-met-vragen.PNG" alt="zeeland">
+          <img src="~/assets/images/terecht-met-vragen.jpg" alt="zeeland">
         </div>
         <div class="terecht-met-vragen-content">
           <h1>Waar kun je dan terecht met je vragen?</h1>
