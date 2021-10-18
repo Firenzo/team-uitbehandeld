@@ -5,7 +5,10 @@
       <div v-html="$md.render(partnersText.content)" class="md-container"></div>
       <splide :options="options">
         <splide-slide v-for="partner in partners" :key="partner.id">
-          <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
+          <img v-if="!partner.link_to_cooperation_website" :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
+          <a v-else :href="partner.link_to_cooperation_website" target="_blank">
+            <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
+          </a>
         </splide-slide>
       </splide>
     </div>
