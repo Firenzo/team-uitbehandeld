@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <h1>Samenwerking</h1>
-      <p>Why is the sky orange?</p>
+      <div v-html="$md.render(partnersText.content)" class="md-container"></div>
       <splide :options="options">
         <splide-slide v-for="partner in partners" :key="partner.id">
           <img :src="partner.logo ? `${$store.state.baseUrl}${partner.logo.url}` : ''" />
@@ -16,7 +16,8 @@
 export default {
   async asyncData ({ params, $axios }) {
     const partners = await $axios.$get(`${process.env.strapiAPI}/partners`)
-    return { partners }
+    const partnersText = await $axios.$get(`${process.env.strapiAPI}/collaboration-text`)
+    return { partners, partnersText }
   },
 
   data () {
@@ -51,9 +52,9 @@ export default {
 
 main {
   div.container {
-    > p {
-      margin-bottom: 40px;
-      max-width: 750px;
+    div.md-container{
+      max-width:750px;
+      margin-bottom:40px;
     }
 
     .splide__slide img {

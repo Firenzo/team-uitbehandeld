@@ -3,6 +3,7 @@
     <section id="wishes">
     <div class="container">
       <h1>Laatste wensen</h1>
+      <div v-html="$md.render(pageText.content)" class="md-container"></div>
       <div class="wishesAndButton">
       <ul class='laatsteWensFlexContainer'>
           <li v-for="laatsteWens in visiblePosts" :key="laatsteWens.id">
@@ -22,8 +23,9 @@
 <script>
 export default {
   async asyncData ({ params, $axios }) {
-    const laatsteWensen = await $axios.$get(`${process.env.strapiAPI}/last-wishes`)
-    return { laatsteWensen }
+    const laatsteWensen = await $axios.$get(`${process.env.strapiAPI}/last-wishes?_sort=created_at:DESC`)
+    const pageText = await $axios.$get(`${process.env.strapiAPI}/last-wishes-text`)
+    return { laatsteWensen, pageText }
   },
   data: () => ({
     range: 0,
@@ -63,6 +65,17 @@ main {
       display: flex;
       flex-flow: row wrap;
 
+      div.md-container{
+        margin-bottom:30px;
+        max-width:750px;
+      }
+
+      >h1{
+        @include min-1000{
+          flex-basis:100%;
+        }
+      }
+
       @include min-1000 {
         justify-content: space-between;
         align-items: stretch;
@@ -100,16 +113,24 @@ main {
 
           li {
             border: solid 1px #9cbe2f;
-            margin: 10px;
-            padding: 20px 10px;
+            padding: 20px;
             list-style: none;
+            border-radius:3px;
 
-            .liCont {
-            margin: 10px;
-            padding: 0px 20px;
+            &:hover{
+              h2{
+                text-decoration: underline;
+              }
+            }
+
+            p{
+              color:$light-text-color;
+            }
+
+            div.liCont {
             overflow: hidden;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 7;
             -webkit-box-orient: vertical;
 
             a {
@@ -117,8 +138,7 @@ main {
 
           h2 {
             margin-bottom: 15px;
-            color: black;
-            text-decoration: underline;
+            color: $light-text-color;
           }
         }
       }

@@ -3,6 +3,7 @@
     <section id="posts">
       <div class="container">
        <h1>Actueel</h1>
+       <div v-html="$md.render(pageText.content)" class="md-container"></div>
         <div class="postsAndButton" v-if="visiblePosts.length">
           <ul>
             <NewsArticle v-for="post in visiblePosts" :key="post.id" :post="post" />
@@ -43,7 +44,8 @@
 export default {
   async asyncData ({ params, $axios }) {
     const posts = await $axios.$get(`${process.env.strapiAPI}/posts?_sort=created_at:DESC`)
-    return { posts }
+    const pageText = await $axios.$get(`${process.env.strapiAPI}/actueel-text`)
+    return { posts, pageText }
   },
   data: () => ({
     range: 0,
@@ -88,6 +90,7 @@ main {
       @include min-1000{
         justify-content: space-between;
       }
+
       h1 {
         color: #000;
         margin-bottom: 0;
@@ -136,10 +139,21 @@ main {
       display: flex;
       flex-flow: row wrap;
 
+      div.md-container{
+        margin-bottom:30px;
+        max-width:750px;
+      }
+
       @include min-1000 {
         justify-content: space-between;
         align-items: stretch;
         position: relative;
+      }
+
+      >h1{
+        @include min-1000{
+          flex-basis:100%;
+        }
       }
 
       div.postsAndButton {

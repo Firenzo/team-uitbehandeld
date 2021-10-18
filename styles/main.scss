@@ -187,7 +187,125 @@ p.error-text{
   margin-bottom: 15px;
 }
 
-/// Style for all the rich texts, as 'disclaimer', etc which use markdown
+//
+  // MARKDOWN STYLING FOR NON ARTICLES //
+//
+.md-container-default::v-deep {
+  h1{
+    font-size:40px;
+    margin-bottom:20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    color: #505D68;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+
+    &.lines{
+      font-size:28px;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+
+      &:before, &:after{
+        content:'';
+        display:block;
+        height:2px;
+        background:$light-green;
+        flex-basis:calc(50% - 161px - 20px);
+      }
+    }
+  }
+
+  h2{
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+
+    &.lines{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+
+      &:before, &:after{
+        content:'';
+        display:block;
+        height:2px;
+        background:$light-green;
+        flex-basis:calc(50% - 161px - 20px);
+      }
+    }
+  }
+
+  h3{
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    color: #505D68;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+  }
+
+  h4{
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    color: #505D68;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+  }
+
+  h5{
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    color: #505D68;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+  }
+
+  h6{
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    color: #505D68;
+
+    &.bold{
+      font-weight: 600;
+      color:black;
+    }
+  }
+
+  p{
+    font-size:15px;
+    line-height:1.4em;
+    margin-top: 20px;
+  }
+  &.andere-vragen, &.practische-vragen {
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+//
+  // MARKDOWN STYLING FOR ARTICLES //
+//
+
 div.md-container::v-deep  {
 
   h1 {

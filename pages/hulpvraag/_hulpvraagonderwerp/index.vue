@@ -34,7 +34,7 @@
         <ul>
           <li v-for="(expert, index) in subject.experts" :key="expert.id" @click="getIndex(index)">
             <div class="image">
-              <img :src="expert.photo ? `${$store.state.baseUrl}${expert.photo.url}` : ''" />
+              <img :src="expert.photo ? `${$store.state.baseUrl}${expert.photo.url}` : ''" :class="{selected: index === indexNumber}" />
             </div>
           </li>
         </ul>
@@ -73,8 +73,10 @@ export default {
 main#hulpvraag-onderwerp{
   section.hulpvraag-info{
     div.container{
-      p{
+
+      div.hulpvraag-info-text.md-container{
         margin-bottom:20px;
+        max-width:750px;
       }
     }
   }
@@ -263,16 +265,16 @@ main#hulpvraag-onderwerp{
               border-radius:5px;
               display:block;
               border: 5px solid transparent;
-               transition: all ease-out 0.5s;
+              transition: all ease-out 0.5s;
+
+              &.selected{
+                border: 5px solid $light-green;
+              }
 
               @include min-1334{
                 max-width:160px;
               }
             }
-          }
-
-          &:nth-of-type(1) div.image img{
-            border: 5px solid $light-green;
           }
 
           &:first-of-type{

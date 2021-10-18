@@ -17,7 +17,7 @@
     </section>
     <section id="samen-doen">
       <div class="container">
-        <div v-html="$md.render(homepage.content_1)" class="md-container-home samen-doen-content">
+        <div v-html="$md.render(homepage.content_1)" class="md-container-default samen-doen-content">
         </div>
         <div class="image samen-doen-image">
         <img :src="homepage.content_1_image ? `${$store.state.baseUrl}${homepage.content_1_image.url}` : ''">
@@ -26,8 +26,8 @@
     </section>
     <section id="vragen">
       <div class="container">
-        <div v-html="$md.render(homepage.green_block_1)" class="md-container-home practische-vragen"></div>
-        <div v-html="$md.render(homepage.green_block_2)" class="md-container-home andere-vragen"></div>
+        <div v-html="$md.render(homepage.green_block_1)" class="md-container-default practische-vragen"></div>
+        <div v-html="$md.render(homepage.green_block_2)" class="md-container-default andere-vragen"></div>
       </div>
     </section>
     <section id="terecht-met-vragen">
@@ -35,12 +35,12 @@
         <div class="image terecht-met-vragen-image">
           <img :src="homepage.content_2_image ? `${$store.state.baseUrl}${homepage.content_2_image.url}` : ''">
         </div>
-        <div v-html="$md.render(homepage.content_2)" class="md-container-home terecht-met-vragen-content"></div>
+        <div v-html="$md.render(homepage.content_2)" class="md-container-default terecht-met-vragen-content"></div>
     </div>
     </section>
     <section id="landelijke-dekking">
       <div class="container">
-        <div v-html="$md.render(homepage.content_3)" class="md-container-home landelijke-dekking-content"></div>
+        <div v-html="$md.render(homepage.content_3)" class="md-container-default landelijke-dekking-content"></div>
         <div class="landelijke-dekking-content-image">
           <img :src="homepage.content_3_image ? `${$store.state.baseUrl}${homepage.content_3_image.url}` : ''">
         </div>
@@ -59,8 +59,8 @@
           <div class="image ons-doel-content-image-right">
             <img :src="homepage.banner_image_2 ? `${$store.state.baseUrl}${homepage.banner_image_2.url}` : ''">
           </div>
-          <div v-html="$md.render(homepage.banner_content_1)" class="md-container-home ons-doel-vragen-left"></div>
-          <div v-html="$md.render(homepage.banner_content_2)" class="md-container-home ons-doel-vragen-right"></div>
+          <div v-html="$md.render(homepage.banner_content_1)" class="md-container-default ons-doel-vragen-left"></div>
+          <div v-html="$md.render(homepage.banner_content_2)" class="md-container-default ons-doel-vragen-right"></div>
         <div class="ons-doel-footer">
           <h3>{{ homepage.banner_bottom_text}}</h3>
         </div>
@@ -137,117 +137,6 @@ export default {
 @use 'styles/main' as *;
 
 main {
-  .md-container-home::v-deep {
-    h1{
-      font-size:40px;
-      margin-bottom:20px;
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-      color: #505D68;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-
-      &.lines{
-        font-size:28px;
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
-
-        &:before, &:after{
-          content:'';
-          display:block;
-          height:2px;
-          background:$light-green;
-          flex-basis:calc(50% - 161px - 20px);
-        }
-      }
-    }
-
-    h2{
-      font-size: 24px;
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-
-      &.lines{
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
-
-        &:before, &:after{
-          content:'';
-          display:block;
-          height:2px;
-          background:$light-green;
-          flex-basis:calc(50% - 161px - 20px);
-        }
-      }
-    }
-
-    h3{
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-      color: #505D68;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-    }
-
-    h4{
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-      color: #505D68;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-    }
-
-    h5{
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-      color: #505D68;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-    }
-
-    h6{
-      font-family: "Montserrat", sans-serif;
-      font-weight:400;
-      color: #505D68;
-
-      &.bold{
-        font-weight: 600;
-        color:black;
-      }
-    }
-
-    p{
-      font-size:15px;
-      line-height:1.4em;
-      margin-top: 20px;
-    }
-    &.andere-vragen, &.practische-vragen {
-      p {
-        font-size: 16px;
-      }
-    }
-  }
   section#hero-container {
    div.image.hero {
       background: url("~/assets/images/Strand_uitgesneden.png") no-repeat center;

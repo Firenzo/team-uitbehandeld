@@ -2,11 +2,7 @@
   <main>
     <div class="container">
       <h1>Contact</h1>
-      <p class='headerText'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend odio eu pretium mattis.
-        Aenean id risus nec mauris efficitur maximus sit amet eget mi. Sed posuere sit amet arcu at tincidunt.
-        Mauris nec libero a nunc hendrerit cursus. Morbi aliquam libero nec tristique egestas. Cras ornare odio dolor,
-        eu interdum dolor sodales a. Sed id blandit tellus.
-        Aenean congue nunc eget accumsan ornare. Sed ut massa dolor.</p>
+      <div v-html="$md.render(contactInfo.content)" class="md-container"></div>
       <form action="">
         <label for="email">Email:</label>
         <input
@@ -28,53 +24,53 @@
         <p v-if="invalidTextClass" class="error-text">Schrijf uw bericht</p>
         <input type="submit" @click.prevent="validateContactForm($event)" value="Verstuur" />
       </form>
+    </div>
 
-      <div class="contact-info">
-        <div v-if="contactInfo.email" class="contact-info-item email">
+    <div class="contact-info">
+      <div v-if="contactInfo.email" class="contact-info-item email">
 
-          <div class="contact-info-icon">
-            <Fa-icon :icon="['fas', 'envelope']" />
-          </div>
-          <p>Email</p>
-          <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
+        <div class="contact-info-icon">
+          <Fa-icon :icon="['fas', 'envelope']" />
         </div>
-
-        <div v-if="contactInfo.phoneNumber" class="contact-info-item phone-number">
-          <div class="contact-info-icon">
-            <Fa-icon :icon="['fas', 'phone']" />
-          </div>
-          <p>Telefoonnr.</p>
-          <a :href="`tel:${contactInfo.phoneNumber}`">{{ contactInfo.phoneNumber }}</a>
-        </div>
-
-        <div v-if="contactInfo.facebook" class="contact-info-item facebook">
-          <div class="contact-info-icon">
-            <Fa-icon :icon="['fab', 'facebook-f']" />
-          </div>
-          <p>Facebook</p>
-          <a v-if="contactInfo.facebook_link" :href="contactInfo.facebook_link" target="_blank">{{ contactInfo.facebook }}</a>
-          <p v-else class="link-replacement">{{ contactInfo.facebook }}</p>
-        </div>
-
-        <div v-if="contactInfo.instagram" class="contact-info-item instagram">
-          <div class="contact-info-icon">
-            <Fa-icon :icon="['fab', 'instagram']" />
-          </div>
-          <p>Instagram</p>
-          <a v-if="contactInfo.instagram_link" :href="contactInfo.instagram_link" target="_blank">{{ contactInfo.instagram }}</a>
-          <p v-else class="link-replacement">{{ contactInfo.instagram }}</p>
-        </div>
-
-        <div v-if="contactInfo.linkedin" class="contact-info-item linkedin">
-          <div class="contact-info-icon">
-            <Fa-icon :icon="['fab', 'linkedin-in']" />
-          </div>
-          <p>LinkedIn</p>
-          <a v-if="contactInfo.linkedin_link" :href="contactInfo.linkedin_link" target="_blank">{{ contactInfo.linkedin }}</a>
-          <p v-else class="link-replacement">{{ contactInfo.linkedin }}</p>
-        </div>
-
+        <p>Email</p>
+        <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
       </div>
+
+      <div v-if="contactInfo.phoneNumber" class="contact-info-item phone-number">
+        <div class="contact-info-icon">
+          <Fa-icon :icon="['fas', 'phone']" />
+        </div>
+        <p>Telefoonnr.</p>
+        <a :href="`tel:${contactInfo.phoneNumber}`">{{ contactInfo.phoneNumber }}</a>
+      </div>
+
+      <div v-if="contactInfo.facebook" class="contact-info-item facebook">
+        <div class="contact-info-icon">
+          <Fa-icon :icon="['fab', 'facebook-f']" />
+        </div>
+        <p>Facebook</p>
+        <a v-if="contactInfo.facebook_link" :href="contactInfo.facebook_link" target="_blank">{{ contactInfo.facebook }}</a>
+        <p v-else class="link-replacement">{{ contactInfo.facebook }}</p>
+      </div>
+
+      <div v-if="contactInfo.instagram" class="contact-info-item instagram">
+        <div class="contact-info-icon">
+          <Fa-icon :icon="['fab', 'instagram']" />
+        </div>
+        <p>Instagram</p>
+        <a v-if="contactInfo.instagram_link" :href="contactInfo.instagram_link" target="_blank">{{ contactInfo.instagram }}</a>
+        <p v-else class="link-replacement">{{ contactInfo.instagram }}</p>
+      </div>
+
+      <div v-if="contactInfo.linkedin" class="contact-info-item linkedin">
+        <div class="contact-info-icon">
+          <Fa-icon :icon="['fab', 'linkedin-in']" />
+        </div>
+        <p>LinkedIn</p>
+        <a v-if="contactInfo.linkedin_link" :href="contactInfo.linkedin_link" target="_blank">{{ contactInfo.linkedin }}</a>
+        <p v-else class="link-replacement">{{ contactInfo.linkedin }}</p>
+      </div>
+
     </div>
   </main>
 </template>
@@ -129,18 +125,17 @@ main {
   div.container {
     width: 90%;
     margin: auto;
+    max-width:800px;
+
+    div.md-container{
+      margin-bottom:30px;
+    }
 
     h1{
-      width: 90%;
       margin: 0 auto;
       grid-row: 1 / 2;
       grid-column: 1 / 3;
       margin-bottom: 20px;
-
-      @include min-900 {
-        max-width: 800px;
-        width: 60%;
-      }
     }
 
     p.headerText {
@@ -166,14 +161,8 @@ main {
       flex-direction: column;
       grid-column: 1 / 3;
       grid-row: 3 / 4;
-      width: 90%;
       margin: 0 auto;
       margin-bottom: 30px;
-
-      @include min-900 {
-      max-width: 800px;
-      width: 60%;
-      }
 
       label {
         margin-bottom: 10px;
@@ -184,77 +173,80 @@ main {
         margin-bottom: 15px;
       }
     }
+  }
 
-    div.contact-info {
-      display: flex;
+  div.contact-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    margin-bottom: 40px;
+
+    @include min-550{
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    @include min-900 {
+      flex-wrap: nowrap;
+      text-align: center;
       justify-content: space-between;
+    }
+
+    div.contact-info-item {
+      display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 40px;
+      margin-top: 20px;
 
       @include min-550{
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-basis: 50%;
       }
 
       @include min-900 {
-        flex-wrap: nowrap;
         text-align: center;
-        justify-content: space-between;
+        flex-basis: auto;
       }
 
-      div.contact-info-item {
+      div.contact-info-icon {
+        width: 75px;
+        height: 75px;
+        background: lightgrey;
+        border-radius: 50%;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin-top: 20px;
-
-        @include min-550{
-          flex-basis: 50%;
-        }
-
-        @include min-900 {
-          text-align: center;
-          flex-basis: auto;
-        }
-
-        div.contact-info-icon {
-          width: 75px;
-          height: 75px;
-          background: lightgrey;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 10px;
-        }
-
-        p {
-          font-size: 16px;
-        }
-
-        p.link-replacement{
-          text-decoration: none;
-          color: $light-text-color;
-          font-size: 14px;
-          margin-top: 5px;
-        }
-
-        a {
-          text-decoration: none;
-          color: $light-text-color;
-          font-size: 14px;
-          margin-top: 5px;
-        }
+        margin-bottom: 10px;
       }
 
-      svg {
+      p {
+        font-size: 16px;
+      }
+
+      p.link-replacement{
+        text-decoration: none;
         color: $light-text-color;
-        @include min-900 {
-          padding: 5px;
-          width: 30px;
-          height: 30px;
-        }
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $light-text-color;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    }
+
+    svg {
+      color: $light-text-color;
+      @include min-900 {
+        padding: 5px;
+        width: 30px;
+        height: 30px;
       }
     }
   }

@@ -2,6 +2,7 @@
   <main>
     <div class="container">
       <h1>Wie zijn wij?</h1>
+      <div v-html="$md.render(pageText.content)" class="md-container"></div>
       <ul>
         <li v-for="teamMember in teamMembers" :key="teamMember.id" class="member">
           <div class="name-and-role">
@@ -13,7 +14,7 @@
             <h2>{{ teamMember.name }}</h2>
             <p class="role">{{ teamMember.role }}</p>
             <p class="second-role">{{ teamMember.short_description }}</p>
-            <div v-html="$md.render(teamMember.long_description)" class="role-description md-container" />
+            <div v-html="$md.render(teamMember.long_description)" class="role-description md-container-default" />
           </div>
         </li>
       </ul>
@@ -25,7 +26,8 @@
 export default {
   async asyncData ({ params, $axios }) {
     const teamMembers = await $axios.$get(`${process.env.strapiAPI}/team-members?_sort=order:ASC`)
-    return { teamMembers }
+    const pageText = await $axios.$get(`${process.env.strapiAPI}/our-people-text`)
+    return { teamMembers, pageText }
   }
 }
 </script>
@@ -35,6 +37,12 @@ export default {
 
 main {
   div.container {
+
+    div.md-container{
+      margin-bottom:60px;
+      max-width:750px;
+    }
+
     h1 {
       text-align: left;
       margin-bottom: 50px;

@@ -58,19 +58,32 @@ section.questions-and-answers{
     ul {
       list-style-type: none;
       &.grid {
-        @include min-700 {
+        @include min-900 {
           display: grid;
           grid-template-columns: auto auto;
           gap: 2rem;
+
+          li{
+            margin-bottom:0;
+
+            &.faq{
+              @include min-900{
+                margin-bottom:0;
+              }
+            }
+          }
         }
       }
       li.faq{
-        &:not(:last-of-type){
-          margin-bottom:40px
-        }
+        padding:20px;
+        border: 1px solid $light-green;
+        margin-bottom:40px;
+        border-radius:3px;
+
         h3{
-          font-size:18px;
+          font-size:22px;
           font-weight:400;
+          margin-bottom:15px;
         }
       }
     }

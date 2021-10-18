@@ -32,16 +32,6 @@ main {
     max-width: 1200px;
     margin: auto;
 
-    h1 {
-      margin-bottom: 30px;
-      font-size: 18px;
-      font-weight: 600;
-      color: $light-text-color;
-        @include min-700 {
-        font-size: 25px;
-      }
-    }
-
     h2 {
       margin-bottom: 20px;
       line-height: 1.5;
