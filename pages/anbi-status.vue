@@ -1,11 +1,7 @@
 !<template>
   <main>
     <div class="container">
-      <h1>ANBI Status</h1>
-      <h2>Stichting Teamuitbehandeld.nl is aangemerkt als algemeen nut beogende instelling (ANBI). </h2>
-      <h2>IBAN Rekeningnummer: NL84 RABO 0350 6129 00</h2>
-      <h2>RSIN / FISCAAL NUMMER 8553.10.431</h2>
-      <h2>Downloads:</h2>
+      <div v-html="$md.render(anbi.content)" class="md-container-default"></div>
       <ul class="reports">
         <li v-for="report in reports" :key="report.id" class="report" >
          <a target="blank" class="linkToAReport" v-bind:href="report.file ? `${$store.state.baseUrl}${report.file.url}` : ''" >{{ report.name }}</a>
@@ -18,7 +14,8 @@
 export default {
   async asyncData ({ params, $axios }) {
     const reports = await $axios.$get(`${process.env.strapiAPI}/reports`)
-    return { reports }
+    const anbi = await $axios.$get(`${process.env.strapiAPI}/anbi-text`)
+    return { reports, anbi }
   }
 }
 </script>
