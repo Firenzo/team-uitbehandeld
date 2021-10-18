@@ -3,9 +3,9 @@
     <section class="subjects">
       <div class="container">
         <h1>Veelgestelde vragen</h1>
-        <h2>Over welke ziekte heeft u een vraag?</h2>
+        <h2 class="ziektespecifiek lines" :class="{deselected: this.greyedOut.disease}">Ziektespecifieke onderwerpen</h2>
       </div>
-      <ul class="diseases">
+      <ul class="diseases" :class="{deselected: this.greyedOut.disease}">
         <li v-for="(disease, index) in diseases" :key="disease.id" :class="{selected: index===indexNumber.disease}">
           <button :id="disease.id" @click="getDiseaseIndex($event, index)">{{disease.disease_name}}</button>
         </li>
@@ -13,21 +13,37 @@
 
       <transition name="fade" mode="out-in">
         <div v-if="filterDiseaseId" class="container">
-          <h2>{{ getSubjectTitle() }}</h2>
+          <h2 class="disease-subject" :class="{deselected: this.greyedOut.disease}">{{ getSubjectTitle() }}</h2>
         </div>
       </transition>
       <transition name="fade" mode="out-in">
-        <ul v-if="filterDiseaseId" class="subjects">
+        <ul v-if="filterDiseaseId" class="subjects" :class="{deselected: this.greyedOut.disease}">
           <li v-for="(subject, index) in filteredData" :key="subject.id" :class="{selected: index===indexNumber.subject}">
             <button @click="getSubjectIndex(index)">{{subject.title}}</button>
           </li>
         </ul>
       </transition>
+
+      <div class="container">
+        <h2 class="lines generic-subjects" :class="{deselected: this.greyedOut.genericData}">Generieke onderwerpen</h2>
+      </div>
+
+      <ul class="subjects-generic" :class="{deselected: this.greyedOut.genericData}">
+        <li v-for="(subject, index) in genericData" :key="subject.id" :class="{selected: index===indexNumber.genericData}">
+          <button @click="getGenericSubjectIndex(index)">{{subject.title}}</button>
+        </li>
+      </ul>
     </section>
     <FaqList
-      v-if="this.indexNumber.subject !== null"
+      v-if="this.indexNumber.subject !== null "
       :subjectQuestions="subjectQuestions"
       :subject="filteredData[indexNumber.subject].title"
+    />
+
+    <FaqList
+      v-if="this.indexNumber.genericData !== null "
+      :subjectQuestions="genericSubjectQuestions"
+      :subject="genericData[indexNumber.genericData].title"
     />
   </main>
 </template>
@@ -45,9 +61,15 @@ export default {
       filteredData: this.subjects,
       filterDiseaseId: 0,
 
+      greyedOut: {
+        disease: false,
+        genericData: false
+      },
+
       indexNumber: {
         subject: null,
-        disease: null
+        disease: null,
+        genericData: null
       }
     }
   },
@@ -58,17 +80,42 @@ export default {
         return this.subjects[this.indexNumber.subject].subject_questions
       }
       return 0
+    },
+
+    genericSubjectQuestions () {
+      if (this.indexNumber.genericData !== null) {
+        return this.subjects[this.indexNumber.genericData].subject_questions
+      }
+      return 0
+    },
+
+    genericData () {
+      return this.subjects.filter(subject => subject.disease === null)
     }
   },
 
   methods: {
     getSubjectIndex (i) {
+      this.greyedOut.disease = false
+      this.greyedOut.genericData = true
+      this.indexNumber.genericData = null
       this.indexNumber.subject = i
+    },
+
+    getGenericSubjectIndex (i) {
+      this.greyedOut.disease = true
+      this.greyedOut.genericData = false
+      this.indexNumber.disease = null
+      this.indexNumber.subject = null
+      this.indexNumber.genericData = i
     },
 
     getDiseaseIndex (e, i) {
       e.preventDefault()
+      this.greyedOut.disease = false
+      this.greyedOut.genericData = true
       this.indexNumber.disease = i
+      this.indexNumber.genericData = null
       this.indexNumber.subject = null
       this.filterDiseaseId = parseInt(e.target.id, 10)
       this.filteredData = this.subjects.filter(subject => subject.disease !== null && subject.disease.id === this.filterDiseaseId)
@@ -76,7 +123,7 @@ export default {
 
     getSubjectTitle () {
       const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
-      return currentDisease.length ? 'Kies een onderwerp' : ''
+      return currentDisease.length ? `Onderwerpen bij ${currentDisease[0].disease_name}` : ''
     }
   },
 
@@ -90,35 +137,59 @@ export default {
 
 main section.subjects{
 
-  .fade-enter-active{
-    transition: transform 0.4s, opacity 0.4s;
-    transform: translateY(-30px);
-    opacity: 0;
+  .deselected{
+    opacity:0.5;
+    transition: opacity 0.3s ease;
+
+    &:hover{
+      opacity: 1;
+    }
   }
 
-  .fade-enter-to{
-    transform: translateY(0vw);
-    opacity: 1;
-  }
-
-  .fade-leave-active{
-    transition: transform 0.4s, opacity 0.4s;
-    transform: translateY(0vw);
-    opacity: 1;
-  }
-
-  .fade-leave-to{
-    transform: translateY(-30px);
-    opacity: 0;
+  >div.container>h1{
+    margin-bottom:50px;
   }
 
   >div.container>h2{
-    margin-bottom:15px;
+    margin-bottom:20px;
+
+    &.ziektespecifiek {
+      font-size: 28px;
+
+      &:before, &:after{
+        flex-basis:calc(50% - 213px - 20px);
+      }
+    }
+
+    &.disease-subject{
+      font-size: 24px;
+      margin-top:20px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    &.generic-subjects{
+      margin-top:40px;
+      font-size:28px;
+
+      &:before, &:after{
+        flex-basis:calc(50% - 170px - 20px);
+      }
+    }
   }
 
   ul{
     display:flex;
     overflow:auto;
+
+    &.diseases li button, &.subjects-generic li button{
+      padding: 40px 0;
+      font-size:16px;
+    }
+
+    &.subjects{
+      margin-bottom:30px;
+    }
 
     @include min-700{
       width:90%;
@@ -187,6 +258,28 @@ main section.subjects{
         }
       }
     }
+  }
+
+  .fade-enter-active{
+    transition: transform 0.4s, opacity 0.4s;
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  .fade-enter-to{
+    transform: translateY(0vw);
+    opacity: 1;
+  }
+
+  .fade-leave-active{
+    transition: transform 0.4s, opacity 0.4s;
+    transform: translateY(0vw);
+    opacity: 1;
+  }
+
+  .fade-leave-to{
+    transform: translateY(-30px);
+    opacity: 0;
   }
 }
 </style>

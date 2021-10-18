@@ -70,18 +70,19 @@
     <section id="hulpvraag-onderwerpen">
       <div class="container">
         <h1 class="hulpvraag-onderwerpen">Hulpvraag onderwerpen</h1>
+        <h2 class="ziektespecifiek lines">Ziektespecifieke onderwerpen</h2>
         <ul>
           <li v-for="disease in diseases" :key="disease.id" :class="{selected: filterDiseaseId === disease.id}">
             <button :id="disease.id" class="button" @click="setDiseaseId">{{ disease.disease_name }}</button>
           </li>
         </ul>
-        <h2 v-if="filterDiseaseId">{{ getSubjectTitle() }}</h2>
+        <h2 v-if="filterDiseaseId" class="disease-title">{{ getSubjectTitle() }}</h2>
         <ul>
           <li v-for="(subject, index) in filteredData" :key="subject.id" :class="`trans trans-${index}`">
             <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
           </li>
         </ul>
-        <h1 class="generiek">Generiek</h1>
+        <h2 class="generiek lines">Generieke onderwerpen</h2>
         <ul>
           <li v-for="(subject, index) in genericData" :key="subject.id" :class="`trans trans-${index}`">
             <NuxtLink class="button" :to="`hulpvraag/${subject.slug}`">{{ subject.title }}</NuxtLink>
@@ -589,24 +590,8 @@ main {
         text-align: center;
         margin-bottom:50px;
 
-        &:before, &:after{
-          content:'';
-          display:block;
-          height:2px;
-          background:$light-green;
-          flex-basis:calc(50% - 245px - 20px);
-        }
-
         &.hulpvraag-onderwerpen{
-          &:before, &:after{
-            flex-basis:calc(50% - 280px - 20px);
-          }
-        }
-
-        &.generiek{
-          &:before, &:after{
-            flex-basis:calc(50% - 90px - 20px);
-          }
+          display:block;
         }
       }
 
@@ -614,6 +599,25 @@ main {
         color: $light-text-color;
         text-align: center;
         margin: 40px 0px;
+
+        &.ziektespecifiek{
+          font-size: 28px;
+          &:before, &:after{
+            flex-basis:calc(50% - 213px - 20px);
+          }
+        }
+
+        &.generiek{
+          font-size: 28px;
+          &:before, &:after{
+            flex-basis:calc(50% - 170px - 20px);
+          }
+        }
+
+        &.disease-title{
+          margin:0;
+          margin-bottom:20px;
+        }
       }
 
       ul{
@@ -621,7 +625,7 @@ main {
         justify-content: space-between;
         overflow:auto;
         -webkit-overflow-scrolling: touch;
-        margin-bottom: 30px;
+        margin-bottom: 0;
 
         @include min-450{
           flex-wrap:wrap;
@@ -636,7 +640,7 @@ main {
           background: none;
           border-radius:10px;
           flex-basis:70%;
-          margin-bottom:20px;
+          margin-bottom:50px;
           margin-right:20px;
           min-width:200px;
 
