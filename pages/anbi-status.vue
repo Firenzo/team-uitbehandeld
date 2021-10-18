@@ -1,6 +1,7 @@
 !<template>
   <main>
     <div class="container">
+      <h1>ANBI Status</h1>
       <div v-html="$md.render(anbi.content)" class="md-container-default"></div>
       <ul class="reports">
         <li v-for="report in reports" :key="report.id" class="report" >
