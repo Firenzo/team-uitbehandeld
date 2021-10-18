@@ -52,7 +52,7 @@ export default {
   fontawesome: {
     component: 'FaIcon',
     icons: {
-      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes', 'faArrowRight', 'faChevronRight', 'faChevronUp', 'faEuroSign'],
+      solid: ['faEnvelope','faMapMarkerAlt','faPhone', 'faBars', 'faTimes', 'faArrowRight', 'faChevronRight', 'faChevronUp', 'faEuroSign', 'faFileAlt'],
       brands: ['faTwitter', 'faFacebook', 'faFacebookF', 'faInstagram', 'faLinkedinIn']
     }
   },

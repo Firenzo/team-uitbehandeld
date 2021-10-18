@@ -3,9 +3,13 @@
     <div class="container">
       <h1>ANBI Status</h1>
       <div v-html="$md.render(anbi.content)" class="md-container-default"></div>
+      <h2 class="reports-title">Downloads:</h2>
       <ul class="reports">
         <li v-for="report in reports" :key="report.id" class="report" >
-         <a target="blank" class="linkToAReport" v-bind:href="report.file ? `${$store.state.baseUrl}${report.file.url}` : ''" >{{ report.name }}</a>
+         <a target="blank" class="linkToAReport" v-bind:href="report.file ? `${$store.state.baseUrl}${report.file.url}` : ''" >
+           <Fa-icon :icon="['fas', 'file-alt']" />
+           {{ report.name }}
+          </a>
         </li>
       </ul>
     </div>
@@ -30,31 +34,38 @@ main {
     max-width: 1200px;
     margin: auto;
 
-    h2 {
-      margin-bottom: 20px;
-      line-height: 1.5;
-      font-size: 16px;
-        @include min-700 {
-        font-size: 20px;
-      }
+    div.md-container-default{
+      margin-bottom:50px;
     }
 
-    h2:nth-of-type(4) {
+    h2.reports-title{
       color: $dark-green;
-      font-weight: bold;
+      font-weight:700;
+      margin-bottom:20px;
     }
 
     ul.reports {
       li.report {
-        margin-bottom: 15px;
+        display:flex;
+        margin-bottom: 30px;
         list-style: none;
-        width: 30px;
+        align-items:center;
+        justify-content: flex-start;
+
+        svg{
+          font-size:24px;
+          margin-right:7px;
+        }
+
         a.linkToAReport {
           text-decoration: none;
-          color: black;
+          color:black;
           font-weight:700;
+          transition: color 0.2s ease;
+
           &:hover {
             color: $light-text-color;
+            text-decoration:underline;
           }
         }
       }
