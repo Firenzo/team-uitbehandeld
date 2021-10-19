@@ -102,7 +102,7 @@ export default {
       this.indexNumber.subject = i
 
       setTimeout(() => {
-        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+        this.scrollToFAQList(document.querySelector('section.questions-and-answers'), 375, 'top')
       }, 20)
     },
 
@@ -114,7 +114,7 @@ export default {
       this.indexNumber.genericData = i
 
       setTimeout(() => {
-        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+        this.scrollToFAQList(document.querySelector('section.questions-and-answers'), 375, 'top')
       }, 20)
     },
 
@@ -132,6 +132,25 @@ export default {
     getSubjectTitle () {
       const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
       return currentDisease.length ? `Onderwerpen bij ${currentDisease[0].disease_name}` : ''
+    },
+
+    scrollToFAQList (e, time, where) {
+      const eTop = e.getBoundingClientRect().top
+      const eAmt = eTop / 100
+      let curTime = 0
+      while (curTime <= time) {
+        window.setTimeout(this.SVS_B, curTime, eAmt, where)
+        curTime += time / 100
+      }
+    },
+
+    SVS_B (eAmt, where) {
+      if (where === 'center' || where === '') {
+        window.scrollBy(0, eAmt / 2)
+      }
+      if (where === 'top') {
+        window.scrollBy(0, eAmt)
+      }
     }
   },
 
