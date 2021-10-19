@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import smoothscroll from 'smoothscroll-polyfill'
+
 export default {
   async asyncData ({ params, $axios }) {
     const diseases = await $axios.$get(`${process.env.strapiAPI}/diseases`)
@@ -100,9 +102,8 @@ export default {
       this.greyedOut.genericData = true
       this.indexNumber.genericData = null
       this.indexNumber.subject = i
-
       setTimeout(() => {
-        this.scrollToFAQList(document.querySelector('section.questions-and-answers'), 375, 'top')
+        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth' })
       }, 20)
     },
 
@@ -112,9 +113,8 @@ export default {
       this.indexNumber.disease = null
       this.indexNumber.subject = null
       this.indexNumber.genericData = i
-
       setTimeout(() => {
-        this.scrollToFAQList(document.querySelector('section.questions-and-answers'), 375, 'top')
+        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth' })
       }, 20)
     },
 
@@ -132,29 +132,11 @@ export default {
     getSubjectTitle () {
       const currentDisease = this.diseases.filter(disease => disease.id === this.filterDiseaseId)
       return currentDisease.length ? `Onderwerpen bij ${currentDisease[0].disease_name}` : ''
-    },
-
-    scrollToFAQList (e, time, where) {
-      const eTop = e.getBoundingClientRect().top
-      const eAmt = eTop / 100
-      let curTime = 0
-      while (curTime <= time) {
-        window.setTimeout(this.SVS_B, curTime, eAmt, where)
-        curTime += time / 100
-      }
-    },
-
-    SVS_B (eAmt, where) {
-      if (where === 'center' || where === '') {
-        window.scrollBy(0, eAmt / 2)
-      }
-      if (where === 'top') {
-        window.scrollBy(0, eAmt)
-      }
     }
   },
 
   mounted () {
+    smoothscroll.polyfill()
   }
 }
 </script>
