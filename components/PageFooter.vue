@@ -130,9 +130,18 @@ footer {
         cursor: pointer;
         text-align: center;
 
-        &.anbi-status img{
-          width: 80px;
-          margin-top: 10px;
+        &.anbi-status {
+          max-width:80px;
+
+          @include min-450{
+            margin:0;
+            margin-bottom:25px;
+          }
+
+          img{
+            width: 100%;
+            margin-top: 10px;
+          }
         }
 
         &.footer-logo img{
@@ -140,7 +149,6 @@ footer {
         }
 
         @include min-900 {
-          width: 220px;
           margin:0;
           margin-bottom:25px;
         }

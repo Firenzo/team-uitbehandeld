@@ -2,8 +2,6 @@
   <main>
     <div class="container">
       <h1>Stel een medische vraag aan {{ expertsData.name }}</h1>
-
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque soluta quod ratione rerum voluptatem quaerat perspiciatis cum illum animi doloribus.</p>
       <div class="ask-question-form">
         <form action="">
           <div class="label-and-input">
@@ -78,17 +76,16 @@
 export default {
   async asyncData ({ params, $axios }) {
     const expertsData = await $axios.$get(`${process.env.strapiAPI}/experts/${params.expert}`)
-    console.log(expertsData)
     return { expertsData }
   },
   data () {
     return {
       senderInfo: {
-        name: 'Naam',
-        email: 'email',
-        phoneNumber: 'telefoonnummer',
-        messageSubject: 'Subject',
-        messageText: 'Message'
+        name: '',
+        email: '',
+        phoneNumber: '',
+        messageSubject: '',
+        messageText: ''
       },
       invalidInput: {
         name: false,
@@ -137,29 +134,23 @@ main{
     @include min-1000{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: fit-content(100px) 1fr;
+      grid-template-rows: fit-content(100px) 1fr 1fr;
       column-gap:40px;
     }
 
-    >p{
-      max-width:400px;
-
-      @include min-1000{
-        grid-row-start:2;
-        max-width:530px;
-      }
+    >h1{
+      margin-bottom: 0;
     }
 
     div.ask-question-form{
 
       @include min-1000{
-        grid-row-start:3;
+        grid-row-start:2;
       }
 
       form{
         display:flex;
         flex-wrap:wrap;
-        margin-top:20px;
         margin-bottom:20px;
 
         #submitInput {
@@ -196,6 +187,8 @@ main{
 
       @include min-1000{
         height:1px;
+        grid-row-start: 2;
+        margin-top:0;
       }
 
       img{
@@ -204,7 +197,7 @@ main{
         max-width:400px;
         margin:auto;
         border-radius:5px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        box-shadow: 0 0 7px rgba(0,0,0,0.25);
 
         @include min-1000{
           margin:0;

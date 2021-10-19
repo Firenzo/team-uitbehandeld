@@ -222,7 +222,6 @@ export default {
       }
     },
     sendPaymentRequest () {
-      console.log(this.contributorInfo)
       // form is valid, send data to server-side function
       // const sendMail = await $axios.$post(`${process.env.serverAPI}/donation`, this.contributorInfo)
       // .then(function (response) {
