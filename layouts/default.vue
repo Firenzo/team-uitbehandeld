@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import smoothscroll from 'smoothscroll-polyfill'
 export default {
 
   head () {
@@ -35,6 +36,7 @@ export default {
 
   },
   mounted () {
+    smoothscroll.polyfill()
     this.changeMobileState()
     window.addEventListener('resize', this.changeMobileState)
     window.addEventListener('scroll', this.onElementObserved)

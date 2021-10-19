@@ -49,8 +49,6 @@
 </template>
 
 <script>
-import smoothscroll from 'smoothscroll-polyfill'
-
 export default {
   async asyncData ({ params, $axios }) {
     const diseases = await $axios.$get(`${process.env.strapiAPI}/diseases`)
@@ -136,7 +134,6 @@ export default {
   },
 
   mounted () {
-    smoothscroll.polyfill()
   }
 }
 </script>
