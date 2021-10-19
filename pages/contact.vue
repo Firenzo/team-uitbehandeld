@@ -22,7 +22,7 @@
          v-model="userText"
         ></textarea>
         <p v-if="invalidTextClass" class="error-text">Schrijf uw bericht</p>
-        <input type="submit" @click.prevent="validateContactForm($event)" value="Verstuur" />
+        <button type="submit" @click.prevent="validateContactForm($event)">Verstuur</button>
       </form>
     </div>
 

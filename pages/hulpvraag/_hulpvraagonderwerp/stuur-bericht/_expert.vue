@@ -64,7 +64,7 @@
             ></textarea>
           </div>
           <p v-if="invalidInput.messageText" class="error-text">Vul jouw bericht in</p>
-          <input id="submitInput" type="submit" value="Verstuur" @click='validateContactForm($event)'>
+          <button id="submitInput" type="submit" @click='validateContactForm($event)'>Verstuur</button>
         </form>
       </div>
       <div class="image">

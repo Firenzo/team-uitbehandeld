@@ -92,6 +92,7 @@ section.questions-and-answers{
       display:block;
       text-align:center;
       color:gray;
+      margin-top:40px;
 
       svg{
         margin-left:7px;
