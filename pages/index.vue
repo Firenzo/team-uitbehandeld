@@ -139,7 +139,7 @@ export default {
 main {
   section#hero-container {
    div.image.hero {
-      background: url("~/assets/images/Strand_uitgesneden.png") no-repeat center;
+      background: url("~/assets/images/Strand_uitgesneden.jpg") no-repeat center;
       background-size: cover;
       height: 280px;
       width: 100%;
