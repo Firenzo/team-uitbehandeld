@@ -100,6 +100,10 @@ export default {
       this.greyedOut.genericData = true
       this.indexNumber.genericData = null
       this.indexNumber.subject = i
+
+      setTimeout(() => {
+        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+      }, 20)
     },
 
     getGenericSubjectIndex (i) {
@@ -108,6 +112,10 @@ export default {
       this.indexNumber.disease = null
       this.indexNumber.subject = null
       this.indexNumber.genericData = i
+
+      setTimeout(() => {
+        document.querySelector('section.questions-and-answers').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+      }, 20)
     },
 
     getDiseaseIndex (e, i) {
