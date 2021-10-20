@@ -101,7 +101,7 @@ export default {
         }
 
         if(process.platform === 'linux'){
-          exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+          exec('./copy-nuxt-project.sh')
           console.log('copied files to Strapi')
         }
       }
