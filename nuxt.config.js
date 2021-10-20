@@ -95,11 +95,14 @@ export default {
   hooks: {
     generate: {
       done (builder) {
+
+				//code for Windows
         if (process.platform === 'win32' && process.env.USERNAME === "FJORDEN") {
           exec("start cmd /k copy-nuxt-project.bat")
           console.log('copied files to Strapi')
         }
 
+				//code for Ubuntu
         if(process.platform === 'linux'){
           exec("./copy-nuxt-project.sh")
           console.log('copied files to Strapi')
