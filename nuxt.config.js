@@ -101,8 +101,7 @@ export default {
         }
 
         if(process.platform === 'linux'){
-          // exec("cd '../team-uitbehandeld-strapi/public/' && rm -rv !('uploads') && cp -Rv '../../team-uitbehandeld/dist/.' .")
-          exec("cd '../team-uitbehandeld-strapi/public/' && rm -rv !('uploads')")
+          exec("./copy-nuxt-project.sh")
           console.log('copied files to Strapi')
         }
       }
