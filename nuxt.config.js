@@ -105,6 +105,7 @@ export default {
 
         if(process.env.OS === undefined && process.env.USER === "tubadmin"){
           exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
+          console.log(process.platform)
           console.log('copied files to Strapi')
         }
       }
