@@ -1,6 +1,3 @@
-#Development
-cp -R dist/. "../../strapi-test/public/"
-
-#Production:
-#cp -R dist/. "../team-uitbehandeld-strapi/public/"
+# run "git add --chmod=+x copy-nuxt-project.sh" to make the file executeable when update
+cp -R dist/. '../team-uitbehandeld-strapi/public/
 exit

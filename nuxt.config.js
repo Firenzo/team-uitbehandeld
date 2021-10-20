@@ -97,13 +97,11 @@ export default {
       done (builder) {
         if (process.platform === 'win32' && process.env.USERNAME === "FJORDEN") {
           exec("start cmd /k copy-nuxt-project.bat")
-          console.log(process.platform)
           console.log('copied files to Strapi')
         }
 
         if(process.platform === 'linux'){
           exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
-          console.log(process.platform)
           console.log('copied files to Strapi')
         }
       }
