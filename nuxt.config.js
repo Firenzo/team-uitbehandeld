@@ -95,15 +95,13 @@ export default {
   hooks: {
     generate: {
       done (builder) {
-        if(process.env.OS && process.env.USERNAME){
-          if (process.env.OS.includes("Windows") && process.env.USERNAME === "FJORDEN") {
-            exec("start cmd /k copy-nuxt-project.bat")
-            console.log(process.platform)
-            console.log('copied files to Strapi')
-          }
+        if (process.platform === 'win32' && process.env.USERNAME === "FJORDEN") {
+          exec("start cmd /k copy-nuxt-project.bat")
+          console.log(process.platform)
+          console.log('copied files to Strapi')
         }
 
-        if(process.env.OS === undefined && process.env.USER === "tubadmin"){
+        if(process.platform === 'linux'){
           exec("cp -R dist/. '../team-uitbehandeld-strapi/public/'")
           console.log(process.platform)
           console.log('copied files to Strapi')
