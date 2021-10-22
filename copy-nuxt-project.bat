@@ -1,3 +1,3 @@
 cd dist
-xcopy . "../../../strapi-test/public" /Y /E
+xcopy . "../../team-uitbehandeld-strapi/public" /Y /E
 exit
